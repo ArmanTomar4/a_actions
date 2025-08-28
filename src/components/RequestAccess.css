@@ -1,0 +1,403 @@
+/* RequestAccess Component Responsive Styles */
+
+.request-access-container {
+  min-height: 70vh;
+  display: flex;
+  background-color: #000;
+  position: relative;
+  width: 100%;
+  padding: 0px 95px 48px 95px;
+  justify-content: center;
+  align-items: center;
+}
+
+.request-access-inner-container {
+  margin-top: 100px;
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  background-color: #000;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid #333;
+  min-height: 552px;
+  height: 100%;
+}
+
+.request-access-left-section {
+  flex: 1;
+  background-color: #000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 80px 60px;
+  position: relative;
+}
+
+.request-access-text-content {
+  max-width: 500px;
+}
+
+.request-access-main-heading {
+  font-family: "Alliance No.2", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 50px;
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 24px 0;
+  line-height: 1.1;
+}
+
+.request-access-sub-heading {
+  font-family: "Alliance No.2", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 32px;
+  font-weight: 400;
+  color: grey;
+  margin: 0 0 24px 0;
+  line-height: 1.2;
+  opacity: 0.9;
+}
+
+.request-access-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #fff;
+  color: #000;
+  border: none;
+  padding: 12px 20px;
+  font-family: "Alliance No.2", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.request-access-button:hover {
+  transform: translateY(-2px);
+}
+
+.request-access-divider {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  height: 100%;
+  width: 88px;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.request-access-right-section {
+  flex: 1;
+  background-image: url(./bg.png);
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.request-access-abstract-graphics {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 1000px;
+}
+
+.request-access-layer {
+  position: absolute;
+  top: 40%;
+  left: 57%;
+  transform: translate(-50%, -50%);
+  z-index: 104;
+  animation: float 6s ease-in-out infinite;
+  width: 600px;
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.request-access-layer1 {
+  position: absolute;
+  top: 58%;
+  left: 57%;
+  transform: translate(-50%, -50%);
+  z-index: 99;
+  animation: float 8s ease-in-out infinite 0.5s;
+  width: 600px;
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.request-access-layer3 {
+  position: absolute;
+margin-top: 280px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;
+  animation: floatBottom 9s ease-in-out infinite 1.5s;
+}
+
+.request-access-layer4 {
+  position: absolute;
+  top: 50%;
+  left: 57%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
+  animation: float 5s ease-in-out infinite 0.8s;
+  width: 600px;
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Animations */
+@keyframes float {
+  0%, 100% {
+    transform: translate(-50%, -50%) translateY(0px);
+  }
+  50% {
+    transform: translate(-50%, -50%) translateY(-20px);
+  }
+}
+
+@keyframes floatBottom {
+  0%, 100% {
+    transform: translateX(-50%) translateY(0px);
+  }
+  50% {
+    transform: translateX(-50%) translateY(-15px);
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+}
+
+/* Tablet Styles */
+@media (max-width: 1024px) {
+  .request-access-container {
+    padding: 0px 40px 48px 40px;
+  }
+
+  .request-access-inner-container {
+    margin-top: 80px;
+  }
+
+  .request-access-left-section {
+    padding: 60px 40px;
+  }
+
+  .request-access-main-heading {
+    font-size: 42px;
+  }
+
+  .request-access-sub-heading {
+    font-size: 28px;
+  }
+
+  .request-access-layer,
+  .request-access-layer1,
+  .request-access-layer4 {
+    width: 500px;
+    height: 350px;
+  }
+
+  .request-access-divider {
+    width: 60px;
+  }
+}
+
+/* Mobile Landscape */
+@media (max-width: 768px) {
+  .request-access-container {
+    padding: 0px 20px 32px 20px;
+    min-height: 60vh;
+  }
+
+  .request-access-inner-container {
+    flex-direction: column;
+    margin-top: 60px;
+    min-height: auto;
+  }
+
+  .request-access-left-section {
+    flex: none;
+    padding: 40px 30px;
+    text-align: center;
+  }
+
+  .request-access-text-content {
+    max-width: 100%;
+    
+  }
+
+  .request-access-main-heading {
+    font-size: 36px;
+    margin-bottom: 20px;
+  }
+
+  .request-access-sub-heading {
+    font-size: 24px;
+    margin-bottom: 32px;
+  }
+
+  .request-access-button {
+    padding: 14px 24px;
+    font-size: 16px;
+    align-self: center;
+  }
+
+  .request-access-divider {
+    display: none;
+  }
+
+  .request-access-right-section {
+    flex: none;
+    height: 400px;
+    min-height: 400px;
+  }
+
+  .request-access-layer,
+  .request-access-layer1,
+  .request-access-layer4 {
+    width: 400px;
+    height: 280px;
+    left: 50%;
+  }
+
+  .request-access-layer3 {
+    bottom: 0;
+    left: 45%;
+  }
+}
+
+/* Mobile Portrait */
+@media (max-width: 480px) {
+  .request-access-container {
+    padding: 0px 16px 24px 16px;
+  }
+
+  .request-access-inner-container {
+    margin-top: 40px;
+    border: none;
+  }
+
+  .request-access-left-section {
+    padding: 32px 20px;
+  }
+
+  .request-access-main-heading {
+    font-size: 32px;
+    line-height: 1.2;
+  }
+
+  .request-access-sub-heading {
+    font-size: 20px;
+    margin-bottom: 28px;
+  }
+
+  .request-access-button {
+    padding: 12px 20px;
+    font-size: 14px;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .request-access-right-section {
+    height: 300px;
+  }
+
+  .request-access-layer,
+  .request-access-layer1,
+  .request-access-layer4 {
+    width: 280px;
+    height: 200px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .request-access-layer3 {
+    width: 320px;
+    height: 240px;
+    bottom: -15%;
+    left: 60%;
+    transform: translateX(-50%) scale(0.6);
+    z-index: -10;
+  }
+
+  /* Reduce animation intensity on mobile for better performance */
+  @keyframes float {
+    0%, 100% {
+      transform: translate(-50%, -50%) translateY(0px);
+    }
+    50% {
+      transform: translate(-50%, -50%) translateY(-10px);
+    }
+  }
+
+  @keyframes floatBottom {
+    0%, 100% {
+      transform: translateX(-50%) scale(0.6) translateY(0px);
+    }
+    50% {
+      transform: translateX(-50%) scale(0.6) translateY(-8px);
+    }
+  }
+}
+
+
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .request-access-right-section {
+    background-image: url(./bg.png);
+  }
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .request-access-layer,
+  .request-access-layer1,
+  .request-access-layer3,
+  .request-access-layer4 {
+    animation: none;
+  }
+
+  .request-access-button {
+    transition: none;
+  }
+}
+
+/* Dark mode support (if needed) */
+@media (prefers-color-scheme: dark) {
+  /* Already dark by default, but can add specific dark mode adjustments here */
+}

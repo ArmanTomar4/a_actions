@@ -1,0 +1,350 @@
+/* Base styles */
+.cards-container {
+    width: 100%;
+    height: 100vh;
+    background-color: #1a1a1a;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+.cards-header {
+    margin-top: 50px;
+    text-align: center;
+    margin-bottom: clamp(3rem, 5vw, 4rem);
+    width: 100%;
+    height: 25%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 2px dashed #84D04D;
+}
+
+.cards-header-title {
+    width: 80%;
+    font-size: clamp(1.2rem, 3.5vw, 3rem);
+    font-weight: 300;
+    line-height: 1.1;
+    text-align: left;
+    color: rgba(132, 208, 77, 1);
+    margin-bottom: clamp(0.5rem, 1.5vw, 1rem);
+    font-family: "Alliance No.2", sans-serif;
+}
+
+.cards-header-subtitle {
+    width: 20%;
+    font-size: clamp(0.75rem, 1.8vw, 0.95rem);
+    font-weight: 400;
+    line-height: 1.4;
+    color: rgba(255, 255, 255, 0.6);
+    margin: 0;
+    text-align: left;
+}
+
+.cards-grid {
+    display: flex;
+    width: 100%;
+    height: 75%;
+    justify-content: center;
+}
+
+.card {
+    position: relative;
+    width: 320px;
+    height: 80%;
+    padding: 10px;
+    color: white;
+    background: #43424244;
+    clip-path: polygon(0 0, 75% 0, 100% 15%, 100% 100%, 0 100%);
+
+  }
+
+  
+
+.card-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+}
+.card-icon {
+    width: 100%;
+    height: 63%;
+    margin-bottom: clamp(0.5rem, 1.5vw, 0.75rem);
+    border-bottom: 1px solid rgba(57, 57, 57, 1);
+}
+
+.card-icon svg {
+    width: clamp(24px, 4vw, 32px);
+    height: clamp(24px, 4vw, 32px);
+}
+
+.card-title {
+    font-size: clamp(0.875rem, 2vw, 1rem);
+    font-weight: 600;
+    color: #ffffff;
+    margin: 3px 0 3px 0;
+}
+
+.card-description {
+    font-size: clamp(0.75rem, 1.5vw, 0.875rem);
+    font-family: "Alliance No.2";
+    font-weight: 400;
+    color: rgba(118, 118, 118, 1);
+    line-height: 1.3;
+    margin: 0;
+}
+
+/* Mobile Carousel Styles */
+.mobile-carousel {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 75%;
+    position: relative;
+    justify-content: center;
+}
+
+.carousel-container {
+    width: 100%;
+    max-width: 320px;
+    overflow: hidden;
+    position: relative;
+    height: 420px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform 0.3s ease;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.carousel-card {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transform: translateX(100%) scale(0.9);
+    transition: all 0.4s ease;
+}
+
+.carousel-card.active {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+}
+
+.carousel-card.prev {
+    transform: translateX(-100%) scale(0.9);
+}
+
+.carousel-card .card {
+    width: 300px;
+    height: 400px;
+    padding: 20px;
+    color: white;
+    background: #43424244;
+    clip-path: polygon(0 0, 75% 0, 100% 15%, 100% 100%, 0 100%);
+    position: relative;
+}
+
+.carousel-card .card-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+}
+
+.carousel-card .card-icon {
+    width: 100%;
+    height: 50%;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid rgba(57, 57, 57, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.carousel-card .card-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin: 10px 0;
+    text-align: left;
+}
+
+.carousel-card .card-description {
+    font-size: 0.85rem;
+    font-family: "Alliance No.2";
+    font-weight: 400;
+    color: rgba(118, 118, 118, 1);
+    line-height: 1.3;
+    margin: 0;
+    text-align: left;
+}
+
+.carousel-btn {
+    background: rgba(132, 208, 77, 0.2);
+    border: 1px solid rgba(132, 208, 77, 0.4);
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+}
+
+.prev-btn {
+    left: -60px;
+}
+
+.next-btn {
+    right: -60px;
+}
+
+.carousel-btn:hover {
+    background: rgba(132, 208, 77, 0.3);
+    border-color: rgba(132, 208, 77, 0.6);
+}
+
+.carousel-dots {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 2rem;
+    position: absolute;
+    bottom: -40px;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.dot.active {
+    background: #84D04D;
+    transform: scale(1.2);
+}
+
+/* Mobile: Below 500px */
+@media (max-width: 499px) {
+    .cards-container {
+        padding: 1rem;
+        overflow: hidden;
+    }
+    
+    .cards-grid {
+        display: none;
+    }
+    
+    .mobile-carousel {
+        display: flex;
+    }
+    
+    .cards-header {
+        height: 20%;
+        margin-bottom: 0.5rem;
+        margin-top: 20px;
+    }
+    
+    .carousel-btn {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .prev-btn {
+        left: -45px;
+    }
+    
+    .next-btn {
+        right: -45px;
+    }
+    
+    .carousel-container {
+        max-width: 280px;
+        height: 380px;
+    }
+    
+    .carousel-card .card {
+        width: 260px;
+        height: 360px;
+        padding: 15px;
+    }
+}
+
+/* Small tablets: 500px - 999px */
+@media (min-width: 500px) and (max-width: 999px) {
+    .cards-container {
+        padding: 2rem;
+    }
+    
+    .cards-grid {
+        gap: 1rem;
+    }
+    
+    .card-content {
+        padding: 1.25rem;
+    }
+    
+    .cards-header {
+        height: 27%;
+    }
+}
+
+/* Large tablets/Small desktop: 1000px - 1499px */
+@media (min-width: 1000px) and (max-width: 1499px) {
+    .cards-container {
+        padding: 95px;
+    }
+    
+    .cards-grid {
+        gap: 2.5rem;
+    }
+    
+    .card-content {
+        padding: 1.5rem;
+    }
+    
+    .cards-header {
+        height: 25%;
+    }
+}
+
+/* Large desktop: 1500px and above */
+@media (min-width: 1500px) {
+    .cards-container {
+        padding: 0px 95px 0px 95px;
+    }
+    
+    .cards-grid {
+        gap: 2.25rem;
+    }
+    
+    .card-content {
+        padding: 1.5rem;
+    }
+    
+    .cards-header {
+        height: 25%;
+    }
+}

@@ -1,0 +1,147 @@
+/**
+ * App.css
+ */
+
+/**
+ * Hero.css
+ */
+.hero-container {
+    padding: 0px 95px 0 95px;
+    display: flex;
+    height: 100vh;
+    background: #1A1A1A;
+}
+.hero-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+.hero-left-section {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: center;
+    width: 40%;
+    height: 100%;
+}
+.hero-left-section h1 {
+    font-size: clamp(1rem, 2.5vw, 2rem);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -1px;
+}
+.hero-left-section button{
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 55%;
+    height: 4%;
+    color:#000000;
+    border:none;
+    padding:20px 20px;
+    background-color:#84D04D;
+    gap: 8px;
+}
+.hero-left-section button p{
+    font-size: clamp(0.5rem, 2.5vw, 1rem);
+}
+    
+.hero-right-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 60%;
+    height: 100%;
+}
+
+
+
+.bottom-info {
+    position: absolute;
+    bottom: 24px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    z-index: 10;
+    padding: 0 95px;
+  }
+  
+  .bottom-section {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: relative;
+    padding-top: 20px;
+    flex: 1;
+    max-width: calc(25% - 30px);
+  }
+  
+  .bottom-section:first-child {
+    border-top: 1px solid #84D04D;
+  }
+  
+  .bottom-section:first-child::before {
+    display: none;
+  }
+  
+  .bottom-section:not(:first-child) {
+    border-top: 1px solid #84D04D;
+  }
+  
+  
+  .info-label {
+    font-size: clamp(0.5rem, 0.5rem, 0.5rem);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #a8a8a8;
+    margin-bottom: 5px;
+  }
+  
+  .info-value {
+    font-size: clamp(0.5rem, 0.5rem, 0.5rem);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #ffffff;
+}
+/* Desktop-specific typography for hero heading */
+@media (min-width: 1024px) {
+  .hero-left-section h1 {
+    font-size: clamp(1rem, 2.5vw, 6rem);
+    font-weight: 700;
+  }
+}
+
+/* Tablet and below: show only left section */
+@media (max-width: 1024px) {
+  .hero-container {
+    padding: 0 48px;
+  }
+  .hero-content {
+    align-items: flex-start;
+  }
+  .hero-right-section {
+    display: none;
+  }
+  .hero-left-section {
+    width: 100%;
+    align-items: flex-start;
+  }
+  .hero-left-section h1 {
+    font-size: clamp(1.25rem, 4vw, 2.25rem);
+  }
+}
+
+/* Mobile: tighter padding */
+@media (max-width: 640px) {
+  .hero-container {
+    padding: 50px;
+  }
+  .hero-left-section h1 {
+    font-size: clamp(1.825rem, 5vw, 2rem);
+  }
+}
