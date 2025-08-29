@@ -7,18 +7,20 @@ import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import Opening from './components/Opening'
 import Cards from './components/Cards'
+import ConnectAnything from './components/ConnectAnything'
 import Footer from './components/Footer'
 import RequestAccess from './components/RequestAccess'
 import FAQ from './components/FAQ'
 import Chatbot from './components/Chatbot'
 
-function Home() {
+function Home() { 
   return (
     <>
    <Navbar />   
    <Hero />
    <Opening />
    <Cards />
+   <ConnectAnything />
    <FAQ />
    <Chatbot />
    <RequestAccess />
