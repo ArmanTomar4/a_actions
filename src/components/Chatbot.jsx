@@ -328,13 +328,13 @@ const Chatbot = () => {
                     justify-content: center;
                     align-items: center;
                     min-height: 54vh;
-                    background-color: #000;
+                    background-color: #1A1A1A;
                     z-index: 1000;
                     padding: 0px 95px 48px 95px;
                 }
 
                 .chatbot-box {
-                    background-color: #000;
+                    background-color: #1A1A1A;
                     border-radius: 0;
                     border: 1px solid #666;
                     width: 100%;

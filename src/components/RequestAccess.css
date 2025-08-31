@@ -3,10 +3,10 @@
 .request-access-container {
   min-height: 70vh;
   display: flex;
-  background-color: #000;
+  background-color: #1A1A1A;
   position: relative;
   width: 100%;
-  padding: 0px 95px 48px 95px;
+  padding: 0px 95px 48px 95px;  
   justify-content: center;
   align-items: center;
 }
@@ -16,7 +16,7 @@
   width: 100%;
   max-width: 1200px;
   display: flex;
-  background-color: #000;
+  background-color: #1A1A1A;
   position: relative;
   overflow: hidden;
   border: 1px solid #333;
@@ -26,7 +26,7 @@
 
 .request-access-left-section {
   flex: 1;
-  background-color: #000;
+  background-color: #1A1A1A;
   display: flex;
   flex-direction: column;
   justify-content: center;

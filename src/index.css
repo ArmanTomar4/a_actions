@@ -197,3 +197,26 @@ code {
 }
 
 
+/* Hide global scrollbars while preserving scroll (placed at end to override above rules) */
+html, body {
+  overflow-y: auto; /* keep scrolling */
+}
+
+/* Firefox */
+html, body {
+  scrollbar-width: none; /* hide */
+}
+
+/* IE/Edge legacy */
+html, body {
+  -ms-overflow-style: none; /* hide */
+}
+
+/* WebKit browsers */
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  width: 0 !important;
+  height: 0 !important;
+  display: none !important;
+}
+

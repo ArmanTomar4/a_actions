@@ -7,9 +7,11 @@ import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import Opening from './components/Opening'
 import Cards from './components/Cards'
+import Workplace from './components/Workplace'
 import Footer from './components/Footer'
 import RequestAccess from './components/RequestAccess'
 import FAQ from './components/FAQ'
+import FAQmobile from './components/FAQmobile'
 import Chatbot from './components/Chatbot'
 
 function Home() {
@@ -19,7 +21,9 @@ function Home() {
    <Hero />
    <Opening />
    <Cards />
+   <Workplace />
    <FAQ />
+   <FAQmobile />
    <Chatbot />
    <RequestAccess />
    <Footer />

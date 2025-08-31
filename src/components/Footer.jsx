@@ -6,7 +6,7 @@ const Footer = () => {
       <style>{`
         .footer-container {
           min-height: 100vh;
-          background-color: #000;
+          background-color: #1A1A1A;
           display: flex;
           flex-direction: column;
           align-items: center;
@@ -37,9 +37,29 @@ const Footer = () => {
 
         .quote-attribution {
           font-size: 10px;
-          color: #999;
+          color: #fff;
           letter-spacing: 1px;
           text-transform: uppercase;
+        }
+
+        /* Override user agent stylesheet with maximum specificity */
+        html body div.footer-container div.quote-section div.quote-attribution {
+          display: block !important;
+          visibility: visible !important;
+          opacity: 1 !important;
+          font-size: 10px !important;
+          color: #fff !important;
+          letter-spacing: 1px !important;
+          text-transform: uppercase !important;
+        }
+        
+        /* Alternative fallback with ID-level specificity */
+        #root .footer-container .quote-section .quote-attribution {
+          display: block !important;
+          visibility: visible !important;
+          opacity: 1 !important;
+          font-size: 10px !important;
+          color: #fff !important;
         }
 
         .apparatus-section {
@@ -89,6 +109,11 @@ const Footer = () => {
             line-height: 1.35;
             margin-bottom: 20px;
           }
+            .quote-attribution {
+            font-size: 28px;
+            line-height: 1.35;
+            margin-bottom: 20px;
+          }
 
           .apparatus-section {
             width: 20%;
@@ -121,11 +146,10 @@ const Footer = () => {
           <div className="quote-text">
             " The goal is to turn data into information, and information into insight "
           </div>
-          <div className="quote-attribution">
-            CARLY FIORINA,<br /> FORMER CEO OF HP
-          </div>
+          <p style={{ display: 'block', visibility: 'visible', opacity: 1, color: '#999', fontSize: '10px', margin: 0, padding: 0, letterSpacing: '1px', textTransform: 'uppercase' }}>CARLY FIORINA,<br /> FORMER CEO OF HP
+          </p>
         </div>
-        
+
         <div className="apparatus-section">
           <img src="/Union.svg" alt="APPARATUS" className="apparatus-logo" />
         </div>
