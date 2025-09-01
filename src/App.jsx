@@ -7,21 +7,23 @@ import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import Opening from './components/Opening'
 import Cards from './components/Cards'
-import Workplace from './components/Workplace'
+import ConnectAnything from './components/ConnectAnything'
 import Footer from './components/Footer'
 import RequestAccess from './components/RequestAccess'
 import FAQ from './components/FAQ'
 import FAQmobile from './components/FAQmobile'
 import Chatbot from './components/Chatbot'
-
-function Home() {
+import Workplace from './components/Workplace'
+function Home() { 
   return (
     <>
    <Navbar />   
    <Hero />
    <Opening />
    <Cards />
-   <Workplace />
+   <ConnectAnything />
+    
+     <Workplace />
    <FAQ />
    <FAQmobile />
    <Chatbot />

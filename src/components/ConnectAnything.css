@@ -1,0 +1,260 @@
+/* ConnectAnything Component Styles */
+
+.connect-anything-container {
+    width: 100%;
+    min-height: 80vh;
+    background-color: #F5F5F5;
+    padding: 80px 95px;
+    box-sizing: border-box;
+    position: relative;
+}
+
+/* SVG Design Elements */
+.connect-top-svg {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+}
+
+.connect-bottom-svg {
+    position: absolute;
+    bottom: -1px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+}
+
+.connect-anything-inner {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.connect-anything-title {
+    font-family: "Alliance No.2", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-size: 48px;
+    font-weight: 400;
+    color: #000;
+    margin: 0 0 40px 0;
+    letter-spacing: -0.5px;
+}
+
+.connect-anything-divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, #84D04D 0%, transparent 100%);
+    margin-bottom: 60px;
+    opacity: 0.3;
+}
+
+.connect-anything-grid {
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    gap: 40px;
+    width: 100%;
+}
+
+.connect-grid-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 1;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.connect-icon {
+    width: 24px;
+    height: 16px;
+    aspect-ratio: 3/2;
+    object-fit: contain;
+    opacity: 0.7;
+    transition: all 0.3s ease;
+    filter: grayscale(1);
+}
+
+.connect-grid-item:hover .connect-icon,
+.connect-grid-item.proximity-glow .connect-icon {
+    opacity: 1;
+    transform: scale(1.7);
+    filter: grayscale(0.3);
+}
+
+
+
+/* Responsive Design */
+
+/* Large Desktop: 1500px and above */
+@media (min-width: 1500px) {
+    .connect-anything-grid {
+        gap: 50px;
+    }
+}
+
+/* Desktop: 1024px - 1499px */
+@media (max-width: 1499px) {
+    .connect-anything-container {
+        padding: 60px 60px;
+    }
+    
+    .connect-anything-grid {
+        gap: 35px;
+    }
+}
+
+/* Tablet: 768px - 1023px */
+@media (max-width: 1023px) {
+    .connect-anything-container {
+        padding: 50px 40px;
+        min-height: auto;
+    }
+    
+    .connect-anything-title {
+        font-size: 40px;
+        margin-bottom: 30px;
+    }
+    
+    .connect-anything-grid {
+        grid-template-columns: repeat(6, 1fr);
+        gap: 30px;
+    }
+    
+    /* Hide last 3 items of each row to maintain 6 columns */
+    .connect-grid-item:nth-child(9n-2),
+    .connect-grid-item:nth-child(9n-1),
+    .connect-grid-item:nth-child(9n) {
+        display: none;
+    }
+}
+
+/* Mobile Landscape: 480px - 767px */
+@media (max-width: 767px) {
+    .connect-anything-container {
+        padding: 40px 30px;
+    }
+    
+    .connect-anything-title {
+        font-size: 32px;
+        margin-bottom: 25px;
+    }
+    
+    .connect-anything-divider {
+        margin-bottom: 40px;
+    }
+    
+    .connect-anything-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 25px;
+    }
+    
+    /* Show only 4 items per row */
+    .connect-grid-item {
+        display: flex;
+    }
+    
+    .connect-grid-item:nth-child(9n-4),
+    .connect-grid-item:nth-child(9n-3),
+    .connect-grid-item:nth-child(9n-2),
+    .connect-grid-item:nth-child(9n-1),
+    .connect-grid-item:nth-child(9n) {
+        display: none;
+    }
+    
+    /* Show first 4 of each row */
+    .connect-grid-item:nth-child(9n-8),
+    .connect-grid-item:nth-child(9n-7),
+    .connect-grid-item:nth-child(9n-6),
+    .connect-grid-item:nth-child(9n-5) {
+        display: flex;
+    }
+}
+
+/* Mobile Portrait: Below 480px */
+@media (max-width: 479px) {
+    .connect-anything-container {
+        padding: 30px 20px;
+    }
+    
+    .connect-anything-title {
+        font-size: 28px;
+        margin-bottom: 20px;
+    }
+    
+    .connect-anything-divider {
+        margin-bottom: 30px;
+    }
+    
+    .connect-anything-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+    }
+    
+    /* Reset previous hiding rules */
+    .connect-grid-item {
+        display: none;
+    }
+    
+    /* Show only first 3 items of each row for 3-column layout */
+    .connect-grid-item:nth-child(9n-8),
+    .connect-grid-item:nth-child(9n-7),
+    .connect-grid-item:nth-child(9n-6) {
+        display: flex;
+    }
+    
+    .connect-icon {
+        opacity: 0.8;
+    }
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.connect-anything-title {
+    animation: fadeInUp 0.8s ease-out;
+}
+
+.connect-grid-item {
+    animation: fadeInUp 0.6s ease-out;
+    animation-fill-mode: both;
+}
+
+/* Stagger animation for grid items */
+.connect-grid-item:nth-child(1) { animation-delay: 0.05s; }
+.connect-grid-item:nth-child(2) { animation-delay: 0.1s; }
+.connect-grid-item:nth-child(3) { animation-delay: 0.15s; }
+.connect-grid-item:nth-child(4) { animation-delay: 0.2s; }
+.connect-grid-item:nth-child(5) { animation-delay: 0.25s; }
+.connect-grid-item:nth-child(6) { animation-delay: 0.3s; }
+.connect-grid-item:nth-child(7) { animation-delay: 0.35s; }
+.connect-grid-item:nth-child(8) { animation-delay: 0.4s; }
+.connect-grid-item:nth-child(9) { animation-delay: 0.45s; }
+
+/* Continue staggering for remaining items */
+.connect-grid-item:nth-child(n+10) {
+    animation-delay: 0.5s;
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    .connect-anything-title,
+    .connect-grid-item {
+        animation: none;
+    }
+    
+    .connect-icon,
+    .connect-grid-item {
+        transition: none;
+    }
+}
