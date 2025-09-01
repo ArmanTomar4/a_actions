@@ -207,7 +207,7 @@ const FAQ = () => {
           border: 1px solid #444;
         }
 
-        .nav-button {
+        .faq-nav-button {
           background: transparent;
           border: none;
           color: #fff;
@@ -219,15 +219,15 @@ const FAQ = () => {
           transition: all 0.2s ease;
         }
 
-        .nav-button:last-child {
+        .faq-nav-button:last-child {
           border-right: none;
         }
 
-        .nav-button:hover:not(:disabled) {
+        .faq-nav-button:hover:not(:disabled) {
           background-color: #333;
         }
 
-        .nav-button:disabled {
+        .faq-nav-button:disabled {
           opacity: 0.5;
           cursor: not-allowed;
         }
@@ -401,14 +401,14 @@ const FAQ = () => {
           <div className="faq-title">FAQ</div>
           <div className="nav-buttons">
             <button
-              className="nav-button"
+              className="faq-nav-button"
               onClick={goBack}
               disabled={!canGoBack}
             >
               ←
             </button>
             <button
-              className="nav-button"
+              className="faq-nav-button"
               onClick={goForward}
               disabled={!canGoForward}
             >

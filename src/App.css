@@ -36,7 +36,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 55%;
+    width: 45%;
     height: 4%;
     color:#000000;
     border:none;
@@ -44,8 +44,13 @@
     background-color:#84D04D;
     gap: 8px;
 }
+.hero-left-section button:hover{
+    cursor: pointer;
+    background-color:#69AD38;
+    transition: all 0.3s ease;
+}
 .hero-left-section button p{
-    font-size: clamp(0.5rem, 2.5vw, 1rem);
+    font-size: clamp(0.5rem, 2.5vw, 1.25rem);
 }
     
 .hero-right-section {
