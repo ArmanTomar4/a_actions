@@ -7,6 +7,9 @@
     padding: 80px 95px;
     box-sizing: border-box;
     position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
 }
 
 /* SVG Design Elements */
@@ -30,6 +33,9 @@
     width: 100%;
     max-width: 1400px;
     margin: 0 auto;
+    position: relative;
+    z-index: 2;
+    flex-shrink: 0;
 }
 
 .connect-anything-title {
@@ -53,7 +59,6 @@
     display: grid;
     grid-template-columns: repeat(9, 1fr);
     grid-template-rows: repeat(5, 1fr);
-    gap: 40px;
     width: 100%;
 }
 
@@ -74,8 +79,30 @@
     opacity: 0.7;
     transition: all 0.3s ease;
     filter: grayscale(1);
+    cursor: pointer;
 }
 
+.svg-plus {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translate(-50%, -50%);
+    transition: all 0.3s ease;
+}
+.svg-plus-right {
+    position: absolute;
+    top: -3px;
+    right: -3px;
+    transition: all 0.3s ease;
+}
+.svg-plus-bottom {
+    width: 5px;
+    height: 5px;
+    position: absolute;
+    bottom: -3px;
+    left: -3px;
+    transition: all 0.3s ease;
+}
 .connect-grid-item:hover .connect-icon,
 .connect-grid-item.proximity-glow .connect-icon {
     opacity: 1;
@@ -83,16 +110,15 @@
     filter: grayscale(0.3);
 }
 
+.connect-icon.selected {
+    opacity: 1;
+    filter: grayscale(0);
+    transform: scale(1.2);
+}
+
 
 
 /* Responsive Design */
-
-/* Large Desktop: 1500px and above */
-@media (min-width: 1500px) {
-    .connect-anything-grid {
-        gap: 50px;
-    }
-}
 
 /* Desktop: 1024px - 1499px */
 @media (max-width: 1499px) {
@@ -100,8 +126,17 @@
         padding: 60px 60px;
     }
     
-    .connect-anything-grid {
-        gap: 35px;
+    .info-section {
+        padding: 30px;
+    }
+    
+    .info-icon-large {
+        width: 70px;
+        height: 70px;
+    }
+    
+    .info-title {
+        font-size: 28px;
     }
 }
 
@@ -110,6 +145,7 @@
     .connect-anything-container {
         padding: 50px 40px;
         min-height: auto;
+        flex-direction: column;
     }
     
     .connect-anything-title {
@@ -119,7 +155,6 @@
     
     .connect-anything-grid {
         grid-template-columns: repeat(6, 1fr);
-        gap: 30px;
     }
     
     /* Hide last 3 items of each row to maintain 6 columns */
@@ -128,12 +163,36 @@
     .connect-grid-item:nth-child(9n) {
         display: none;
     }
+    
+    .info-section {
+        position: relative;
+        width: 100%;
+        height: auto;
+        transform: none;
+        opacity: 1;
+        margin-top: 40px;
+        padding: 30px 20px;
+    }
+    
+    .info-icon-large {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .info-title {
+        font-size: 24px;
+    }
+    
+    .info-description {
+        font-size: 14px;
+    }
 }
 
 /* Mobile Landscape: 480px - 767px */
 @media (max-width: 767px) {
     .connect-anything-container {
         padding: 40px 30px;
+        flex-direction: column;
     }
     
     .connect-anything-title {
@@ -147,7 +206,6 @@
     
     .connect-anything-grid {
         grid-template-columns: repeat(4, 1fr);
-        gap: 25px;
     }
     
     /* Show only 4 items per row */
@@ -170,12 +228,36 @@
     .connect-grid-item:nth-child(9n-5) {
         display: flex;
     }
+    
+    .info-section {
+        position: relative;
+        width: 100%;
+        height: auto;
+        transform: none;
+        opacity: 1;
+        margin-top: 30px;
+        padding: 25px 15px;
+    }
+    
+    .info-icon-large {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .info-title {
+        font-size: 20px;
+    }
+    
+    .info-description {
+        font-size: 13px;
+    }
 }
 
 /* Mobile Portrait: Below 480px */
 @media (max-width: 479px) {
     .connect-anything-container {
         padding: 30px 20px;
+        flex-direction: column;
     }
     
     .connect-anything-title {
@@ -189,7 +271,6 @@
     
     .connect-anything-grid {
         grid-template-columns: repeat(3, 1fr);
-        gap: 20px;
     }
     
     /* Reset previous hiding rules */
@@ -206,6 +287,37 @@
     
     .connect-icon {
         opacity: 0.8;
+    }
+    
+    .info-section {
+        position: relative;
+        width: 100%;
+        height: auto;
+        transform: none;
+        opacity: 1;
+        margin-top: 25px;
+        padding: 20px 10px;
+    }
+    
+    .info-icon-large {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .info-title {
+        font-size: 18px;
+    }
+    
+    .info-description {
+        font-size: 12px;
+    }
+    
+    .close-info-btn {
+        width: 35px;
+        height: 35px;
+        font-size: 20px;
+        top: -15px;
+        right: -15px;
     }
 }
 
@@ -246,6 +358,87 @@
     animation-delay: 0.5s;
 }
 
+/* Info Section Styles */
+.info-section {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    border-left: 1px solid #e9ecef;
+    z-index: 3;
+    transform: translateX(100%);
+    opacity: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    box-sizing: border-box;
+}
+
+.info-content {
+    text-align: center;
+    max-width: 400px;
+    position: relative;
+}
+
+.info-icon-container {
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.info-icon-large {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    filter: grayscale(0);
+    opacity: 1;
+}
+
+.info-text {
+    margin-bottom: 30px;
+}
+
+.info-title {
+    font-family: "Alliance No.2", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-size: 32px;
+    font-weight: 600;
+    color: #000;
+    margin: 0 0 20px 0;
+    letter-spacing: -0.5px;
+}
+
+.info-description {
+    font-family: "Alliance No.2", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    color: #666;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.close-info-btn {
+    position: absolute;
+    top: 50%;
+    left: -175px;
+    width: 40px;
+    height: 40px;
+    border: 1px solid rgb(0, 0, 0);
+    background: transparent;
+    color: #84D04D;
+    border-radius: 8px;
+    font-size: 42px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
 /* Accessibility */
 @media (prefers-reduced-motion: reduce) {
     .connect-anything-title,
@@ -255,6 +448,10 @@
     
     .connect-icon,
     .connect-grid-item {
+        transition: none;
+    }
+    
+    .info-section {
         transition: none;
     }
 }

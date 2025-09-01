@@ -1,9 +1,111 @@
-import React from 'react'
+import React, { useState, useEffect, useRef } from 'react'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
 import './Navbar.css'
 
+gsap.registerPlugin(ScrollTrigger, ScrollToPlugin)
+
 const Navbar = () => {
+    const [activeSection, setActiveSection] = useState('hero')
+    const [navTheme, setNavTheme] = useState('dark') // 'light' for black text, 'dark' for white text
+    const indicatorRef = useRef(null)
+    const navItemsRef = useRef([])
+
+    // Section mapping - hero not in nav menu but still tracked for theming
+    const sections = [
+        { id: 'opening', name: 'FEATURES', theme: 'dark' },
+        { id: 'cards', name: 'APPLICATIONS', theme: 'dark' },
+        { id: 'connect-anything', name: 'HOW IT WORKS', theme: 'light' },
+        { id: 'workplace', name: 'STATS', theme: 'dark' }
+    ]
+    
+    // All sections including hero for scroll detection
+    const allSections = [
+        { id: 'hero', theme: 'dark' }, // white text on hero
+        ...sections
+    ]
+
+    // Smooth scroll to section
+    const scrollToSection = (sectionId) => {
+        const element = document.querySelector(`.${
+            sectionId === 'hero' ? 'hero-container' :
+            sectionId === 'opening' ? 'page-openingO' : 
+            sectionId === 'cards' ? 'cards-container' : 
+            sectionId === 'connect-anything' ? 'connect-anything-container' : 
+            'workplace-container'
+        }`)
+        if (element) {
+            gsap.to(window, {
+                duration: 1.5,
+                scrollTo: { y: element, offsetY: 70 },
+                ease: "power2.inOut"
+            })
+        }
+    }
+
+    // Update active indicator position
+    const updateIndicator = (index) => {
+        if (indicatorRef.current && navItemsRef.current[index]) {
+            const navItem = navItemsRef.current[index]
+            const navMenu = navItem.parentElement
+            const itemRect = navItem.getBoundingClientRect()
+            const menuRect = navMenu.getBoundingClientRect()
+            
+            const offsetLeft = itemRect.left - menuRect.left - 10 // 10px to the left of the item
+            
+            gsap.to(indicatorRef.current, {
+                duration: 0.6,
+                x: offsetLeft,
+                ease: "power2.inOut"
+            })
+        }
+    }
+
+    useEffect(() => {
+        // Set up scroll triggers for all sections including hero
+        const triggers = allSections.map((section, index) => {
+            const className = section.id === 'hero' ? '.hero-container' :
+                            section.id === 'opening' ? '.page-openingO' : 
+                            section.id === 'cards' ? '.cards-container' :
+                            section.id === 'connect-anything' ? '.connect-anything-container' :
+                            '.workplace-container'
+            
+            return ScrollTrigger.create({
+                trigger: className,
+                start: "top 100px",
+                end: "bottom 100px",
+                onEnter: () => {
+                    setActiveSection(section.id)
+                    setNavTheme(section.theme)
+                    // Only update indicator for nav menu items (not hero)
+                    if (section.id !== 'hero') {
+                        const navIndex = sections.findIndex(s => s.id === section.id)
+                        updateIndicator(navIndex)
+                    }
+                },
+                onEnterBack: () => {
+                    setActiveSection(section.id)
+                    setNavTheme(section.theme)
+                    // Only update indicator for nav menu items (not hero)
+                    if (section.id !== 'hero') {
+                        const navIndex = sections.findIndex(s => s.id === section.id)
+                        updateIndicator(navIndex)
+                    }
+                }
+            })
+        })
+
+        // Initial indicator position
+        setTimeout(() => updateIndicator(0), 100)
+
+        return () => {
+            triggers.forEach(trigger => trigger.kill())
+        }
+    }, [])
+
     return (
-        <div className='nav-container'>
+        <div className={`nav-container nav-theme-${navTheme}`}>
             <div className='nav-section-left'>
                 <div className='logo'>
                     <p>A_Action</p>
@@ -12,10 +114,17 @@ const Navbar = () => {
             </div>
             <div className='nav-section-center'>
                 <ul className='nav-menu'>
-                    <li className='nav-item'>FEATURES</li>
-                    <li className='nav-item'>APPLICATIONS</li>
-                    <li className='nav-item'>HOW IT WORKS</li>
-                    <li className='nav-item'>STATS</li>
+                    <div className='nav-indicator' ref={indicatorRef}></div>
+                    {sections.map((section, index) => (
+                        <li 
+                            key={section.id}
+                            className={`nav-item ${activeSection === section.id ? 'active' : ''}`}
+                            ref={el => navItemsRef.current[index] = el}
+                            onClick={() => scrollToSection(section.id)}
+                        >
+                            {section.name}
+                        </li>
+                    ))}
                 </ul>
             </div>
             <div className='nav-section-right'>
