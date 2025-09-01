@@ -38,6 +38,11 @@
     flex-shrink: 0;
 }
 
+.connect-main-content {
+    width: 100%;
+    position: relative;
+}
+
 .connect-anything-title {
     font-family: "Alliance No.2", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     font-size: 48px;
@@ -60,6 +65,7 @@
     grid-template-columns: repeat(9, 1fr);
     grid-template-rows: repeat(5, 1fr);
     width: 100%;
+    flex-shrink: 0;
 }
 
 .connect-grid-item {
@@ -80,6 +86,8 @@
     transition: all 0.3s ease;
     filter: grayscale(1);
     cursor: pointer;
+    position: relative;
+    z-index: 1;
 }
 
 .svg-plus {
@@ -311,14 +319,6 @@
     .info-description {
         font-size: 12px;
     }
-    
-    .close-info-btn {
-        width: 35px;
-        height: 35px;
-        font-size: 20px;
-        top: -15px;
-        right: -15px;
-    }
 }
 
 /* Animations */
@@ -363,11 +363,11 @@
     position: absolute;
     bottom: 0;
     right: 0;
-    width: 50%;
+    width: 50vw;
     height: 100%;
-    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    background: #fff;
     border-left: 1px solid #e9ecef;
-    z-index: 3;
+    z-index: 1;
     transform: translateX(100%);
     opacity: 0;
     display: flex;
@@ -380,6 +380,14 @@
 .info-content {
     text-align: center;
     max-width: 400px;
+    position: relative;
+    z-index: 1000;
+}
+
+.info-icon-placeholder {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 30px;
     position: relative;
 }
 
@@ -400,6 +408,7 @@
 
 .info-text {
     margin-bottom: 30px;
+
 }
 
 .info-title {
@@ -422,21 +431,31 @@
 
 .close-info-btn {
     position: absolute;
-    top: 50%;
-    left: -175px;
+    top: 43.5%;
+    left: -20px;
+    transform: translateY(-50%);
     width: 40px;
     height: 40px;
-    border: 1px solid rgb(0, 0, 0);
-    background: transparent;
-    color: #84D04D;
-    border-radius: 8px;
-    font-size: 42px;
+    border: 1px solid #ddd;
+    background: rgb(255, 255, 255);
+    color: #666;
+    border-radius: 50%;
+    font-size: 24px;
     font-weight: bold;
     display: flex;
     align-items: center;
     justify-content: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(20px);
     cursor: pointer;
     transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+.close-info-btn:hover {
+    background: rgba(255, 255, 255, 1);
+    border-color: #84D04D;
+    color: #84D04D;
 }
 
 /* Accessibility */

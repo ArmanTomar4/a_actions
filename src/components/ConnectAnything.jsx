@@ -2,12 +2,15 @@ import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import './ConnectAnything.css';
 import gsap from 'gsap';
+
 const ConnectAnything = () => {
     const [selectedIcon, setSelectedIcon] = useState(null);
     const [isInfoOpen, setIsInfoOpen] = useState(false);
+    const [animatingIcon, setAnimatingIcon] = useState(null);
     const innerRef = useRef(null);
     const infoRef = useRef(null);
     const timelineRef = useRef(null);
+    const containerRef = useRef(null);
 
     // Icon data with unique info for each integration
     const iconData = {
@@ -57,6 +60,7 @@ const ConnectAnything = () => {
         'r5c8': { name: 'PagerDuty', info: 'Manage incident response with PagerDuty integration for reliable alerting systems.' },
         'r5c9': { name: 'Twilio', info: 'Enable communication features with Twilio integration for SMS and voice capabilities.' }
     };
+
     // Handle proximity hover effect
     const handleMouseEnter = (row, col) => {
         // Get all surrounding positions (including the hovered one)
@@ -109,40 +113,70 @@ const ConnectAnything = () => {
 
     const openInfoSection = (iconKey) => {
         setSelectedIcon(iconKey);
-        setIsInfoOpen(true);
-
+        setAnimatingIcon(iconKey);
+        setIsInfoOpen(true); // Show info section immediately so placeholder exists
+        
         // Kill any existing timeline
         if (timelineRef.current) {
             timelineRef.current.kill();
         }
 
-        // Create GSAP timeline for synchronized sliding
-        const tl = gsap.timeline({
-            ease: "power2.inOut",
-            duration: 0.8
-        });
+        // Get the clicked icon element
+        const clickedIcon = document.querySelector(`[data-position="${iconKey}"] .connect-icon`);
+        
+        // Wait a frame for the info section to render, then calculate positions
+        requestAnimationFrame(() => {
+            const iconRect = clickedIcon.getBoundingClientRect();
+            const placeholder = document.querySelector('.info-icon-placeholder');
+            
+            let targetX = 0;
+            let targetY = 0;
+            
+            if (placeholder) {
+                const placeholderRect = placeholder.getBoundingClientRect();
+                // Calculate center of placeholder relative to icon's current position
+                const targetCenterX = placeholderRect.left + placeholderRect.width / 2;
+                const targetCenterY = placeholderRect.top + placeholderRect.height / 2;
+                const iconCenterX = iconRect.left + iconRect.width / 2;
+                const iconCenterY = iconRect.top + iconRect.height / 2;
+                
+                targetX = targetCenterX - iconCenterX - 50; // Move 10px left
+                targetY = targetCenterY - iconCenterY;
+            }
 
-        timelineRef.current = tl;
+            // Create GSAP timeline for synchronized animations
+            const tl = gsap.timeline({
+                ease: "power2.inOut"
+            });
 
-        // Slide the main grid to the left (50%)
-        tl.to(innerRef.current, {
-            x: "-50%",
-            duration: 0.8,
-            ease: "power2.inOut"
-        }, 0);
+            timelineRef.current = tl;
 
-        // Slide the info section in from the right
-        tl.fromTo(infoRef.current, 
-            {
-                x: "100%",
-                opacity: 0
-            },
-            {
-                x: "0%",
-                opacity: 1,
+            // Animate everything simultaneously
+            tl.to(innerRef.current, {
+                x: "-50%",
                 duration: 0.8,
                 ease: "power2.inOut"
+            }, 0)
+            .fromTo(infoRef.current, 
+                {
+                    x: "100%",
+                    opacity: 0
+                },
+                {
+                    x: "0%",
+                    opacity: 1,
+                    duration: 0.8,
+                    ease: "power2.inOut"
+                }, 0)
+            .to(clickedIcon, {
+                scale: 4.5,
+                x: targetX,
+                y: targetY,
+                zIndex: 999,
+                duration: 0.8,
+                ease: "none"
             }, 0);
+        });
     };
 
     const closeInfoSection = (callback) => {
@@ -151,33 +185,70 @@ const ConnectAnything = () => {
             timelineRef.current.kill();
         }
 
+        setIsInfoOpen(false);
+        
+        // Get the currently selected icon
+        const selectedIconElement = animatingIcon ? 
+            document.querySelector(`[data-position="${animatingIcon}"] .connect-icon`) : null;
+
         // Create GSAP timeline for closing
         const tl = gsap.timeline({
             ease: "power2.inOut",
-            duration: 0.6,
             onComplete: () => {
+                // Reset all icons to their original state and restore hover functionality
+                const allIcons = document.querySelectorAll('.connect-icon');
+                allIcons.forEach(icon => {
+                    gsap.set(icon, {
+                        scale: 1,
+                        x: 0,
+                        y: 0,
+                        zIndex: 'auto',
+                        opacity: 0.7,
+                        filter: "grayscale(1)",
+                        clearProps: "all"
+                    });
+                });
+                
+                // Re-enable hover effects by removing any inline styles that might interfere
+                const allGridItems = document.querySelectorAll('.connect-grid-item');
+                allGridItems.forEach(item => {
+                    item.style.pointerEvents = 'auto';
+                });
+                
                 setSelectedIcon(null);
-                setIsInfoOpen(false);
+                setAnimatingIcon(null);
                 if (callback) callback();
             }
         });
 
         timelineRef.current = tl;
 
-        // Slide the main grid back to center
+        // Animate everything back simultaneously
         tl.to(innerRef.current, {
             x: "0%",
             duration: 0.6,
             ease: "power2.inOut"
-        }, 0);
-
-        // Slide the info section out to the right
-        tl.to(infoRef.current, {
+        }, 0)
+        .to(infoRef.current, {
             x: "100%",
             opacity: 0,
             duration: 0.6,
             ease: "power2.inOut"
         }, 0);
+
+        // Animate the icon back if it exists
+        if (selectedIconElement) {
+            tl.to(selectedIconElement, {
+                scale: 1,
+                x: 0,
+                y: 0,
+                zIndex: 'auto',
+                opacity: 0.7,
+                filter: "grayscale(1)",
+                duration: 0.6,
+                ease: "power2.inOut"
+            }, 0);
+        }
     };
 
     // Cleanup timeline on unmount
@@ -240,7 +311,7 @@ const ConnectAnything = () => {
     };
 
     return (
-        <div className="connect-anything-container">
+        <div className="connect-anything-container" ref={containerRef}>
             <svg className="connect-top-svg" xmlns="http://www.w3.org/2000/svg" width="927" height="26" viewBox="0 0 927 26" fill="none">
                 <path d="M927 0H0L46 26H881L927 0Z" fill="#1a1a1a" />
             </svg>
@@ -248,56 +319,53 @@ const ConnectAnything = () => {
                 <path d="M927 26H0L46 0H881L927 26Z" fill="#1a1a1a" />
             </svg>
 
-            <div className="connect-anything-inner">
-                <h2 className="connect-anything-title">Connect anything</h2>
-                <div className="connect-anything-divider"></div>
-                <div className="connect-anything-grid" ref={innerRef}>
-                    {generateGridItems()}
+            <div className="connect-anything-inner" ref={innerRef}>
+                <div className="connect-main-content">
+                    <h2 className="connect-anything-title">Connect anything</h2>
+                    <div className="connect-anything-divider"></div>
+                    <div className="connect-anything-grid">
+                        {generateGridItems()}
+                    </div>
                 </div>
             </div>
 
-            {/* Info Section */}
+            {/* Info Section - positioned outside for fixed positioning */}
             <div className="info-section" ref={infoRef}>
+                {/* Close button positioned on left border */}
+                {isInfoOpen && (
+                    <motion.button 
+                        className="close-info-btn"
+                        onClick={() => closeInfoSection()}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        zIndex={1000}
+                    >
+                        ×
+                    </motion.button>
+                )}
+                
                 <AnimatePresence mode="wait">
                     {isInfoOpen && selectedIcon && iconData[selectedIcon] && (
                         <motion.div 
                             key={selectedIcon}
                             className="info-content"
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: -20 }}
-                            transition={{ duration: 0.5, delay: 0.3 }}
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            transition={{ duration: 0.6, delay: 0.6 }}
                         >
-                            <div className="info-icon-container">
-                                <motion.img
-                                    src={`/${selectedIcon}.svg`}
-                                    alt={iconData[selectedIcon].name}
-                                    className="info-icon-large"
-                                    initial={{ scale: 0.8, opacity: 0 }}
-                                    animate={{ scale: 1, opacity: 1 }}
-                                    transition={{ duration: 0.6, delay: 0.2 }}
-                                />
-                            </div>
+                            {/* The enlarged icon is handled by GSAP, so we don't need it here */}
+                            <div className="info-icon-placeholder"></div>
+
                             <motion.div 
                                 className="info-text"
-                                initial={{ opacity: 0, y: 10 }}
+                                initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.4, delay: 0.5 }}
+                                transition={{ duration: 0.4, delay: 0.6 }}
                             >
                                 <h3 className="info-title">{iconData[selectedIcon].name}</h3>
                                 <p className="info-description">{iconData[selectedIcon].info}</p>
                             </motion.div>
-                            <motion.button 
-                                className="close-info-btn"
-                                onClick={() => closeInfoSection()}
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                transition={{ duration: 0.3, delay: 0.6 }}
-                                whileHover={{ scale: 1.1 }}
-                                whileTap={{ scale: 0.95 }}
-                            >
-                                ×
-                            </motion.button>
                         </motion.div>
                     )}
                 </AnimatePresence>
