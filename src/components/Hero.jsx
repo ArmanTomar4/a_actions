@@ -16,7 +16,7 @@ function Hero() {
             </button> 
         </div>
         <div className="hero-right-section">
-          <img src="" alt="" />
+          <img src="./arrows.svg" alt="" />
         </div>
       </div>
       {/* Bottom Info */}

@@ -1059,7 +1059,7 @@ const AnimatedFAQDiagram = () => {
                                                             width: '350px',
                                                             padding: '12px 16px',
                                                             borderRadius: '0',
-                                                            backgroundColor: '#000',
+                                                            backgroundColor: '#1A1A1A',
                                                             border: '0.5px solid white',
                                                             borderLeft: '0.5px solid white',
                                                             cursor: 'pointer',
@@ -1159,7 +1159,7 @@ const AnimatedFAQDiagram = () => {
                                                             width: '350px',
                                                             padding: '12px 16px',
                                                             borderRadius: '0',
-                                                            backgroundColor: '#000',
+                                                            backgroundColor: '#1A1A1A',
                                                             border: '0.5px solid white',
                                                             borderLeft: '0.5px solid white',
                                                             cursor: 'pointer',
@@ -1207,7 +1207,7 @@ const AnimatedFAQDiagram = () => {
                 </div>
 
                 <style>{`
-@media (max-width: 480px){
+@media (max-width: 768px){
 .animated-faq-container{
 display: none !important;
 }
@@ -1302,7 +1302,7 @@ display: none !important;
 
                     .animated-faq-container {
                         min-height: 67vh;
-                        background: #000000;
+                        background: #1A1A1A;
                         color: white;
                         font-family: "Alliance No.2", -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
                         overflow: hidden;

@@ -151,6 +151,34 @@ font-size: clamp(1rem, 10vw, 2.75rem);
             transform: translateX(0);
             z-index: 10;
           }
+            @media (max-width: 900px) {
+              .top-svg {
+                position: absolute;
+                top: -9px;
+        transform: translateX(0) scale(0.6);
+                z-index: 10;
+              }
+                .bottom-svg {
+                  position: absolute;
+                  bottom: -9px;
+        transform: translateX(0) scale(0.6);
+                  z-index: 10;
+                }
+            }
+                 @media (max-width: 480px) {
+              .top-svg {
+                position: absolute;
+                top: -9px;
+        transform: translateX(0) scale(0.35);
+                z-index: 10;
+              }
+                .bottom-svg {
+                  position: absolute;
+                  bottom: -9px;
+        transform: translateX(0) scale(0.35);
+                  z-index: 10;
+                }
+            }
       `}</style>
 
       <div className="hero-wrap-openingO">

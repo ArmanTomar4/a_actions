@@ -11,8 +11,9 @@ import ConnectAnything from './components/ConnectAnything'
 import Footer from './components/Footer'
 import RequestAccess from './components/RequestAccess'
 import FAQ from './components/FAQ'
+import FAQmobile from './components/FAQmobile'
 import Chatbot from './components/Chatbot'
-
+import Workplace from './components/Workplace'
 function Home() { 
   return (
     <>
@@ -21,7 +22,10 @@ function Home() {
    <Opening />
    <Cards />
    <ConnectAnything />
+    
+     <Workplace />
    <FAQ />
+   <FAQmobile />
    <Chatbot />
    <RequestAccess />
    <Footer />
