@@ -275,6 +275,7 @@
     }
     .cards-header-subtitle{
         width: 90%;
+        margin-top: 35px;
     }
     
     .carousel-btn {
@@ -305,15 +306,15 @@
 /* Small tablets: 500px - 999px */
 @media (min-width: 500px) and (max-width: 999px) {
     .cards-container {
-        padding: 2rem;
+        padding: 1rem;
     }
     
     .cards-grid {
         gap: 1rem;
     }
     .card{
-        width: 300px;
-        height: 400px;
+        width: 240px;
+        height: 300px;
     }
     .card-content {
         padding: 0.1rem;
@@ -322,6 +323,15 @@
     
     .cards-header {
         height: 27%;
+        /* font-size: clamp(0.65rem, 1.5vw, 0.775rem); */
+    }
+    .cards-header-title{
+        margin-top: 30px;
+        font-size: clamp(1.3rem, 1.5vw, 1.5rem);
+    }
+    .cards-header-subtitle{
+        margin-top: 20px;
+        font-size: clamp(0.65rem, 1.5vw, 0.775rem);
     }
 }
 
@@ -333,6 +343,10 @@
     
     .cards-grid {
         gap: 1.5rem;
+    }
+    .card{
+        height: 350px;
+        padding: 0 !important;
     }
     
     .card-content {
@@ -355,7 +369,7 @@
     }
     .card{
         width: 400px;
-        height: 600px;
+        height: 500px;
     }
     .card-content {
         padding: 1.5rem;

@@ -17,7 +17,7 @@ const Chatbot = () => {
     };
 
     // API configuration
-    const API_BASE_URL = 'http://localhost:8000';
+    const API_BASE_URL = 'http://127.0.0.1:8000';
 
     const typewriterEffect = (text, messageId) => {
         let index = 0;
@@ -161,7 +161,7 @@ const Chatbot = () => {
     }, []);
 
     const suggestedQuestions = [
-        "WHAT FILE TYPES DOES AOCR SUPPORT?"
+        "WHAT APIS DOES A_ACTION SUPPORT?"
     ];
 
     const handleSendMessage = async () => {

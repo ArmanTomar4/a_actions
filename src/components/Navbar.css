@@ -134,12 +134,12 @@
 }
 
 .nav-button {
-    padding: 8px 16px;
+    padding: 7px 11px;
     background: #fff;
     color: #000000;
     border: 1px solid #000;
     cursor: pointer;
-    gap: 8px;
+    gap: 5px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -147,8 +147,8 @@
     font-weight: 400;
     font-family: "Alliance No.2", sans-serif;
     transition: all 0.3s ease;
-    margin-left: 25px;
-    margin-right: 23px;
+    margin-left: 16px;
+    margin-right: 16px;
     /* letter-spacing: 0.4px; */
 }
 

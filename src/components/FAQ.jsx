@@ -87,182 +87,182 @@ const AnimatedFAQDiagram = () => {
     const questionSets = {
         'our-products': {
             leftQuestions: [
-                'What are the key features of your OCR product?',
-                'Does your OCR support multilingual document processing?',
-                'Can your OCR handle handwritten text as well as printed?',
-                'What integrations does your OCR offer with other software?',
-                'Is there a mobile version of your OCR product available?'
+                'What main problem does a_ACTION solve for businesses?',
+                'How does a_ACTION connect AI models with real-world APIs?',
+                'Why is a_ACTION better than custom in-house integrations?',
+                'Does a_ACTION support multiple LLMs and AI providers?',
+                'What kinds of APIs can a_ACTION work with?'
             ],
             leftAnswers: [
-                'The key features of our a_OCR product include advanced optical character recognition that turns unstructured data from various sources into structured formats, with seamless ingestion from paper, Gmail, Drive, and SharePoint. It also incorporates understanding and action-taking capabilities, allowing for intelligent data processing and export to CSV, XML, or XLS, ensuring high efficiency across all use cases.',
-                'Yes, our a_OCR supports multilingual document processing, handling texts in multiple languages including non-Latin scripts with exceptional accuracy. This feature is designed to cater to global users, making it ideal for international businesses dealing with diverse linguistic content in documents.',
-                'Our a_OCR can handle both handwritten text and printed text effectively, leveraging advanced AI to recognize variations in writing styles. With its robust machine learning models, it achieves high accuracy even on challenging handwritten notes, forms, or signatures across all document types.',
-                'Our a_OCR offers integrations with popular software like Gmail, Google Drive, and SharePoint for easy data ingestion, as well as export options to CSV, XML, and XLS for compatibility with tools like Excel or databases. These integrations streamline workflows, allowing seamless connection with CRM systems, ERP software, and cloud storage solutions for automated data flow.',
-                'Yes, there is a mobile version of our a_OCR product available, enabling users to scan and process documents on-the-go via iOS and Android apps. This mobile app supports real-time OCR, making it convenient for field workers or remote teams to convert unstructured data instantly.'
+                'a_ACTION eliminates the difficulty of transforming LLM outputs into secure, real-world actions. By intercepting, authenticating, and mapping function calls into APIs, it ensures automation is reliable and not left to chance.',
+                'It acts as a middleware that translates LLM function calls into structured API requests. This allows AI to work seamlessly with systems like CRMs, payment gateways, or databases.',
+                'Custom solutions take months to build and maintain. a_ACTION provides ready-made reliability, authentication, and monitoring, which saves costs and ensures smooth scaling across industries.',
+                'Yes, it is designed to be LLM-agnostic. Businesses can use OpenAI, Anthropic, Hugging Face, or in-house models without worrying about compatibility.',
+                'a_ACTION supports REST, GraphQL, SOAP, internal APIs, and legacy enterprise systems. This flexibility ensures it fits seamlessly into existing business tech stacks.'
             ],
             rightQuestions: [
-                'How does your OCR differ from competitors like Google Cloud Vision or ABBYY?',
-                'What types of documents can your OCR process effectively?',
-                'Does your OCR include post-processing tools for data validation?',
-                'Are there any hardware requirements for using your OCR?',
-                'How frequently do you update your OCR product with new features?'
+                'Can enterprises customize a_ACTION for their unique workflows?',
+                'How does a_ACTION handle large-scale enterprise workloads?',
+                'What monitoring and visibility does a_ACTION provide to users?',
+                'Can a_ACTION be deployed on-premise or in the cloud?',
+                'How does a_ACTION future-proof AI-driven business operations?'
             ],
             rightAnswers: [
-                'Our a_OCR differs from competitors like Google Cloud Vision or ABBYY by offering a superior accuracy rate of 99.2% and being specifically tailored for all documents across industries, with a focus on Made-in-India innovation. Additionally, it includes built-in understanding and action layers for more intelligent processing, providing better value in terms of cost-effectiveness and customization compared to generic solutions.',
-                'Our a_OCR can process a wide variety of documents effectively, including invoices, receipts, contracts, forms, medical records, and handwritten notes. It excels in handling all types across industries, from structured forms to unstructured texts, ensuring reliable extraction regardless of complexity.',
-                'Yes, our a_OCR includes post-processing tools for data validation, such as error correction mechanisms and intelligent understanding layers to verify extracted information. These tools allow users to review and refine data automatically, reducing errors and ensuring high-quality structured output.',
-                'There are minimal hardware requirements for using our a_OCR, as it is cloud-based and accessible via web or mobile apps, requiring only a standard device with internet access. No specialized hardware is needed beyond a scanner or camera for input, making it accessible for small businesses and enterprises alike.',
-                'We update our a_OCR product frequently with new features, typically every quarter, incorporating user feedback and AI advancements to enhance performance. These updates include improvements in accuracy, new integrations, and support for emerging document types, keeping the product at the forefront of OCR technology.'
+                'Absolutely. Enterprises can define validation rules, security controls, and mapping logic to ensure API executions match their business requirements and compliance standards.',
+                'It is built for high concurrency, managing thousands of requests simultaneously with load balancing, retries, and error recovery mechanisms.',
+                'Businesses gain dashboards with real-time logs, analytics, and execution tracking, making it easy to measure reliability and debug problems quickly.',
+                'Yes, deployment options include public cloud, private cloud, hybrid, and on-premise to meet security or regulatory demands.',
+                'By decoupling APIs from specific LLMs, businesses can easily upgrade or switch models while keeping workflows stable and functional.'
             ]
         },
         'sales': {
             leftQuestions: [
-                'How can I schedule a demo for your OCR product?',
-                'What is the process for purchasing your OCR solution?',
-                'Do you offer custom solutions for enterprise clients?',
-                'Are there any discounts for bulk or annual subscriptions?',
-                'Who can I contact for sales inquiries in my region?'
+                'Who are the primary customers for a_ACTION platform?',
+                'How does a_ACTION improve sales workflows and performance?',
+                'Why should enterprises choose a_ACTION over alternatives?',
+                'How quickly can businesses integrate a_ACTION into systems?',
+                'What ROI can companies expect after using a_ACTION?'
             ],
             leftAnswers: [
-                'To schedule a demo for our a_OCR product, you can visit our website or contact our sales team via email or phone for a personalized session. Demos are tailored to your needs, showcasing live processing of your sample documents to demonstrate its capabilities effectively.',
-                'The process for purchasing our a_OCR solution involves contacting our sales team for a quote, followed by agreement on terms and secure payment setup. Once purchased, we provide quick onboarding with training and support to ensure smooth implementation.',
-                'Yes, we offer custom solutions for enterprise clients, including tailored integrations and features based on specific industry requirements. Our team works closely with you to develop bespoke OCR workflows that align with your business scale and objectives.',
-                'Yes, there are discounts for bulk or annual subscriptions, designed to provide cost savings for high-volume users or long-term commitments. These discounts can be discussed during the quoting process to best fit your usage patterns.',
-                'For sales inquiries in your region, you can contact our dedicated regional representatives listed on our website or reach out to our global support team. We ensure localized assistance, including in India and international markets, to address your specific needs promptly.'
+                'The platform targets enterprises, SaaS providers, and startups that want to safely transform LLM outputs into actionable API calls without building integrations manually.',
+                'Sales teams can use AI to automate CRM updates, outreach workflows, and customer data syncing, all while ensuring accuracy and authentication.',
+                'a_ACTION is tailored to LLM-specific execution challenges, unlike generic integration tools. It prevents errors, enhances security, and provides visibility into every API action.',
+                'Most businesses can be onboarded within days, with guided setup and API mapping, eliminating the months typically required for manual integrations.',
+                'Customers see reduced development costs, faster automation adoption, and fewer API errors, which directly improves efficiency and revenue generation.'
             ],
             rightQuestions: [
-                'What post-sales support do you provide to customers?',
-                'Can I get a personalized quote based on my usage needs?',
-                'Do you have partnerships or resellers for your OCR?',
-                'What is the typical sales cycle for your product?',
-                'Are there referral programs for existing customers?'
+                'How does a_ACTION reduce costs for organizations?',
+                'Does a_ACTION provide dedicated sales or customer support teams?',
+                'How does a_ACTION stand out in sales conversations?',
+                'Can a_ACTION integrate with CRMs and sales tools easily?',
+                'Are there real-world success stories with a_ACTION adoption?'
             ],
             rightAnswers: [
-                'We provide comprehensive post-sales support, including technical assistance, training sessions, and ongoing maintenance for our customers. Our support team is available 24/7 via chat, email, or phone to resolve any issues and maximize product value.',
-                'Yes, you can get a personalized quote based on your usage needs by providing details about your document volume and requirements to our sales team. We tailor the quote to ensure it aligns with your budget and projected usage for optimal cost-efficiency.',
-                'Yes, we have partnerships and resellers for our a_OCR, collaborating with tech firms and distributors to expand reach. These partners can assist with sales and implementation in various regions, enhancing accessibility for customers.',
-                'The typical sales cycle for our product ranges from 2-4 weeks, starting from initial inquiry to final purchase and setup. This includes demo, quote negotiation, and onboarding, streamlined for efficiency based on client readiness.',
-                'Yes, there are referral programs for existing customers, offering rewards like discounts or credits for successful referrals. This program encourages sharing experiences and helps grow our community while benefiting loyal users.'
+                'By avoiding custom integration builds and automating authentication, businesses cut down on engineering overhead and ongoing maintenance costs.',
+                'Yes, enterprises get onboarding specialists, technical consultants, and customer success managers to ensure smooth deployment and usage.',
+                'Its unique positioning as an LLM-focused execution layer, with built-in reliability and compliance, makes it a differentiated solution.',
+                'Yes, it can connect with Salesforce, HubSpot, or custom CRMs to automate tasks like lead creation, data enrichment, and reporting.',
+                'Yes, companies in finance, healthcare, and SaaS have already automated LLM-driven processes, reporting higher accuracy and faster execution.'
             ]
         },
         'pricing': {
             leftQuestions: [
-                'What are the different pricing tiers for your OCR service?',
-                'Is there a free trial available for your OCR product?',
-                'How is pricing calculated—per document, per user, or per month?',
-                'Are there additional fees for high-volume usage?',
-                'Do you offer pricing plans for startups or small businesses?'
+                'What pricing models does a_ACTION offer to customers?',
+                'Is there a free trial available for testing?',
+                'How is billing calculated across different usage scenarios?',
+                'Does a_ACTION provide special pricing for startups?',
+                'Can customers choose monthly or annual billing cycles?'
             ],
             leftAnswers: [
-                'Our a_OCR service offers different pricing tiers, including basic for small users, standard for mid-sized businesses, and enterprise for large-scale needs. Each tier provides varying levels of document processing limits, support, and features to suit diverse requirements.',
-                'Yes, there is a free trial available for our a_OCR product, allowing users to test its features with a limited number of documents. The trial helps you evaluate accuracy and integrations before committing to a paid plan.',
-                'Pricing is calculated per document or per month, depending on the tier, with flexible options for usage-based billing. This ensures cost alignment with actual needs, whether for occasional or high-volume processing.',
-                'There may be additional fees for high-volume usage beyond standard tiers, but these are transparently outlined in quotes. We offer scalable plans to avoid surprises, with options to upgrade as your needs grow.',
-                'Yes, we offer pricing plans for startups or small businesses, with affordable entry-level options and flexible scaling. These plans include essential features without high upfront costs, supporting growth in early stages.'
+                'a_ACTION offers flexible plans including pay-per-use, subscription tiers, and custom enterprise pricing for large-scale deployments.',
+                'Yes, new customers can explore the platform with a limited free trial to evaluate compatibility with their workflows.',
+                'Billing is based on API calls executed through the LLM pipeline, with additional considerations for authentication layers and monitoring features.',
+                'Yes, discounted tiers and credits are available for early-stage businesses looking to experiment with AI-driven automation.',
+                'Both options are supported, with annual contracts offering significant savings over month-to-month billing.'
             ],
             rightQuestions: [
-                'What payment methods do you accept for subscriptions?',
-                'Is pricing scalable based on the number of users or documents?',
-                'Are there any hidden costs or setup fees?',
-                'Do you provide volume discounts for large enterprises?',
-                'How often do pricing plans change, and how are customers notified?'
+                'Are software upgrades and new features included in plans?',
+                'Does a_ACTION offer bulk or volume discounts?',
+                'Are there hidden costs like setup or integration fees?',
+                'Can pricing be customized for complex enterprise use cases?',
+                'How does pricing compare with competitors?'
             ],
             rightAnswers: [
-                'We accept various payment methods for subscriptions, including credit cards, bank transfers, and digital wallets. Payments are secure and processed through trusted gateways for convenience.',
-                'Yes, pricing is scalable based on the number of users or documents, allowing adjustments as your team or volume expands. This flexibility ensures cost-effectiveness without overpaying for unused capacity.',
-                'There are no hidden costs or setup fees; all charges are clearly stated in our pricing structure and quotes. We prioritize transparency to build trust with our customers.',
-                'Yes, we provide volume discounts for large enterprises, reducing per-document costs for high usage. These are negotiated based on projected volumes to offer significant savings.',
-                'Pricing plans change infrequently, typically annually, with advance notification to customers via email and our website. We ensure any changes are communicated well in advance to allow for adjustments.'
+                'Yes, all subscription tiers include continuous updates, bug fixes, and access to new feature releases.',
+                'Enterprises running large numbers of API calls receive significant discounts under volume pricing models.',
+                'No, onboarding support and integration assistance are part of the subscription without extra charges.',
+                'Yes, a_ACTION works with large organizations to create tailored contracts based on their scale and needs.',
+                'a_ACTION delivers more value by bundling authentication, monitoring, and execution reliability into one offering, often replacing multiple tools.'
             ]
         },
         'how-it-works': {
             leftQuestions: [
-                'How do I upload documents to your OCR platform?',
-                'What steps are involved in extracting data from a scanned document?',
-                'Can your OCR process documents in real-time?',
-                'How does your OCR handle complex layouts like tables and forms?',
-                'What file formats can I export the extracted data to?'
+                'How does a_ACTION intercept LLM function and tool calls?',
+                'What authentication methods are supported by a_ACTION platform?',
+                'How does a_ACTION map AI outputs into real APIs?',
+                'What happens when an API request fails unexpectedly?',
+                'Can developers configure mappings and execution policies themselves?'
             ],
             leftAnswers: [
-                'To upload documents to our a_OCR platform, simply use the web interface or mobile app to select files from your device or integrate with sources like Gmail or Drive. The upload is secure and quick, initiating the processing pipeline immediately.',
-                'The steps involved in extracting data from a scanned document include ingestion, OCR recognition, understanding the content, taking actions like validation, and exporting to structured formats. This end-to-end process ensures accurate conversion from unstructured to usable data.',
-                'Yes, our a_OCR can process documents in real-time, providing instant extraction for uploaded or scanned items. This feature is particularly useful for time-sensitive applications, delivering results within seconds.',
-                'Our a_OCR handles complex layouts like tables and forms by using AI to detect and parse structures accurately. It extracts data from rows, columns, and fields while maintaining relationships, ensuring no loss of context.',
-                'You can export the extracted data to formats like CSV, XML, XLS, as shown in our processing stack. These options allow easy integration with analysis tools or databases for further use.'
+                'It sits between the LLM and execution layer, capturing every function call, validating it, and preparing it for secure API execution.',
+                'It supports OAuth2, JWT, API keys, and enterprise-grade SSO, ensuring compatibility with both public and private APIs.',
+                'Using schema validation, custom mappings, and intelligent parsing, it transforms AI requests into structured, valid API calls.',
+                'a_ACTION automatically retries, applies fallback strategies, and logs the error for visibility, ensuring resilience in workflows.',
+                'Yes, developers can set mapping rules, validation constraints, and approval steps to ensure executions follow internal policies.'
             ],
             rightQuestions: [
-                'Is there an API available for integrating your OCR into my app?',
-                'How does the OCR manage batch processing of multiple files?',
-                'What happens if the OCR encounters unreadable text?',
-                'Can I customize extraction templates for specific documents?',
-                'How secure is the data during the OCR processing workflow?'
+                'Does a_ACTION support orchestrating multiple APIs in workflows?',
+                'How does a_ACTION handle real-time LLM-driven requests?',
+                'What security measures protect API calls in a_ACTION?',
+                'Does a_ACTION provide tools for debugging and monitoring workflows?',
+                'Can a_ACTION handle requests from multiple AI models simultaneously?'
             ],
             rightAnswers: [
-                'Yes, there is an API available for integrating our a_OCR into your app, enabling programmatic access to OCR functions. The API supports custom workflows, making it simple to embed in existing software.',
-                'The OCR manages batch processing by allowing upload of multiple files, which are handled sequentially or in parallel for efficiency. This scales to large volumes, with progress tracking and bulk export options.',
-                'If the OCR encounters unreadable text, it flags the issue and uses AI-based error correction or suggests manual review. This minimizes data loss, maintaining overall high accuracy of 99.2%.',
-                'Yes, you can customize extraction templates for specific documents, tailoring fields and rules to your needs. This enhances precision for recurring document types across industries.',
-                'The data during the OCR processing workflow is highly secure, with encryption in transit and at rest, complying with industry standards. We prioritize privacy, ensuring no unauthorized access throughout the pipeline.'
+                'Yes, it can chain together multiple API calls to execute complex, multi-step business workflows.',
+                'It provides low-latency execution for scenarios like customer service chatbots or real-time analytics dashboards.',
+                'All communication is encrypted, authenticated, and logged, ensuring data integrity and regulatory compliance.',
+                'Yes, developers get full logs, sandbox testing, and detailed execution traces for troubleshooting.',
+                'Yes, it supports multi-model environments, allowing enterprises to run different LLMs in parallel without conflicts.'
             ]
         },
         'accuracy': {
             leftQuestions: [
-                'What is the accuracy rate of your OCR for printed text?',
-                'How does your OCR perform on low-quality or damaged documents?',
-                'Does your OCR improve accuracy over time with machine learning?',
-                'What measures do you take to ensure data privacy during processing?',
-                'How accurate is your OCR for extracting specific fields like dates or numbers?'
+                'How does a_ACTION ensure API calls are always valid?',
+                'How does it prevent hallucinated LLM outputs from causing errors?',
+                'What error handling mechanisms are included by default?',
+                'How is execution reliability measured and tracked over time?',
+                'Can enterprises set custom validation rules for accuracy?'
             ],
             leftAnswers: [
-                'The accuracy rate of our a_OCR for printed text is 99.2%, delivering reliable results across various fonts and qualities. This high precision reduces errors and supports dependable data extraction.',
-                'Our a_OCR performs well on low-quality or damaged documents, using AI enhancements to reconstruct and recognize text effectively. Even with noise or degradation, it maintains close to 99.2% accuracy through advanced processing.',
-                'Yes, our a_OCR improves accuracy over time with machine learning, learning from processed data to refine models. Continuous updates ensure evolving performance for better results on diverse documents.',
-                'We ensure data privacy during processing with strict encryption, access controls, and compliance with regulations like GDPR. No data is stored without permission, protecting sensitive information throughout.',
-                'Our a_OCR is highly accurate for extracting specific fields like dates or numbers, achieving 99.2% precision due to specialized recognition. This makes it ideal for financial or analytical applications requiring exact data.'
+                'It validates input parameters, checks authentication, and confirms schema compliance before sending a request to any external API.',
+                'a_ACTION uses validation filters and safety rules to block or correct malformed or unauthorized requests generated by AI.',
+                'Automatic retries, intelligent reformatting, and fallback options are built-in to ensure maximum execution success.',
+                'Businesses can monitor success rates, error trends, and execution logs through detailed dashboards and reports.',
+                'Yes, organizations can enforce business-specific rules to prevent incorrect or risky API calls.'
             ],
             rightQuestions: [
-                'Can I test the accuracy of your OCR with my own sample documents?',
-                'What is the accuracy for multilingual or non-Latin scripts?',
-                'How does lighting or image quality affect OCR accuracy?',
-                'Are there benchmarks or third-party validations for your accuracy claims?',
-                'What error correction mechanisms are built into your OCR?'
+                'How does a_ACTION handle critical or sensitive actions?',
+                'Does a_ACTION continuously improve its accuracy performance?',
+                'How secure are API calls executed through a_ACTION?',
+                'How consistent is execution across different APIs and industries?',
+                'What success rate does a_ACTION deliver in real deployments?'
             ],
             rightAnswers: [
-                'Yes, you can test the accuracy of our a_OCR with your own sample documents via the free trial or demo. This allows real-world evaluation to confirm its effectiveness for your needs.',
-                'The accuracy for multilingual or non-Latin scripts is 99.2%, supported by broad language models. It handles diverse scripts seamlessly, ensuring reliability across global use cases.',
-                'Lighting or image quality can affect OCR accuracy, but our system mitigates this with preprocessing algorithms. It adjusts for variations, maintaining high performance even in suboptimal conditions.',
-                'There are benchmarks and third-party validations supporting our 99.2% accuracy claims across industries. These independent assessments confirm its superior performance in real-world scenarios.',
-                'Our a_OCR has built-in error correction mechanisms, such as AI-based contextual fixes and flagging for review. These tools enhance overall reliability, correcting potential misreads automatically.'
+                'It can require human-in-the-loop approvals, adding an extra safeguard for high-risk processes.',
+                'Yes, the system learns from past executions, refining mappings and error handling over time.',
+                'Every call is authenticated, encrypted, and logged, ensuring that security is never compromised in pursuit of accuracy.',
+                'The platform adapts to domain-specific APIs, ensuring that accuracy is maintained in finance, healthcare, retail, and more.',
+                'In most production environments, a_ACTION achieves above 99% successful execution rates, ensuring businesses can trust it.'
             ]
         },
         'sectors': {
             leftQuestions: [
-                'How does your OCR benefit the financial services industry?',
-                'What solutions do you offer for healthcare document processing?',
-                'Can your OCR be used in legal firms for contract analysis?',
-                'How is your OCR applied in government and public sector workflows?',
-                'What advantages does your OCR provide to logistics companies?'
+                'Which industries benefit the most from using a_ACTION?',
+                'How does a_ACTION help financial services companies?',
+                'Can healthcare organizations use a_ACTION safely and compliantly?',
+                'How does retail benefit from adopting a_ACTION platform?',
+                'What value does a_ACTION bring to logistics and supply chains?'
             ],
             leftAnswers: [
-                'Our a_OCR benefits the financial services industry by automating invoice and receipt processing, reducing errors and speeding up transactions. With 99.2% accuracy, it ensures compliant data handling across all financial documents.',
-                'We offer solutions for healthcare document processing, digitizing patient records and forms efficiently. This improves accessibility and accuracy, supporting better patient care across the industry.',
-                'Yes, our a_OCR can be used in legal firms for contract analysis, extracting key terms and dates quickly. It handles complex legal documents with high precision, aiding in review and compliance.',
-                'Our a_OCR is applied in government and public sector workflows for digitizing records and forms. It enhances efficiency in administrative tasks, working on all document types with reliability.',
-                'The advantages for logistics companies include fast processing of shipping documents and invoices. This streamlines operations, reducing delays and errors in supply chain management.'
+                'Finance, healthcare, retail, logistics, SaaS, education, and government see the most impact by automating workflows with AI-driven API execution.',
+                'It powers secure transactions, fraud checks, compliance reporting, and customer support workflows without risking security or reliability.',
+                'Yes, it integrates with EHR systems and ensures compliance with HIPAA and other data protection laws.',
+                'Retailers use it for automating inventory updates, personalized offers, and real-time order tracking across systems.',
+                'It connects LLM-driven planning tools to real-time shipment APIs, improving tracking, routing, and cost efficiency.'
             ],
             rightQuestions: [
-                'Are there case studies for your OCR in retail or manufacturing sectors?',
-                'How can education institutions use your OCR for digitization?',
-                'What role does your OCR play in insurance claim processing?',
-                'Can real estate firms benefit from your OCR for property documents?',
-                'How does your OCR support e-commerce in invoice and receipt handling?'
+                'How does the education sector leverage a_ACTION effectively?',
+                'Why is a_ACTION important for SaaS product companies?',
+                'How does customer service improve with a_ACTION adoption?',
+                'Can government organizations safely deploy a_ACTION platform?',
+                'How adaptable is a_ACTION for niche industries like gaming?'
             ],
             rightAnswers: [
-                'Yes, there are case studies for our a_OCR in retail or manufacturing sectors, showcasing improved inventory and order processing. These demonstrate cost savings and efficiency gains across operations.',
-                'Education institutions can use our a_OCR for digitization of archives, exams, and administrative forms. It facilitates easy access to structured data, supporting research and management.',
-                'Our a_OCR plays a key role in insurance claim processing by extracting data from forms and receipts accurately. This accelerates approvals and reduces fraud with its high precision.',
-                'Yes, real estate firms benefit from our a_OCR for processing property documents like deeds and contracts. It ensures quick extraction and organization, aiding in transactions and records management.',
-                'Our a_OCR supports e-commerce in invoice and receipt handling by automating data entry and validation. This boosts operational speed and accuracy, enhancing customer service and backend efficiency.'
+                'AI tutors and learning platforms can securely pull data from external APIs to deliver personalized learning experiences.',
+                'It allows SaaS providers to embed LLM automation directly into their apps without rebuilding integrations repeatedly.',
+                'Contact centers can integrate LLM chatbots with CRM APIs, enabling automated yet accurate customer query resolution.',
+                'Yes, a_ACTION offers secure, on-premise deployments with full audit logs to meet public sector compliance.',
+                'Highly adaptable — it can power gaming APIs, real estate platforms, or any domain requiring secure AI-to-API execution.'
             ]
         }
     };
