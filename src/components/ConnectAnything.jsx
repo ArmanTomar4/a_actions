@@ -753,42 +753,23 @@ const ConnectAnything = () => {
         const iconPlaceholder = document.querySelector('.info-icon-placeholder');
 
         if (clickedIcon && iconPlaceholder) {
-            // Wait for info section animation to complete before calculating position
-            return new Promise((resolve) => {
-                setTimeout(() => {
-                    // Force a reflow to ensure all styles are applied
-                    iconPlaceholder.offsetHeight;
-                    
-                    const iconRect = clickedIcon.getBoundingClientRect();
-                    const placeholderRect = iconPlaceholder.getBoundingClientRect();
+            const iconRect = clickedIcon.getBoundingClientRect();
+            const placeholderRect = iconPlaceholder.getBoundingClientRect();
 
-                    // Check if placeholder has valid dimensions (not hidden or collapsed)
-                    if (placeholderRect.width === 0 || placeholderRect.height === 0) {
-                        console.warn('Placeholder not visible, using fallback positioning');
-                        resolve({ targetX: 0, targetY: 0 });
-                        return;
-                    }
+            // Calculate the center of both elements
+            const iconCenterX = iconRect.left + iconRect.width / 2;
+            const iconCenterY = iconRect.top + iconRect.height / 2;
 
-                    // Calculate the center of both elements
-                    const iconCenterX = iconRect.left + iconRect.width / 2;
-                    const iconCenterY = iconRect.top + iconRect.height / 2;
+            const placeholderCenterX = placeholderRect.left + placeholderRect.width / 2;
+            const placeholderCenterY = placeholderRect.top + placeholderRect.height / 2;
 
-                    const placeholderCenterX = placeholderRect.left + placeholderRect.width / 2;
-                    const placeholderCenterY = placeholderRect.top + placeholderRect.height / 2;
+            // Calculate the translation needed to move icon center to placeholder center
+            const targetX = placeholderCenterX - iconCenterX - 100;
+            const targetY = placeholderCenterY - iconCenterY;
 
-                    // Calculate the translation needed to move icon center to placeholder center
-                    const targetX = placeholderCenterX - iconCenterX;
-                    const targetY = placeholderCenterY - iconCenterY;
-
-                    console.log('Icon position:', { iconCenterX, iconCenterY });
-                    console.log('Placeholder position:', { placeholderCenterX, placeholderCenterY });
-                    console.log('Target translation:', { targetX, targetY });
-
-                    resolve({ targetX, targetY });
-                }, 200); // Increased wait time for responsive layouts
-            });
+            return { targetX, targetY };
         }
-        return Promise.resolve({ targetX: 0, targetY: 0 });
+        return { targetX: 0, targetY: 0 };
     };
 
     const openInfoSection = (iconKey) => {
@@ -802,8 +783,8 @@ const ConnectAnything = () => {
 
         const clickedIcon = document.querySelector(`[data-position="${iconKey}"] .connect-icon`);
 
-        requestAnimationFrame(async () => {
-            const { targetX, targetY } = await updateIconPosition(iconKey);
+        requestAnimationFrame(() => {
+            const { targetX, targetY } = updateIconPosition(iconKey);
 
             const tl = gsap.timeline({
                 ease: "power2.inOut"
@@ -822,13 +803,13 @@ const ConnectAnything = () => {
                 0
             )
             .to(clickedIcon, {
-                scale: 1.8,
+                scale: 6,
                 x: targetX,
                 y: targetY,
                 zIndex: 999,
                 duration: 0.8,
                 ease: "none"
-            }, 0.2); // Start icon animation slightly after info section starts
+            }, 0);
         });
     };
 
