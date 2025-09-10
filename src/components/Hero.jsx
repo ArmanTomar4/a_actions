@@ -16,7 +16,14 @@ function Hero() {
             </button> 
         </div>
         <div className="hero-right-section">
-          <img src="/arrows.svg" alt="arrows" />
+          <img 
+            src="/arrows.svg" 
+            alt="arrows" 
+            onError={(e) => {
+              console.log('SVG failed to load, trying alternative approach');
+              e.target.style.display = 'none';
+            }}
+          />
         </div>
       </div>
       {/* Bottom Info */}
