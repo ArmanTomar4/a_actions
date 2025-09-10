@@ -91,7 +91,7 @@
 
 .request-access-right-section {
   flex: 1;
-  background-image: url(./bg.png);
+  background-image: url(/bg.png);
   background-size: cover;
   background-position: center;
   display: flex;
@@ -379,7 +379,7 @@ margin-top: 280px;
 /* High DPI displays */
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   .request-access-right-section {
-    background-image: url(./bg.png);
+    background-image: url(/bg.png);
   }
 }
 

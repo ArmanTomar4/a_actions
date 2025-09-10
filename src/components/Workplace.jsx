@@ -13,7 +13,7 @@ export default function Workplace() {
             <p>a_ACTION intercepts LLM function or tool calls,<br /> manages authentication, maps them to real- <br />world APIs, and ensures reliable execution.</p>
           </div>
           <div className="workplace-svg-img">
-            <img src="./structure.svg" alt="error" />
+            <img src="/structure.svg" alt="error" />
           </div>
         </div>
       </div>
