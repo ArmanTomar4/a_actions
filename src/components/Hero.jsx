@@ -1,14 +1,17 @@
 import { col } from 'framer-motion/client'
 import React from 'react'
+import { useModal } from '../contexts/ModalContext'
 
 function Hero() {
+  const { openModal } = useModal();
+
   return (
     <div className="hero-container">
       <div className="hero-content">
         <div className="hero-left-section">
           <h1 style={{ color: '#fff' }}>a_Action</h1>
           <h1 style={{ color: '#84D04D' }}>We are creating that layer that lets intelligence build intuition</h1>
-            <button>
+            <button onClick={() => openModal('Action')}>
               <p>Request Access</p>
               <svg xmlns="http://www.w3.org/2000/svg" width="15" height="14" viewBox="0 0 15 14" fill="none">
               <path fillRule="evenodd" clipRule="evenodd" d="M0.833933 13.6665C0.521501 13.3541 0.521501 12.8475 0.833933 12.5352L11.4683 1.90078H4.59961C4.15779 1.90078 3.79961 1.54261 3.79961 1.10078C3.79961 0.658957 4.15779 0.300781 4.59961 0.300781H13.3996C13.6118 0.300781 13.8153 0.385069 13.9654 0.535101C14.1153 0.685133 14.1996 0.888605 14.1996 1.10078V9.9008C14.1996 10.3426 13.8414 10.7008 13.3996 10.7008C12.9579 10.7008 12.5996 10.3426 12.5996 9.9008V3.03216L1.96529 13.6665C1.65288 13.9789 1.14635 13.9789 0.833933 13.6665Z" fill="#1C2024" />
@@ -16,14 +19,7 @@ function Hero() {
             </button> 
         </div>
         <div className="hero-right-section">
-          <img 
-            src="/arrows.svg" 
-            alt="arrows" 
-            onError={(e) => {
-              console.log('SVG failed to load, trying alternative approach');
-              e.target.style.display = 'none';
-            }}
-          />
+          <img src="/arrows.svg" alt="arrows" style={{ width: '100%', height: '100%' }} />
         </div>
       </div>
       {/* Bottom Info */}

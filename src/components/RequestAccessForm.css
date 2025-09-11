@@ -1,0 +1,383 @@
+/* Request Access Form Modal Styles */
+
+.request-form-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.request-form-modal {
+  background: #1A1A1A;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 945px;
+  height: 87vh;
+  overflow: hidden;
+  box-shadow: 0 17px 34px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+}
+
+.request-form-container {
+  display: flex;
+  flex: 1;
+  height: 100%;
+}
+
+.request-form-left-section {
+  flex: 1;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  background: #1A1A1A;
+  overflow-y: auto;
+}
+
+.request-form-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.request-form-title {
+  font-family: "Alliance No.2", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 27px;
+  font-weight: 700;
+  color: #fff;
+  margin: 0;
+}
+
+.request-form-close {
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.request-form-close:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.request-form {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 0;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  flex-shrink: 0;
+}
+
+.form-label {
+  font-family: "Alliance No.2", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  color: #a8a8a8;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.required {
+  color: #ff4444;
+}
+
+.form-input,
+.form-textarea {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #333;
+  padding: 10px 0;
+  color: #fff;
+  font-family: "Alliance No.2", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.form-input:focus,
+.form-textarea:focus {
+  border-bottom-color: #84D04D;
+}
+
+.form-textarea {
+  resize: none;
+  height: 60px;
+  flex-shrink: 0;
+}
+
+.form-submit-button {
+  background-color: #fff;
+  color: #000;
+  border: 1px solid #000;
+  padding: 8px 15px;
+  font-family: "Alliance No.2", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+  align-self: flex-start;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.form-submit-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.form-submit-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.form-success-message,
+.form-error-message {
+  margin-top: 15px;
+  padding: 12px;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.form-success-message {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.form-error-message {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+.form-success {
+  background-color: rgba(132, 208, 77, 0.1);
+  border: 1px solid #84D04D;
+  color: #84D04D;
+  padding: 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.form-error {
+  background-color: rgba(255, 68, 68, 0.1);
+  border: 1px solid #ff4444;
+  color: #ff4444;
+  padding: 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.request-form-right-section {
+  flex: 1;
+  background-image: url(/bg.png);
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.request-form-abstract-graphics {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 1000px;
+}
+
+.request-form-layer {
+  position: absolute;
+  top: 40%;
+  left: 57%;
+  transform: translate(-50%, -50%);
+  z-index: 104;
+  animation: float 6s ease-in-out infinite;
+  width: 600px;
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.request-form-layer1 {
+  position: absolute;
+  top: 58%;
+  left: 57%;
+  transform: translate(-50%, -50%);
+  z-index: 99;
+  animation: float 8s ease-in-out infinite 0.5s;
+  width: 600px;
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.request-form-layer3 {
+  position: absolute;
+  margin-top: 280px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;
+  animation: floatBottom 9s ease-in-out infinite 1.5s;
+}
+
+.request-form-layer4 {
+  position: absolute;
+  top: 50%;
+  left: 57%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
+  animation: float 5s ease-in-out infinite 0.8s;
+  width: 600px;
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Animations */
+@keyframes float {
+  0%, 100% {
+    transform: translate(-50%, -50%) translateY(0px);
+  }
+  50% {
+    transform: translate(-50%, -50%) translateY(-20px);
+  }
+}
+
+@keyframes floatBottom {
+  0%, 100% {
+    transform: translateX(-50%) translateY(0px);
+  }
+  50% {
+    transform: translateX(-50%) translateY(-15px);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .request-form-modal {
+    height: 90vh;
+    max-width: 95vw;
+  }
+  
+  .request-form-right-section {
+    display: none; /* Hide graphics on tablet */
+  }
+  
+  .request-form-left-section {
+    flex: 1;
+    padding: 15px;
+  }
+}
+
+@media (max-width: 768px) {
+  .request-form-modal {
+    height: 95vh;
+    max-width: 98vw;
+  }
+  
+  .request-form-container {
+    flex-direction: column;
+  }
+  
+  .request-form-left-section {
+    padding: 12px;
+    flex: 1;
+  }
+  
+  .request-form-right-section {
+    display: none; /* Hide graphics on mobile */
+  }
+  
+  .request-form-title {
+    font-size: 18px;
+  }
+  
+  .request-form {
+    gap: 8px;
+  }
+  
+  .form-group {
+    gap: 3px;
+  }
+}
+
+@media (max-width: 480px) {
+  .request-form-overlay {
+    padding: 5px;
+  }
+  
+  .request-form-modal {
+    height: 98vh;
+    max-width: 100vw;
+  }
+  
+  .request-form-left-section {
+    padding: 10px;
+    flex: 1;
+  }
+  
+  .request-form-right-section {
+    display: none; /* Hide graphics on small mobile */
+  }
+  
+  .request-form-title {
+    font-size: 16px;
+  }
+  
+  .request-form {
+    gap: 6px;
+  }
+  
+  .form-group {
+    gap: 2px;
+  }
+  
+  .form-input,
+  .form-textarea {
+    padding: 8px 0;
+    font-size: 12px;
+  }
+  
+  .form-textarea {
+    height: 50px;
+  }
+  
+  .form-submit-button {
+    padding: 6px 12px;
+    font-size: 10px;
+    margin-top: 8px;
+  }
+}

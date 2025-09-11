@@ -14,7 +14,11 @@ import FAQ from './components/FAQ'
 import FAQmobile from './components/FAQmobile'
 import Chatbot from './components/Chatbot'
 import Workplace from './components/Workplace'
+import RequestAccessForm from './components/RequestAccessForm'
+import { ModalProvider, useModal } from './contexts/ModalContext'
 function Home() { 
+  const { isModalOpen, modalType, closeModal } = useModal();
+  
   return (
     <>
    <Navbar />   
@@ -29,6 +33,11 @@ function Home() {
    <Chatbot />
    <RequestAccess />
    <Footer />
+   <RequestAccessForm 
+     isOpen={isModalOpen} 
+     onClose={closeModal} 
+     formType={modalType}
+   />
    </>
   )
 }
@@ -57,11 +66,13 @@ export default function App() {
   }, [])
 
   return (
-    <LazyMotion features={domAnimation}>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </LazyMotion>
+    <ModalProvider>
+      <LazyMotion features={domAnimation}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </LazyMotion>
+    </ModalProvider>
   )
 }
