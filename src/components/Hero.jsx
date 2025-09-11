@@ -19,7 +19,15 @@ function Hero() {
             </button> 
         </div>
         <div className="hero-right-section">
-          <img src="/arrows.svg" alt="arrows" style={{ width: '100%', height: '100%' }} />
+          <img 
+            src="/arrow-pattern.svg" 
+            alt="arrows" 
+            style={{ width: '100%', height: '100%' }} 
+            onError={(e) => {
+              console.error('Failed to load arrow-pattern.svg:', e);
+              e.target.style.display = 'none';
+            }}
+          />
         </div>
       </div>
       {/* Bottom Info */}
