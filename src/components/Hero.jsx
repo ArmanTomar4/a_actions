@@ -22,7 +22,16 @@ function Hero() {
           <img 
             src="/arrow-pattern.svg" 
             alt="arrows" 
-            style={{ width: '100%', height: '100%' }} 
+            style={{ 
+              width: '100%', 
+              height: '100%',
+              objectFit: 'contain',
+              display: 'block',
+              maxWidth: '100%',
+              maxHeight: '100%',
+              position: 'relative',
+              zIndex: 1
+            }} 
             onError={(e) => {
               console.error('Failed to load arrow-pattern.svg:', e);
               e.target.style.display = 'none';
