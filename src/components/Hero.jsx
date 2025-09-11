@@ -40,7 +40,7 @@ function Hero() {
           />
         </div>
       </div>
-      {/* Bottom Info */}
+      {/* Bottom Info */} 
       <div className="bottom-info">
         <div className="bottom-section">
           <div className="info-label" style={{ margin: '1px', display: 'flex', alignItems: 'center', gap: '10px' }}>

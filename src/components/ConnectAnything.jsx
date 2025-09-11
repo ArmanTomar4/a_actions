@@ -10,7 +10,7 @@ const ConnectAnything = () => {
     const innerRef = useRef(null);
     const infoRef = useRef(null);
     const timelineRef = useRef(null);
-    const containerRef = useRef(null);
+    const containerRef = useRef(null); 
 
     // Icon data with unique info for each integration
     const iconData = {
