@@ -1,22 +1,20 @@
 .nav-container {
-    width: calc(100% - 20px);
-    /* 100% minus left+right margin */
-    height: clamp(40px, 10vw, 50px);
+    width: auto;
     position: fixed;
     top: 0;
+    right: 0;
     left: 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
     z-index: 100;
     backdrop-filter: blur(20px);
-    border: 0.5px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 0.25rem;
-    margin: 10px;
+    margin: 10px 10px 10px 10px;
     transition: all 0.3s ease;
     box-sizing: border-box;
-    overflow: hidden;
-}
+} 
 
 .nav-section-left {
     display: flex;
@@ -89,8 +87,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-left: 24px;
-    gap: 34px;
+    margin-left: 54px;
+    gap: 32px;
     padding: 0;
     list-style: none;
     font-size: clamp(0.3rem, 1vw, 0.55rem);
@@ -134,7 +132,7 @@
 }
 
 .nav-button {
-    padding: 7px 11px;
+    padding: 7px 12px;
     background: #fff;
     color: #000000;
     border: 1px solid #000;
@@ -165,7 +163,7 @@
     .nav-container {
         width: calc(100% - 20px);
         /* 100% minus left+right margin */
-        height: clamp(40px, 10vw, 50px);
+        height: clamp(35px, 8vw, 45px);
         position: fixed;
         top: 0;
         left: 0;
@@ -176,7 +174,7 @@
         backdrop-filter: blur(20px);
         border: 1px solid rgba(255, 255, 255, 0.1);
         border-radius: 0.25rem;
-        margin: 10px;
+        margin: 0px;
         transition: all 0.3s ease;
         box-sizing: border-box;
     }
@@ -194,7 +192,7 @@
     .nav-container {
         width: calc(100% - 20px);
         /* 100% minus left+right margin */
-        height: clamp(40px, 10vw, 50px);
+        height: clamp(35px, 8vw, 35px);
         position: fixed;
         top: 0;
         left: 0;
@@ -226,7 +224,7 @@
     .nav-container {
         width: calc(100% - 20px);
         /* 100% minus left+right margin */
-        height: clamp(50px, 10vw, 60px);
+        height: clamp(45px, 8vw, 55px);
         position: fixed;
         top: 0;
         left: 0;
@@ -254,8 +252,8 @@
         letter-spacing: 1px;
     }
 
-    .nav-button {
+    /*.nav-button {
         padding: 12px 24px;
         font-size: clamp(0.6rem, 1.5vw, 1rem);
-    }
+    }*/
 }

@@ -36,11 +36,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 45%;
-    height: 4%;
+    width: min(226px, 90%);
+    height: 55px;
     color:#000000;
     border:none;
-    padding:20px 20px;
+    padding: 0 20px;
     background-color:#84D04D;
     gap: 8px;
 }
@@ -123,7 +123,7 @@
     text-transform: uppercase;
     color: #ffffff;
 }
-/* Desktop-specific typography for hero heading */
+/* Desktop and large screens */
 @media (min-width: 1024px) {
   .hero-left-section h1 {
     font-size: clamp(1rem, 2.5vw, 6rem);
@@ -131,7 +131,7 @@
   }
 }
 
-/* Tablet and below: show only left section */
+/* Tablet and medium screens */
 @media (max-width: 1024px) {
   .hero-container {
     padding: 0 48px;
@@ -139,7 +139,6 @@
   .hero-content {
     align-items: flex-start;
   }
-
   .hero-left-section {
     width: 100%;
     align-items: flex-start;
@@ -149,21 +148,33 @@
   }
 }
 
-/* Mobile: tighter padding */
-@media (max-width: 640px) {
-  .hero-container {
-    padding: 50px;
+/* Hide sections at breakpoint */
+@media (max-width: 950px) {
+  .hero-right-section {
+    display: none;
   }
-  .hero-left-section h1 {
-    font-size: clamp(1.825rem, 5vw, 2rem);
+  .bottom-info {
+    display: none;
+  }
+  .hero-left-section {
+    width: 100%;
+    padding-top: 80px;
   }
 }
 
-@media (max-width: 950px) {
-  .hero-right-section{
-    display: none;
+/* Mobile screens */
+@media (max-width: 640px) {
+  .hero-container {
+    padding: 24px;
   }
-  .bottom-info{
-    display: none;
+  .hero-left-section {
+    padding-top: 60px;
+  }
+  .hero-left-section h1 {
+    font-size: clamp(1.5rem, 5vw, 1.825rem);
+  }
+  .hero-left-section button {
+    width: 100%;
+    max-width: 226px;
   }
 }

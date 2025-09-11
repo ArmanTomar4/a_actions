@@ -11,7 +11,7 @@
     align-items: center;
     height: 100%;
     width: 100%;
-}
+} 
 
 .workplace-header {
     display: flex;
@@ -41,14 +41,15 @@
     font-family: 'Source Code Pro';
     text-transform: uppercase;
     font-weight: 300;
+    position: relative;
 }
 
 .workplace-svg-img {
     display: flex;
     justify-content: center;
     width: 100vw;
-    height: 90%;
-    margin-top: 2rem;
+    height: 100%;
+    margin-top: 0rem;
     position: relative;
 }
 
@@ -60,27 +61,130 @@
     bottom: 0;
     transform: scale(1.2);
 }
-@media (max-width: 499px) {
+/* Laptop and larger screens (1024px and up) */
+@media (min-width: 1024px) {
+    .workplace-container {
+        height: 130vh;
+    }
+    .workplace-svg-img img {
+        transform: scale(1.2);
+    }
+    .workplace-header {
+        margin-top: 10rem;
+    }
+}
+
+/* Tablet (768px to 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .workplace-container {
+        height: 110vh;
+    }
+    .workplace-header {
+        margin-top: 6rem;
+        width: 90%;
+    }
+    .workplace-sub-header {
+        width: 90%;
+        font-size: clamp(0.6rem, 1.8vw, 0.8rem);
+    }
+    .workplace-svg-img img {
+        transform: scale(1);
+    }
+}
+
+/* Mobile (up to 767px) */
+@media (max-width: 767px) {
     .workplace-container {
         height: 100vh;
     }
     .workplace-content {
         align-items: center;
     }
-    .workplace-header{
-        font-size: clamp(0.95rem, 1.8vw, 0.95rem);
+    .workplace-header {
+        font-size: clamp(0.95rem, 4vw, 1.2rem);
         margin-top: 2rem;
-        padding: 0 !important;
+        padding: 0 0 15px 0;
+        width: 92%;
     }
-    .workplace-sub-header{
+    .workplace-sub-header {
+        width: 92%;
         display: grid;
-        font-size: clamp(0.5rem, 1.8vw, 0.95rem);
+        gap: 1.5rem;
+        font-size: clamp(0.5rem, 2.5vw, 0.7rem);
+        margin-top: 1.5rem;
     }
     .workplace-svg-img {
         align-items: center;
-        height: 70%;
+        height: 60%;
+        margin-top: 2rem;
     }
-    .workplace-svg-img img{
+    .workplace-svg-img img {
         position: relative;
+        transform: scale(0.9);
+    }
+    .workplace-sub-header-p1,
+    .workplace-sub-header-p2,
+    .workplace-sub-header-p3 {
+        position: absolute;
+        right: 0;
+        width: 100%;
+    }
+}
+
+/* Small Mobile (up to 480px) */
+@media (max-width: 480px) {
+    .workplace-container {
+        height: 90vh;
+    }
+    .workplace-header {
+        font-size: clamp(0.85rem, 3.5vw, 1rem);
+    }
+    .workplace-sub-header {
+        font-size: clamp(0.45rem, 2.2vw, 0.65rem);
+    }
+    .workplace-svg-img {
+        height: 50%;
+    }
+    .workplace-svg-img img {
+        transform: scale(0.8);
+    }
+}
+
+/* Animation styles */
+.workplace-sub-header-p1,
+.workplace-sub-header-p2,
+.workplace-sub-header-p3 {
+    position: absolute;
+    opacity: 0;
+    transform-origin: center;
+    transform: rotateX(-90deg);
+    transition: all 1.5s ease-in-out;
+    backface-visibility: hidden;
+    right: 0;  /* Keep text on the right side */
+    text-align: right;  /* Align text to the right */
+}
+
+.workplace-sub-header-p1 {
+    animation: textFlip 9s infinite;
+}
+
+.workplace-sub-header-p2 {
+    animation: textFlip 9s infinite;
+    animation-delay: 3s;
+}
+
+.workplace-sub-header-p3 {
+    animation: textFlip 9s infinite;
+    animation-delay: 6s;
+}
+
+@keyframes textFlip {
+    0%, 33% {
+        opacity: 1;
+        transform: rotateX(0deg);
+    }
+    34%, 100% {
+        opacity: 0;
+        transform: rotateX(90deg);
     }
 }

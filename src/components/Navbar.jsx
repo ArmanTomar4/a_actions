@@ -7,7 +7,7 @@ import { useModal } from '../contexts/ModalContext'
 
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin)
 
-const Navbar = () => {
+const Navbar = () => { 
     const [activeSection, setActiveSection] = useState('hero')
     const { openModal } = useModal()
     const [navTheme, setNavTheme] = useState('dark') // 'light' for black text, 'dark' for white text
