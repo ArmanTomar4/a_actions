@@ -1,6 +1,7 @@
 import { col } from 'framer-motion/client'
 import React from 'react'
 import { useModal } from '../contexts/ModalContext'
+import arrowPattern from '../assets/arrow-pattern.svg'
 
 function Hero() {
   const { openModal } = useModal();
@@ -20,7 +21,7 @@ function Hero() {
         </div>
         <div className="hero-right-section">
           <img 
-            src="/arrow-pattern.svg" 
+            src={arrowPattern} 
             alt="arrows" 
             style={{ 
               width: '100%', 
