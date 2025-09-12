@@ -2,9 +2,11 @@ import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './Navbar.css'
 import { smoothScrollTo } from '../utils/smoothScroll.js'
+import { useModal } from '../contexts/ModalContext'
 
 function Navbar() {
   const navigate = useNavigate()
+  const { openModal } = useModal()
   const [isOverOpening, setIsOverOpening] = useState(false)
   const [isOverIntelligence, setIsOverIntelligence] = useState(false)
   const [isOverSolutions, setIsOverSolutions] = useState(false)
@@ -131,7 +133,7 @@ function Navbar() {
   }
 
   const handleRequestAccess = () => {
-    navigate('/request-access')
+    openModal('Access')
   }
 
   const handleLogoClick = () => {

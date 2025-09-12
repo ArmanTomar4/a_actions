@@ -10,8 +10,13 @@ function Hero() {
     <div className="hero-container">
       <div className="hero-content">
         <div className="hero-left-section">
-          <h1 style={{ color: '#fff' }}>a_Action</h1>
-          <h1 style={{ color: '#84D04D' }}>We are creating that layer that lets intelligence build intuition</h1>
+          <h1 style={{ color: '#fff' }}>a_ACTIONS</h1>
+          <h1 style={{ color: '#84D04D' }}>
+            We are creating <br />
+            that layer that <br />
+            lets intelligence <br />
+            build intuition
+          </h1>
             <button onClick={() => openModal('Action')}>
               <p>Request Access</p>
               <svg xmlns="http://www.w3.org/2000/svg" width="15" height="14" viewBox="0 0 15 14" fill="none">

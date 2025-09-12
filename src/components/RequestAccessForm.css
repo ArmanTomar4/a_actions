@@ -123,10 +123,10 @@
 }
 
 .form-submit-button {
-  background-color: #fff;
+  background: #F4F4E3;
   color: #000;
-  border: 1px solid #000;
-  padding: 8px 15px;
+  border: none;
+  padding: 12px 20px;
   font-family: "Alliance No.2", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   font-size: 11px;
   font-weight: 500;
@@ -135,8 +135,10 @@
   margin-top: 10px;
   align-self: flex-start;
   display: flex;
+  width: 234px;
+  justify-content: center;
   align-items: center;
-  gap: 6px;
+  gap: 10px;
   flex-shrink: 0;
 }
 
@@ -194,95 +196,22 @@
 
 .request-form-right-section {
   flex: 1;
-  background-image: url(/bg.png);
-  background-size: cover;
-  background-position: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   position: relative;
   overflow: hidden;
+  height: 100%;
 }
 
 .request-form-abstract-graphics {
-  position: relative;
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  perspective: 1000px;
+  display: block;
 }
 
-.request-form-layer {
-  position: absolute;
-  top: 40%;
-  left: 57%;
-  transform: translate(-50%, -50%);
-  z-index: 104;
-  animation: float 6s ease-in-out infinite;
-  width: 600px;
-  height: 400px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.request-form-layer1 {
-  position: absolute;
-  top: 58%;
-  left: 57%;
-  transform: translate(-50%, -50%);
-  z-index: 99;
-  animation: float 8s ease-in-out infinite 0.5s;
-  width: 600px;
-  height: 400px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.request-form-layer3 {
-  position: absolute;
-  margin-top: 280px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 5;
-  animation: floatBottom 9s ease-in-out infinite 1.5s;
-}
-
-.request-form-layer4 {
-  position: absolute;
-  top: 50%;
-  left: 57%;
-  transform: translate(-50%, -50%);
-  z-index: 100;
-  animation: float 5s ease-in-out infinite 0.8s;
-  width: 600px;
-  height: 400px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
-
-/* Animations */
-@keyframes float {
-  0%, 100% {
-    transform: translate(-50%, -50%) translateY(0px);
-  }
-  50% {
-    transform: translate(-50%, -50%) translateY(-20px);
-  }
-}
-
-@keyframes floatBottom {
-  0%, 100% {
-    transform: translateX(-50%) translateY(0px);
-  }
-  50% {
-    transform: translateX(-50%) translateY(-15px);
-  }
+.request-form-abstract-graphics img {
+  /* Inline styles will override these */
 }
 
 /* Responsive Design */
@@ -376,8 +305,13 @@
   }
   
   .form-submit-button {
-    padding: 6px 12px;
-    font-size: 10px;
-    margin-top: 8px;
+    padding: 12px 20px;
+    font-size: 11px;
+    margin-top: 10px;
+    width: 234px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
   }
 }
