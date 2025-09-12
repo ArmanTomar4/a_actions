@@ -464,7 +464,18 @@ function Cards() {
           <div className="card">
             
             <div className="card-content">
-              <div className="card-icon"> <img src="/fourth.svg" alt="error" />
+              <div className="card-icon"> 
+                <img 
+                  src="/fourth.svg" 
+                  alt="Collaboration Elevated Icon" 
+                  onError={(e) => {
+                    console.error('Failed to load fourth.svg:', e);
+                    e.target.style.display = 'none';
+                  }}
+                  onLoad={() => {
+                    console.log('Successfully loaded fourth.svg');
+                  }}
+                />
               </div>
               <h3 className="card-title">Collaboration. Elevated.</h3>
               <p className="card-description">

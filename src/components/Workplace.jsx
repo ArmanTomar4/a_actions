@@ -15,7 +15,17 @@ export default function Workplace() {
             <p className='workplace-sub-header-p3'>Integrate with over 25 agentic frameworks, giving<br/>AI agents the ability to plan, coordinate,<br/>and execute actions across tools,<br />with execution handled automatically.</p>
           </div>
           <div className="workplace-svg-img">
-            <img src="/structure.svg" alt="error" />
+            <img 
+              src="/structure.svg" 
+              alt="Workplace Structure Diagram" 
+              onError={(e) => {
+                console.error('Failed to load structure.svg:', e);
+                e.target.style.display = 'none';
+              }}
+              onLoad={() => {
+                console.log('Successfully loaded structure.svg');
+              }}
+            />
           </div>
         </div>
       </div>

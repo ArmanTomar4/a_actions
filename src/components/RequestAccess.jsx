@@ -50,7 +50,17 @@ const RequestAccess = () => {
 
                     {/* Right Section - Gradient with Abstract Graphics */}
                     <div className="request-access-right-section">
-                        <img src="/are_you_ready.svg" alt="Are you ready illustration" />
+                        <img 
+                            src="/are_you_ready.svg" 
+                            alt="Are you ready illustration" 
+                            onError={(e) => {
+                                console.error('Failed to load are_you_ready.svg:', e);
+                                e.target.style.display = 'none';
+                            }}
+                            onLoad={() => {
+                                console.log('Successfully loaded are_you_ready.svg');
+                            }}
+                        />
                     </div>
                 </div>
             </div >

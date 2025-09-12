@@ -749,24 +749,24 @@ const ConnectAnything = () => {
     };
 
     const updateIconPosition = (iconKey) => {
-        const clickedIcon = document.querySelector(`[data-position="${iconKey}"] .connect-icon`);
-        const iconPlaceholder = document.querySelector('.info-icon-placeholder');
+                const clickedIcon = document.querySelector(`[data-position="${iconKey}"] .connect-icon`);
+                const iconPlaceholder = document.querySelector('.info-icon-placeholder');
 
         if (clickedIcon && iconPlaceholder) {
-            const iconRect = clickedIcon.getBoundingClientRect();
-            const placeholderRect = iconPlaceholder.getBoundingClientRect();
+                    const iconRect = clickedIcon.getBoundingClientRect();
+                    const placeholderRect = iconPlaceholder.getBoundingClientRect();
 
             // Calculate the center of both elements
-            const iconCenterX = iconRect.left + iconRect.width / 2;
-            const iconCenterY = iconRect.top + iconRect.height / 2;
-
-            const placeholderCenterX = placeholderRect.left + placeholderRect.width / 2;
-            const placeholderCenterY = placeholderRect.top + placeholderRect.height / 2;
-
+                    const iconCenterX = iconRect.left + iconRect.width / 2;
+                    const iconCenterY = iconRect.top + iconRect.height / 2;
+                    
+                    const placeholderCenterX = placeholderRect.left + placeholderRect.width / 2;
+                    const placeholderCenterY = placeholderRect.top + placeholderRect.height / 2;
+                    
             // Calculate the translation needed to move icon center to placeholder center
             const targetX = placeholderCenterX - iconCenterX - 100;
-            const targetY = placeholderCenterY - iconCenterY;
-
+                    const targetY = placeholderCenterY - iconCenterY;
+                    
             return { targetX, targetY };
         }
         return { targetX: 0, targetY: 0 };
@@ -786,27 +786,27 @@ const ConnectAnything = () => {
         requestAnimationFrame(() => {
             const { targetX, targetY } = updateIconPosition(iconKey);
 
-            const tl = gsap.timeline({
+        const tl = gsap.timeline({
                 ease: "power2.inOut"
-            });
+        });
 
-            timelineRef.current = tl;
+        timelineRef.current = tl;
 
-            tl.to(innerRef.current, {
-                x: "-50%",
+        tl.to(innerRef.current, {
+            x: "-50%",
                 duration: 0.8,
                 ease: "power2.inOut"
-            }, 0)
-            .fromTo(infoRef.current, 
+        }, 0)
+        .fromTo(infoRef.current, 
                 { x: "100%", opacity: 0 },
                 { x: "0%", opacity: 1, duration: 0.8, ease: "power2.inOut" }, 
                 0
             )
-            .to(clickedIcon, {
+                .to(clickedIcon, {
                 scale: 6,
-                x: targetX,
-                y: targetY,
-                zIndex: 999,
+                    x: targetX,
+                    y: targetY,
+                    zIndex: 999,
                 duration: 0.8,
                 ease: "none"
             }, 0);
@@ -897,10 +897,10 @@ const ConnectAnything = () => {
     // Handle window resize to keep the icon in place
     useEffect(() => {
         const handleResize = () => {
-            if (isInfoOpen && animatingIcon) {
+                if (isInfoOpen && animatingIcon) {
                 const { targetX, targetY } = updateIconPosition(animatingIcon);
-                const clickedIcon = document.querySelector(`[data-position="${animatingIcon}"] .connect-icon`);
-                if (clickedIcon) {
+                        const clickedIcon = document.querySelector(`[data-position="${animatingIcon}"] .connect-icon`);
+                        if (clickedIcon) {
                     gsap.set(clickedIcon, { x: targetX, y: targetY });
                 }
             }
