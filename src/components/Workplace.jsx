@@ -1,5 +1,6 @@
 import React from 'react'
 import './Workplace.css'
+import structureSvg from '/structure.svg'
 export default function Workplace() {
   return (
     <>
@@ -16,8 +17,17 @@ export default function Workplace() {
           </div>
           <div className="workplace-svg-img">
             <img 
-              src="/structure.svg" 
+              src={structureSvg} 
               alt="Workplace Structure Diagram" 
+              style={{
+                width: '100vw',
+                maxHeight: '95%',
+                height: 'auto',
+                position: 'absolute',
+                bottom: 0,
+                transform: 'scale(1.2)',
+                border: '1px solid red' // Debug border
+              }}
               onError={(e) => {
                 console.error('Failed to load structure.svg:', e);
                 e.target.style.display = 'none';

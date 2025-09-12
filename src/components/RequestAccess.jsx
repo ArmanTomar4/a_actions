@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './RequestAccess.css';
 import { useModal } from '../contexts/ModalContext';
+import areYouReadySvg from '/are_you_ready.svg';
 
 const RequestAccess = () => {
     const navigate = useNavigate();
@@ -51,8 +52,15 @@ const RequestAccess = () => {
                     {/* Right Section - Gradient with Abstract Graphics */}
                     <div className="request-access-right-section">
                         <img 
-                            src="/are_you_ready.svg" 
+                            src={areYouReadySvg} 
                             alt="Are you ready illustration" 
+                            style={{
+                                width: '100%',
+                                height: '100%',
+                                objectFit: 'cover',
+                                display: 'block',
+                                border: '1px solid red' // Debug border
+                            }}
                             onError={(e) => {
                                 console.error('Failed to load are_you_ready.svg:', e);
                                 e.target.style.display = 'none';

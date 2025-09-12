@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import './Cards.css'
+import fourthSvg from '/fourth.svg'
 
 function Cards() {
   const [currentCard, setCurrentCard] = useState(0);
@@ -466,8 +467,15 @@ function Cards() {
             <div className="card-content">
               <div className="card-icon"> 
                 <img 
-                  src="/fourth.svg" 
+                  src={fourthSvg} 
                   alt="Collaboration Elevated Icon" 
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'contain',
+                    display: 'block',
+                    border: '1px solid red' // Debug border
+                  }}
                   onError={(e) => {
                     console.error('Failed to load fourth.svg:', e);
                     e.target.style.display = 'none';
