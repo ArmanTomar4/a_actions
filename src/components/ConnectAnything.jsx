@@ -14,6 +14,7 @@ const ConnectAnything = () => {
     const containerRef = useRef(null); 
     const closeBtnRef = useRef(null);
     const iconTweenRef = useRef(null);
+    const iconAtPanelRef = useRef(false);
 
     // Icon data with unique info for each integration
     const iconData = {
@@ -819,7 +820,12 @@ const ConnectAnything = () => {
                     zIndex: 999,
                     duration: 0.6,
                     ease: "power2.inOut",
-                    onComplete: () => setIsAnimating(false)
+                    onComplete: () => {
+                        setIsAnimating(false);
+                        // Mark that the icon has arrived at the panel and hide it to prevent re-fly during zoom
+                        iconAtPanelRef.current = true;
+                        gsap.set(clickedIcon, { autoAlpha: 0 });
+                    }
                 });
             });
         });
@@ -838,6 +844,7 @@ const ConnectAnything = () => {
 
         setIsAnimating(true);
         setIsInfoOpen(false);
+        iconAtPanelRef.current = false;
         
         // Get the currently selected icon
         const selectedIconElement = animatingIcon ? 
@@ -891,6 +898,7 @@ const ConnectAnything = () => {
 
         // Animate the icon back if it exists
         if (selectedIconElement) {
+            tl.set(selectedIconElement, { autoAlpha: 1 }, 0);
             tl.to(selectedIconElement, {
                 scale: 1,
                 x: 0,
@@ -916,7 +924,8 @@ const ConnectAnything = () => {
     // Handle window resize to keep the icon in place
     useEffect(() => {
         const handleResize = () => {
-            if (isInfoOpen && animatingIcon) {
+            // Reposition only while panel is open and the animated icon is hidden at the panel
+            if (isInfoOpen && animatingIcon && iconAtPanelRef.current) {
                 const { targetX, targetY, targetScale } = updateIconPosition(animatingIcon);
                 const clickedIcon = document.querySelector(`[data-position="${animatingIcon}"] .connect-icon`);
                 if (clickedIcon) {
