@@ -964,7 +964,7 @@ const ConnectAnything = () => {
     };
 
     return (
-        <div className="connect-anything-container" ref={containerRef}>
+        <div id="applications-section" className="connect-anything-container" ref={containerRef}>
             <svg className="connect-top-svg" xmlns="http://www.w3.org/2000/svg" width="927" height="26" viewBox="0 0 927 26" fill="none">
                 <path d="M927 0H0L46 26H881L927 0Z" fill="#1a1a1a" />
             </svg>

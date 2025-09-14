@@ -3,7 +3,7 @@ import './Workplace.css'
 export default function Workplace() {
   return (
     <>
-      <div className='workplace-container'>
+      <div id="how-it-works-section" className='workplace-container'>
         <div className='workplace-content'>
           <div className='workplace-header'>
             <h1>Workplace AI.</h1>

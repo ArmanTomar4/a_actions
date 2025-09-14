@@ -116,13 +116,13 @@ function Navbar() {
     // Scroll to appropriate section based on page
     switch (page) {
       case 'features':
-        document.querySelector('.intelligence-layer-container')?.scrollIntoView({ behavior: 'smooth' })
+        document.querySelector('#features-section')?.scrollIntoView({ behavior: 'smooth' })
         break
       case 'applications':
-        document.querySelector('.solutions-container')?.scrollIntoView({ behavior: 'smooth' })
+        document.querySelector('#applications-section')?.scrollIntoView({ behavior: 'smooth' })
         break
       case 'how-it-works':
-        document.querySelector('.pipeline-container')?.scrollIntoView({ behavior: 'smooth' })
+        document.querySelector('#how-it-works-section')?.scrollIntoView({ behavior: 'smooth' })
         break
       case 'stats':
         document.querySelector('.stats-page-container')?.scrollIntoView({ behavior: 'smooth' })

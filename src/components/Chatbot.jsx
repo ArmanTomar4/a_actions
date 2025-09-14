@@ -328,8 +328,8 @@ const Chatbot = () => {
                 .chatbot-container {
                     display: flex;
                     justify-content: center;
-                    align-items: center;
-                    min-height: 54vh;
+                    align-items: flex-start;
+                    min-height: 50vh;
                     background-color: #1A1A1A;
                     z-index: 1000;
                     padding: 0px 95px 48px 95px;

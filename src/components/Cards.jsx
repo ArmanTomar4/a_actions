@@ -112,7 +112,7 @@ function Cards() {
 
   return (
     <>
-      <div className="cards-container">
+      <div id="features-section" className="cards-container">
         <div className="cards-header">
           <div className="cards-header-title">
             Workplace AI.

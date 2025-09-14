@@ -6,11 +6,11 @@
   width: 100%;
   padding: 0px 95px 48px 95px;  
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .request-access-inner-container {
-  margin-top: 100px;
+  margin-top: 50px;
   width: 100%;
   max-width: 1200px;
   display: flex;

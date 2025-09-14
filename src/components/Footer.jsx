@@ -11,7 +11,7 @@ const Footer = () => {
           flex-direction: column;
           align-items: center;
           justify-content: center;
-          padding: 60px 32px;
+          padding: 50px 32px;
           font-family: "Alliance No.2", -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
           position: relative;
         }
@@ -22,7 +22,7 @@ const Footer = () => {
           justify-content: center;
           align-items: center;
           text-align: center;
-          margin-bottom: 80px;
+          margin-bottom: 50px;
           max-width: 800px;
         }
 
