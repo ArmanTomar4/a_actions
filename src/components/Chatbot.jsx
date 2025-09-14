@@ -308,14 +308,16 @@ const Chatbot = () => {
                                 {isLoading ? (
                                     <div className="loading-spinner"></div>
                                 ) : (
-                                    <svg width="208" height="208" viewBox="0 0 208 208" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M72.8125 133.429L80.7165 134.377L76.6064 37L72.8125 133.429Z" fill={inputValue.trim() ? "white" : "black"} />
-                                        <path d="M81.3488 133.112H72.8125L47.8359 172L81.3488 133.112Z" fill={inputValue.trim() ? "white" : "black"} />
-                                        <path d="M74.709 136.906L80.3998 129.951L196.114 147.023L74.709 136.906Z" fill={inputValue.trim() ? "white" : "black"} />
-                                        <path d="M80.4004 129.951L76.9227 136.274L8 165.677L80.4004 129.951Z" fill={inputValue.trim() ? "white" : "black"} fill-opacity="0.3" />
-                                        <path d="M80.4016 129.951L200.542 75.5713L76.9238 136.274L80.4016 129.951Z" fill={inputValue.trim() ? "white" : "black"} />
-                                    </svg>
-
+                                    <img 
+                                        src="/chat_icon.svg" 
+                                        alt="Send message" 
+                                        className="chat-send-icon"
+                                        style={{
+                                            width: '28px',
+                                            height: '28px',
+                                            filter: 'none'
+                                        }}
+                                    />
                                 )}
                             </button>
                         </div>
@@ -479,7 +481,7 @@ const Chatbot = () => {
                 }
 
                 .chatbot-send-button {
-                    background-color: #0035DD;
+                    background-color: #84D04D;
                     border: 1px solid #FFF;
                     border-left: none;
                     border-radius: 0;
@@ -494,11 +496,12 @@ const Chatbot = () => {
                 }
 
                 .chatbot-send-button:hover:not(:disabled) {
-                    background-color: #0028b0;
+                    background-color: #69AD38;
                 }
 
                 .chatbot-send-button:disabled {
-                    background-color: #FFF;
+                    background-color: #84D04D;
+                    opacity: 0.4;
                     cursor: not-allowed;
                 }
 
@@ -508,6 +511,21 @@ const Chatbot = () => {
 
                 .chatbot-send-button:not(:disabled) svg path {
                     stroke: #fff;
+                }
+
+                .chat-send-icon {
+                    transition: all 0.2s ease;
+                    pointer-events: none;
+                    filter: none !important;
+                    object-fit: contain;
+                }
+
+                .chatbot-send-button:hover:not(:disabled) .chat-send-icon {
+                    transform: scale(1.1);
+                }
+
+                .chatbot-send-button:disabled .chat-send-icon {
+                    filter: none !important;
                 }
 
                 .typing-cursor {
