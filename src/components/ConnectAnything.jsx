@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { motion, AnimatePresence, px } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import './ConnectAnything.css';
 import gsap from 'gsap';
 
@@ -7,10 +7,13 @@ const ConnectAnything = () => {
     const [selectedIcon, setSelectedIcon] = useState(null);
     const [isInfoOpen, setIsInfoOpen] = useState(false);
     const [animatingIcon, setAnimatingIcon] = useState(null);
+    const [isAnimating, setIsAnimating] = useState(false);
     const innerRef = useRef(null);
     const infoRef = useRef(null);
     const timelineRef = useRef(null);
     const containerRef = useRef(null); 
+    const closeBtnRef = useRef(null);
+    const iconTweenRef = useRef(null);
 
     // Icon data with unique info for each integration
     const iconData = {
@@ -276,7 +279,7 @@ const ConnectAnything = () => {
         },
         'r2c9': { 
             name: 'Meta Ads', 
-            info: 'Meta Ads API.',
+            info: 'Meta Ads API. It is used to create, update, and manage ads, ad sets, and campaigns.',
             hasOAuth: true,
             hasBearerToken: false,
             hasApiKey:true,
@@ -729,50 +732,46 @@ const ConnectAnything = () => {
 
     // Handle icon click with animations
     const handleIconClick = (iconKey) => {
-        // If clicking the same icon that's already selected, close the info section
-        if (selectedIcon === iconKey && isInfoOpen) {
-            closeInfoSection();
-            return;
-        }
-
-        // If info section is open with different icon, close first then open new
-        if (isInfoOpen && selectedIcon !== iconKey) {
-            closeInfoSection(() => {
-                // After closing, open with new icon
-                setTimeout(() => openInfoSection(iconKey), 100);
-            });
-            return;
-        }
+        // Interaction lock: do nothing while panel is open or animations are running
+        if (isInfoOpen || isAnimating) return;
+        // Guard: ignore icons that don't have data
+        if (!iconData[iconKey]) return;
 
         // Open info section for new icon
         openInfoSection(iconKey);
     };
 
     const updateIconPosition = (iconKey) => {
-                const clickedIcon = document.querySelector(`[data-position="${iconKey}"] .connect-icon`);
-                const iconPlaceholder = document.querySelector('.info-icon-placeholder');
+        const clickedIcon = document.querySelector(`[data-position="${iconKey}"] .connect-icon`);
+        const iconPlaceholder = document.querySelector('.info-icon-placeholder');
 
         if (clickedIcon && iconPlaceholder) {
-                    const iconRect = clickedIcon.getBoundingClientRect();
-                    const placeholderRect = iconPlaceholder.getBoundingClientRect();
+            const iconRect = clickedIcon.getBoundingClientRect();
+            const placeholderRect = iconPlaceholder.getBoundingClientRect();
 
             // Calculate the center of both elements
-                    const iconCenterX = iconRect.left + iconRect.width / 2;
-                    const iconCenterY = iconRect.top + iconRect.height / 2;
-                    
-                    const placeholderCenterX = placeholderRect.left + placeholderRect.width / 2;
-                    const placeholderCenterY = placeholderRect.top + placeholderRect.height / 2;
-                    
+            const iconCenterX = iconRect.left + iconRect.width / 2;
+            const iconCenterY = iconRect.top + iconRect.height / 2;
+
+            const placeholderCenterX = placeholderRect.left + placeholderRect.width / 2;
+            const placeholderCenterY = placeholderRect.top + placeholderRect.height / 2;
+
             // Calculate the translation needed to move icon center to placeholder center
-            const targetX = placeholderCenterX - iconCenterX - 100;
-                    const targetY = placeholderCenterY - iconCenterY;
-                    
-            return { targetX, targetY };
+            const targetX = placeholderCenterX - iconCenterX;
+            const targetY = placeholderCenterY - iconCenterY;
+
+            // Compute dynamic scale so the icon fits into the placeholder
+            const widthScale = placeholderRect.width / iconRect.width;
+            const heightScale = placeholderRect.height / iconRect.height;
+            const targetScale = Math.min(widthScale, heightScale);
+
+            return { targetX, targetY, targetScale };
         }
-        return { targetX: 0, targetY: 0 };
+        return { targetX: 0, targetY: 0, targetScale: 1 };
     };
 
     const openInfoSection = (iconKey) => {
+        setIsAnimating(true);
         setSelectedIcon(iconKey);
         setAnimatingIcon(iconKey);
         setIsInfoOpen(true); // Show info section immediately
@@ -781,35 +780,48 @@ const ConnectAnything = () => {
             timelineRef.current.kill();
         }
 
+        // Clear any existing proximity glow
+        const allItems = document.querySelectorAll('.connect-grid-item');
+        allItems.forEach(item => item.classList.remove('proximity-glow'));
+
         const clickedIcon = document.querySelector(`[data-position="${iconKey}"] .connect-icon`);
 
+        // Stage A: animate containers into place first
         requestAnimationFrame(() => {
-            const { targetX, targetY } = updateIconPosition(iconKey);
+            const tl = gsap.timeline({ ease: "power2.inOut" });
+            timelineRef.current = tl;
 
-        const tl = gsap.timeline({
+            tl.to(innerRef.current, {
+                x: "-50%",
+                duration: 0.6,
                 ease: "power2.inOut"
-        });
-
-        timelineRef.current = tl;
-
-        tl.to(innerRef.current, {
-            x: "-50%",
-                duration: 0.8,
-                ease: "power2.inOut"
-        }, 0)
-        .fromTo(infoRef.current, 
+            }, 0)
+            .fromTo(infoRef.current,
                 { x: "100%", opacity: 0 },
-                { x: "0%", opacity: 1, duration: 0.8, ease: "power2.inOut" }, 
+                { x: "0%", opacity: 1, duration: 0.6, ease: "power2.inOut" },
                 0
             )
-                .to(clickedIcon, {
-                scale: 6,
+            // Stage B: after containers settled, measure and move the icon
+            .add(() => {
+                if (!clickedIcon) {
+                    setIsAnimating(false);
+                    return;
+                }
+                const { targetX, targetY, targetScale } = updateIconPosition(iconKey);
+                if (iconTweenRef.current) {
+                    try { iconTweenRef.current.kill(); } catch (e) { /* noop */ }
+                }
+                iconTweenRef.current = gsap.to(clickedIcon, {
+                    scale: targetScale,
                     x: targetX,
                     y: targetY,
+                    transformOrigin: '50% 50%',
                     zIndex: 999,
-                duration: 0.8,
-                ease: "none"
-            }, 0);
+                    duration: 0.6,
+                    ease: "power2.inOut",
+                    onComplete: () => setIsAnimating(false)
+                });
+            });
         });
     };
 
@@ -818,7 +830,13 @@ const ConnectAnything = () => {
         if (timelineRef.current) {
             timelineRef.current.kill();
         }
+        // Also kill icon tween if running
+        if (iconTweenRef.current) {
+            try { iconTweenRef.current.kill(); } catch (e) { /* noop */ }
+            iconTweenRef.current = null;
+        }
 
+        setIsAnimating(true);
         setIsInfoOpen(false);
         
         // Get the currently selected icon
@@ -851,6 +869,7 @@ const ConnectAnything = () => {
                 
                 setSelectedIcon(null);
                 setAnimatingIcon(null);
+                setIsAnimating(false);
                 if (callback) callback();
             }
         });
@@ -897,11 +916,11 @@ const ConnectAnything = () => {
     // Handle window resize to keep the icon in place
     useEffect(() => {
         const handleResize = () => {
-                if (isInfoOpen && animatingIcon) {
-                const { targetX, targetY } = updateIconPosition(animatingIcon);
-                        const clickedIcon = document.querySelector(`[data-position="${animatingIcon}"] .connect-icon`);
-                        if (clickedIcon) {
-                    gsap.set(clickedIcon, { x: targetX, y: targetY });
+            if (isInfoOpen && animatingIcon) {
+                const { targetX, targetY, targetScale } = updateIconPosition(animatingIcon);
+                const clickedIcon = document.querySelector(`[data-position="${animatingIcon}"] .connect-icon`);
+                if (clickedIcon) {
+                    gsap.set(clickedIcon, { x: targetX, y: targetY, scale: targetScale, transformOrigin: '50% 50%' });
                 }
             }
         };
@@ -912,6 +931,13 @@ const ConnectAnything = () => {
             window.removeEventListener('resize', handleResize);
         };
     }, [isInfoOpen, animatingIcon]);
+
+    // Focus management: move focus to close button when panel opens
+    useEffect(() => {
+        if (isInfoOpen && closeBtnRef.current) {
+            try { closeBtnRef.current.focus(); } catch (e) { /* noop */ }
+        }
+    }, [isInfoOpen]);
 
     // Render corner plus SVGs that stick to the grid-item corners
     const renderCornerPluses = () => (
@@ -976,7 +1002,7 @@ const ConnectAnything = () => {
                 <div className="connect-main-content">
                     <h2 className="connect-anything-title">Connect anything</h2>
                     <div className="connect-anything-divider"></div>
-                    <div className="connect-anything-grid">
+                    <div className={`connect-anything-grid ${isInfoOpen || isAnimating ? 'grid-locked' : ''}`}>
                         {generateGridItems()}
                     </div>
                 </div>
@@ -987,6 +1013,7 @@ const ConnectAnything = () => {
                 {/* Close button positioned on left border */}
                 {isInfoOpen && (
                     <motion.button 
+                        ref={closeBtnRef}
                         className="close-info-btn"
                         onClick={() => closeInfoSection()}
                         initial={{ opacity: 0 }}
@@ -1009,7 +1036,15 @@ const ConnectAnything = () => {
                         >
                             {/* Header section with icon and title */}
                             <div className="info-header">
-                                <div className="info-icon-placeholder"></div>
+                                <div className="info-icon-placeholder">
+                                    {/* Always show a static icon as a fallback for perfect alignment */}
+                                    <img
+                                        src={`/${selectedIcon}.svg`}
+                                        alt={`${iconData[selectedIcon].name} icon`}
+                                        className="info-icon-large"
+                                        loading="eager"
+                                    />
+                                </div>
                                 <div className="info-header-text">
                                     <h3 className="info-title">{iconData[selectedIcon].name}</h3>
                                     <p className="info-description">{iconData[selectedIcon].info}</p>

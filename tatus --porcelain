@@ -1,5 +1,0 @@
-[33mcf01f2f[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m Fix asset loading issues for Cloudflare Pages - update image paths and Vite config
-[33m50a6d84[m Fix client-side routing for Cloudflare Pages - add _redirects file and update vite config
-[33m8d4d4ea[m Remove wrangler.toml - use Cloudflare Pages dashboard configuration instead
-[33mb846951[m Fix wrangler.toml configuration for Cloudflare Pages
-[33m8764b49[m Configure Vite for Cloudflare deployment - expose server to network and add wrangler config
