@@ -18,7 +18,7 @@ const Chatbot = () => {
 
     // API configuration
     const API_BASE_URL = 'http://127.0.0.1:8000';
-
+ 
     const typewriterEffect = (text, messageId) => {
         let index = 0;
         const speed = 5; // milliseconds per character - much faster!

@@ -64,7 +64,6 @@ const AnimatedFAQDiagram = () => {
     const containerRef = useRef(null);
     const [focusedBox, setFocusedBox] = useState(null);
     const [currentFocusIndex, setCurrentFocusIndex] = useState(0);
-    const [isScrolling, setIsScrolling] = useState(false);
     const [selectedQuestion, setSelectedQuestion] = useState(null);
     const [chatbotResponse, setChatbotResponse] = useState(null);
     const [visibleQuestions, setVisibleQuestions] = useState({
@@ -661,21 +660,6 @@ const AnimatedFAQDiagram = () => {
         }
     };
 
-    const handleWheel = useCallback((event) => {
-        if (isScrolling || !focusedBox) return;
-
-        event.preventDefault();
-        setIsScrolling(true);
-
-        const delta = Math.sign(event.deltaY);
-        setCurrentFocusIndex(prev => {
-            const newIndex = (prev + delta + boxes.length) % boxes.length;
-            setFocusedBox(boxes[newIndex].id);
-            return newIndex;
-        });
-
-        setTimeout(() => setIsScrolling(false), 200);
-    }, [isScrolling, focusedBox, boxes]);
 
     const handleBoxClick = useCallback((boxId) => {
         if (focusedBox === boxId) {
@@ -772,7 +756,6 @@ const AnimatedFAQDiagram = () => {
                             variants={containerVariants}
                             initial="hidden"
                             animate={isVisible ? "visible" : "hidden"}
-                            onWheel={handleWheel}
                         >
                             <AnimatePresence mode="sync">
                                 {focusedBox ? (
