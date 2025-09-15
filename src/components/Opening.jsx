@@ -43,6 +43,37 @@ export default function PinnedWordRevealPage() {
         anticipatePin: 1,
       });
 
+      // Navbar theme toggle while Opening (white background) is in view
+      const nav = document.querySelector('.nav-container');
+      if (nav) {
+        const navScrollTrigger = ScrollTrigger.create({
+          trigger: sectionRef.current,
+          start: 'top top',     // when section reaches top (same as pin start)
+          end: 'bottom top',    // until section completely exits viewport
+          onEnter: () => {
+            nav.classList.add('nav-over-opening');
+            nav.classList.remove('nav-grey', 'nav-over-connect-anything', 'nav-over-intelligence', 'nav-over-solutions', 'nav-over-pipeline', 'nav-over-stats');
+          },
+          onLeave: () => {
+            nav.classList.remove('nav-over-opening');
+          },
+          onEnterBack: () => {
+            nav.classList.add('nav-over-opening');
+            nav.classList.remove('nav-grey', 'nav-over-connect-anything', 'nav-over-intelligence', 'nav-over-solutions', 'nav-over-pipeline', 'nav-over-stats');
+          },
+          onLeaveBack: () => {
+            nav.classList.remove('nav-over-opening');
+          },
+          refreshPriority: 1, // Higher priority to override other triggers
+        });
+
+        return () => {
+          st.kill();
+          tl.kill();
+          navScrollTrigger.kill();
+        };
+      }
+
       return () => {
         st.kill();
         tl.kill();

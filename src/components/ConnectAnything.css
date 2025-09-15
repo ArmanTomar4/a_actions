@@ -499,6 +499,33 @@
     border: 1px solid #ddd;
 }
 
+/* Small icons inside badges */
+.info-badge .badge-icon {
+    width: 14px;
+    height: 14px;
+    object-fit: contain;
+    vertical-align: -2px;
+    margin-right: 8px;
+    display: inline-block;
+}
+
+/* Plain stats (no border/background) for Tools and Triggers */
+.info-stat {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+    color: #444;
+    margin-left: 12px;
+}
+
+.info-stat .badge-icon {
+    width: 16px;
+    height: 16px;
+    vertical-align: middle;
+    margin-right: 4px;
+}
+
 /* Category Section */
 .info-category {
     margin-bottom: 30px;

@@ -2,6 +2,8 @@ import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import './ConnectAnything.css';
 import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+gsap.registerPlugin(ScrollTrigger);
 
 const ConnectAnything = () => {
     const [selectedIcon, setSelectedIcon] = useState(null);
@@ -941,6 +943,54 @@ const ConnectAnything = () => {
         };
     }, [isInfoOpen, animatingIcon]);
 
+    // Toggle navbar grey theme when this section intersects the viewport
+    useEffect(() => {
+        const nav = document.querySelector('.nav-container');
+        if (!nav || !containerRef.current) return;
+
+        const st = ScrollTrigger.create({
+            trigger: containerRef.current,
+            start: 'top bottom',   // when section just enters viewport
+            end: 'bottom top',     // until it fully exits
+            toggleClass: { targets: nav, className: 'nav-grey' },
+        });
+
+        return () => st && st.kill();
+    }, []);
+
+    useEffect(() => {
+        const container = containerRef.current;
+        if (!container) return;
+
+        // Navbar theme toggle while ConnectAnything (light background) is in view
+        const nav = document.querySelector('.nav-container');
+        if (nav) {
+            const navScrollTrigger = ScrollTrigger.create({
+                trigger: container,
+                start: 'top bottom',  // when section starts entering
+                end: 'bottom top',    // until it fully exits
+                onEnter: () => {
+                    nav.classList.add('nav-over-connect-anything');
+                    nav.classList.remove('nav-grey', 'nav-over-opening', 'nav-over-intelligence', 'nav-over-solutions', 'nav-over-pipeline', 'nav-over-stats');
+                },
+                onLeave: () => {
+                    nav.classList.remove('nav-over-connect-anything');
+                },
+                onEnterBack: () => {
+                    nav.classList.add('nav-over-connect-anything');
+                    nav.classList.remove('nav-grey', 'nav-over-opening', 'nav-over-intelligence', 'nav-over-solutions', 'nav-over-pipeline', 'nav-over-stats');
+                },
+                onLeaveBack: () => {
+                    nav.classList.remove('nav-over-connect-anything');
+                },
+            });
+
+            return () => {
+                navScrollTrigger.kill();
+            };
+        }
+    }, []);
+
     // Focus management: move focus to close button when panel opens
     useEffect(() => {
         if (isInfoOpen && closeBtnRef.current) {
@@ -1071,11 +1121,13 @@ const ConnectAnything = () => {
                                 {iconData[selectedIcon].hasApiKey && (
                                     <span className="info-badge api-key">API_KEY</span>
                                 )}
-                                <span className="info-badge tools">
-                                    🔧 {iconData[selectedIcon].toolsCount} Tools
+                                <span className="info-stat tools-stat">
+                                    <img src="/wrench.svg" alt="tools" className="badge-icon" />
+                                    {iconData[selectedIcon].toolsCount} Tools
                                 </span>
-                                <span className="info-badge triggers">
-                                    ⚡ {iconData[selectedIcon].triggersCount} Triggers
+                                <span className="info-stat triggers-stat">
+                                    <img src="/flash.svg" alt="triggers" className="badge-icon" />
+                                    {iconData[selectedIcon].triggersCount} Triggers
                                 </span>
                             </div>
 
@@ -1105,4 +1157,3 @@ const ConnectAnything = () => {
 };
 
 export default ConnectAnything;
-

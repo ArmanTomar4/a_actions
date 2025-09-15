@@ -222,6 +222,7 @@ const Chatbot = () => {
         }
     };
 
+
     const handleSuggestedQuestion = async (question) => {
         const userMessage = {
             id: messages.length + 1,
@@ -299,25 +300,23 @@ const Chatbot = () => {
                             />
                             <button
                                 className="chatbot-send-button"
-                                style={{
-                                    padding: '5px',
-                                }}
                                 onClick={handleSendMessage}
-                                disabled={!inputValue.trim() || isLoading}
                             >
                                 {isLoading ? (
                                     <div className="loading-spinner"></div>
                                 ) : (
-                                    <img 
-                                        src="/chat_icon.svg" 
-                                        alt="Send message" 
-                                        className="chat-send-icon"
-                                        style={{
-                                            width: '28px',
-                                            height: '28px',
-                                            filter: 'none'
-                                        }}
-                                    />
+                                    <div className="chat-send-icon-wrap">
+                                        <img
+                                            src="/white_logo.svg"
+                                            alt=""
+                                            className={`chat-send-icon icon-white ${inputValue.trim() ? '' : 'active'}`}
+                                        />
+                                        <img
+                                            src="/logo.svg"
+                                            alt="Send"
+                                            className={`chat-send-icon icon-color ${inputValue.trim() ? 'active' : ''}`}
+                                        />
+                                    </div>
                                 )}
                             </button>
                         </div>
@@ -472,6 +471,7 @@ const Chatbot = () => {
                     border-radius: 0;
                     border-right: none;
                     padding: 12px 16px;
+                    height: 44px;
                     font-family: "Alliance No.2", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
                     font-size: 12px;
                     font-weight: 400;
@@ -481,44 +481,52 @@ const Chatbot = () => {
                 }
 
                 .chatbot-send-button {
-                    background-color: #84D04D;
+                    background-color: #ffffff;
                     border: 1px solid #FFF;
                     border-left: none;
                     border-radius: 0;
-                    width: 40px;
-                    height: 40px;
+                    width: 44px;
+                    height: 44px;
+                    padding: 0;
                     z-index: 100;
                     display: flex;
                     align-items: center;
                     justify-content: center;
                     cursor: pointer;
-                    transition: background-color 0.2s ease;
+                    transition: transform 0.2s ease, border-color 0.2s ease;
                 }
 
-                .chatbot-send-button:hover:not(:disabled) {
-                    background-color: #69AD38;
-                }
+                /* .chatbot-send-button:hover:not(:disabled) { */
+                  /* border-color: #ffffff; */
+                /*}*/
 
-                .chatbot-send-button:disabled {
-                    background-color: #84D04D;
-                    opacity: 0.4;
-                    cursor: not-allowed;
-                }
+                /* No visual disabled state; click handler guards empty input */
 
-                .chatbot-send-button:disabled svg path {
-                    stroke: #000;
-                }
-
-                .chatbot-send-button:not(:disabled) svg path {
-                    stroke: #fff;
+                .chat-send-icon-wrap {
+                    position: relative;
+                    width: 42px;
+                    height: 42px;
                 }
 
                 .chat-send-icon {
-                    transition: all 0.2s ease;
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    width: 42px;
+                    height: 42px;
+                    transition: opacity 120ms ease;
                     pointer-events: none;
-                    filter: none !important;
                     object-fit: contain;
+                    display: block;
+                    opacity: 0;
+                    will-change: opacity;
+                    image-rendering: optimizeQuality;
                 }
+
+                .chat-send-icon.active {
+                    opacity: 1;
+                }
+
 
                 .chatbot-send-button:hover:not(:disabled) .chat-send-icon {
                     transform: scale(1.1);

@@ -18,6 +18,31 @@
   box-sizing: border-box;
 }
 
+/* Grey theme triggered via ScrollTrigger when certain sections are in view */
+.nav-container.nav-grey {
+  background: rgba(30, 30, 30, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.nav-container.nav-grey .logo,
+.nav-container.nav-grey .nav-item {
+  color: #fff;
+}
+
+.nav-container.nav-grey .nav-indicator {
+  background-color: #ffffff;
+}
+
+.nav-container.nav-grey .nav-divider {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.nav-container.nav-grey .nav-button {
+  background: #fff;
+  color: #000;
+  border: 1px solid #fff;
+}
+
 .nav-container .nav-divider {
   width: 1px;
   height: 50px;
@@ -25,16 +50,16 @@
 }
 
 .nav-over-opening {
-  background: rgba(255, 255, 255, 0.9);
-  border: 1px solid rgba(0, 0, 0, 0.345);
+  background: rgba(30, 30, 30, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 .nav-over-opening .logo {
-  color: #000;
+  color: #fff;
 }
 
 .nav-over-opening .nav-item {
-  color: #000;
+  color: #fff;
 }
 
 .nav-over-opening .nav-item:hover {
@@ -42,25 +67,25 @@
 }
 
 .nav-over-opening .nav-item::before {
-  color: #666;
+  color: #bbb;
 }
 
 .nav-over-opening .nav-indicator {
-  background-color: #000;
+  background-color: #ffffff;
 }
 
 .nav-over-opening .nav-button {
-  background: #000;
-  color: #fff;
-  border: 1px solid #000;
+  background: #fff;
+  color: #000;
+  border: 1px solid #fff;
 }
 
 .nav-over-opening .nav-button .button-arrow path {
-  fill: #fff;
+  fill: #000;
 }
 
 .nav-over-opening .nav-divider {
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(255, 255, 255, 0.25);
 }
 
 .nav-over-intelligence {
@@ -107,83 +132,77 @@
 }
 
 .nav-over-solutions {
-  background: rgba(255, 255, 255, 0.95) !important;
-  border: 1px solid rgba(0, 0, 0, 0.1) !important;
+  background: rgba(30, 30, 30, 0.9) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
 }
 
 .nav-over-solutions .logo {
-  color: #000;
+  color: #fff;
 }
 
 .nav-over-solutions .nav-item {
-  color: #000;
+  color: #fff;
 }
 
 .nav-over-solutions .nav-item:hover {
-  color: #0e3ba5;
+  color: #4169e1;
 }
 
 .nav-over-solutions .nav-item::before {
-  color: #666;
+  color: #bbb;
 }
 
 .nav-over-solutions .nav-indicator {
-  background-color: #000;
+  background-color: #ffffff;
 }
 
 .nav-over-solutions .nav-button .button-arrow path {
-  fill: #FFF;
+  fill: #000;
 }
 
 .nav-over-solutions .nav-divider {
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(255, 255, 255, 0.25);
 }
 
 .nav-over-solutions .nav-button {
-  background: #000;
-  color: #fff;
-  border: 1px solid #000;
+  background: #fff;
+  color: #000;
+  border: 1px solid #fff;
 }
 
 .nav-over-pipeline {
-  background: rgba(255, 255, 255, 0.95) !important;
-  border: 1px solid rgba(0, 0, 0, 0.1) !important;
+  background: rgba(30, 30, 30, 0.9) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
 }
 
 .nav-over-pipeline .logo {
-  color: #000;
+  color: #fff;
 }
 
 .nav-over-pipeline .nav-item {
-  color: #000;
+  color: #fff;
 }
 
 .nav-over-pipeline .nav-item:hover {
-  color: #0e3ba5;
+  color: #4169e1;
 }
 
 .nav-over-pipeline .nav-item::before {
-  color: #666;
+  color: #bbb;
 }
 
 .nav-over-pipeline .nav-indicator {
-  background-color: #000;
+  background-color: #ffffff;
 }
 
 .nav-over-pipeline .nav-divider {
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(255, 255, 255, 0.25);
 }
 
 .nav-over-pipeline .nav-button {
-  background: #000;
-  color: #fff;
-  border: 1px solid #000;
-}
-
-.nav-over-pipeline .nav-button:hover {
   background: #fff;
   color: #000;
-  border: 1px solid #000;
+  border: 1px solid #fff;
 }
 
 .nav-over-pipeline .nav-button:hover .button-arrow path {
@@ -191,7 +210,7 @@
 }
 
 .nav-over-pipeline .nav-button .button-arrow path {
-  fill: #fff;
+  fill: #000;
 }
 
 .nav-over-stats {
@@ -356,6 +375,46 @@
 
 .nav-button:hover .button-arrow {
   transform: translate(4px, -50%) !important;
+}
+
+/* New classes for better visibility on light backgrounds */
+.nav-over-connect-anything {
+  background: rgba(30, 30, 30, 0.9) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+}
+
+.nav-over-connect-anything .logo {
+  color: #fff;
+}
+
+.nav-over-connect-anything .nav-item {
+  color: #fff;
+}
+
+.nav-over-connect-anything .nav-item:hover {
+  color: #4169e1;
+}
+
+.nav-over-connect-anything .nav-item::before {
+  color: #bbb;
+}
+
+.nav-over-connect-anything .nav-indicator {
+  background-color: #ffffff;
+}
+
+.nav-over-connect-anything .nav-button {
+  background: #fff;
+  color: #000;
+  border: 1px solid #fff;
+}
+
+.nav-over-connect-anything .nav-button .button-arrow path {
+  fill: #000;
+}
+
+.nav-over-connect-anything .nav-divider {
+  background: rgba(255, 255, 255, 0.25);
 }
 
 /* ===== MOBILE NAVBAR STYLES ===== */
