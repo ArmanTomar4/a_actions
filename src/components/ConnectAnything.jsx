@@ -30,10 +30,10 @@ const ConnectAnything = () => {
             triggersCount: 0,
             category: 'Design & Creative Tools, E-commerce',
             tools: [
-                { name: 'Create Webflow Coll..', description: 'This tool creates a new item in a specified webflow... ' },
-                { name: 'Delete Webflow Coll...', description: 'This tool allows you to delete a specific item from...' },
-                { name: 'Fulfill Order', description: 'This tool allows you to mark an order as fulfilled in...' },
-                { name: 'Get Collection Details', description: 'Retrieves a specific collection by its id from a webflow...' }
+                { name: 'Create Webflow Collection Item', description: 'This tool creates a new item in a specified webflow collection. it requires the collection id and field data parameters (including required name and slug) and optionally accepts an is draft flag. authentication is assumed to be provided, and the collection id can be obtained by using the webflow list collections tool.' },
+                { name: 'Delete Webflow Collection Item', description: 'This tool allows you to delete a specific item from a collection in webflow. it permanently removes the item from the specified collection and complements existing collection management tools. the tool requires a collection id to identify the collection and an item id to identify the item, with an optional cms locale id parameter for handling multi-language content.' },
+                { name: 'Fulfill Order', description: "This tool allows you to mark an order as fulfilled in webflow's e-commerce system. it's essential for managing order fulfillment in webflow stores." },
+                { name: 'Get Collection Details', description: "Retrieves a specific collection by its id from a webflow site. this endpoint returns detailed information about the collection, including its name, slug, and schema. it requires a valid collection id as a parameter and complements the webflow list collections tool for accessing specific collection details. this tool requires the 'cms:read' authentication scope." }
             ]
         },
         'r4c7': { 
@@ -46,31 +46,31 @@ const ConnectAnything = () => {
             triggersCount: 1,
             category: 'Document & File Management',
             tools: [
-                { name: 'Add file sharing pref...', description: 'Create a new file in Google Drive' },
-                { name: 'Create comment', description: 'Duplicates an existing file in google drive, identified...' },
-                { name: 'Create shared drive', description: 'Tool to create a comment on a file. use when you need...' },
-                { name: 'Copy file', description: 'Tool to create a comment on a file. use when you need...' },
+                { name: 'Add file sharing pref...', description: "Modifies sharing permissions for an existing google drive file, granting a specified role to a user, group, domain, or 'anyone'" },
+                { name: 'Create comment', description: 'Tool to create a comment on a file. use when you need to add a new comment to a specific file in google drive.' },
+                { name: 'Create shared drive', description: 'Tool to create a comment on a file. use when you need to add a new comment to a specific file in google drive.' },
+                { name: 'Copy file', description: 'Duplicates an existing file in google drive, identified by its `file id`.' },
             ]
         },
         'r1c3': { 
             name: 'Shopify', 
-            info: 'Integrate with Shopify for automated workflows, product management, and order processing.',
+            info: 'Shopify is an e-commerce platform enabling merchants to create online stores, manage products, and process payments with themes, apps, and integrated marketing tools',
             hasOAuth: true,
             hasBearerToken: false,
             hasApiKey:true,
             toolsCount: 28,
             triggersCount: 0,
-            category: 'Ecommerce',
+            category: 'E-commerce',
             tools: [
-                { name: 'Add product to custo...', description: 'Add a product to an existing custom collection' },
-                { name: 'Count product images', description: 'Count the total number of images for a product' },
-                { name: 'Create a custom coll...', description: 'Create a new custom collection in a Shopify store' },
-                { name: 'Create customer', description: 'Create a new customer in Shopify' }
+                { name: 'Add product to custo...', description: 'Adds a product to an existing *custom collection*, optionally specifying its `position` if the collection is manually sorted.' },
+                { name: 'Count product images', description: 'Retrieves the total count of images for a shopify product, useful for inventory management or display logic; the provided `product id` must exist in the store.' },
+                { name: 'Create a custom collection', description: "Creates a new custom collection in a shopify store, requiring a unique title for manually curated product groupings (e.g., 'new arrivals', 'seasonal specials')." },
+                { name: 'Create customer', description: 'Tool to create a new customer in shopify. use when you need to add a new customer record to the store.' }
             ]
         },
         'r1c4': { 
             name: 'Jira', 
-            info: 'A tool for bug tracking, issue tracking, and agile project management.Jira is very useful tool',
+            info: 'A tool for bug tracking, issue tracking, and agile project management. Jira is very useful tool for productivity even for professionals',
             hasOAuth: true,
             hasBearerToken: false,
             hasApiKey: true,
