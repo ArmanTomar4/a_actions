@@ -617,9 +617,9 @@
     left: -19px;
     width: 32px;
     height: 32px;
-    border: none;
+    border: 2px solid #ddd;
     background: transparent;
-    color: #999;
+    color: #84D04D;
     border-radius: 20%;
     font-size: 20px;
     font-weight: 300;

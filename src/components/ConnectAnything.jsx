@@ -78,9 +78,9 @@ const ConnectAnything = () => {
             triggersCount: 3,
             category: 'productivity, ticketing, popular',
             tools: [
-                { name: 'Create issue', description: 'Create a new issue in Jira' },
+                { name: 'Create issue', description: "Creates a new jira issue (e.g., bug, task, story) in a specified project." },
                 { name: 'Update issue', description: 'Update an existing issue in Jira' },
-                { name: 'Create project', description: 'Create a new project in Jira' },
+                { name: 'Create project', description: "Creates a new jira project with required lead, template, and type configuration." },
                 { name: 'Query issues', description: 'Query issues in Jira' }
             ]
         },
@@ -93,10 +93,10 @@ const ConnectAnything = () => {
             triggersCount: 0,
             category: 'Communication & Collaboration',
             tools: [
-                { name: 'Add a meeting regis...', description: 'This text guides on creating and customizing a user...' },
-                { name: 'Add a webinar regis...', description: 'Zoom users with a webinar plan can create and manage...' },
-                { name: 'Create a meeting', description: 'Enable zoom meeting creation via user-level apps...' },
-                { name: 'Delete meeting rec...', description: 'Summary: to delete all meeting recordings, ensure...' }
+                { name: 'Add a meeting registrant', description: "This text guides on creating and customizing a user's registration for a zoom meeting, with a max of 4,999 registrants. preconditions include the host being licensed. api scopes and a light rate limit apply." },
+                { name: 'Add a webinar registrant', description: 'Zoom users with a webinar plan can create and manage webinars, broadcasting to up to 10,000 attendees. registration requires a pro plan, specific permissions, and is governed by a "light" rate limit.' },
+                { name: 'Create a meeting', description: "Enable zoom meeting creation via user-level apps with 'me'. 'start url' for hosts expires in 2 hours, or 90 days for 'custcreate' users. renew via api, capped at 100 requests/day. requires 'meeting:write' permission, subject to medium rate limit." },
+                { name: 'Delete meeting recordings', description: "Summary: to delete all meeting recordings, ensure the user's account has cloud recording enabled. required permissions include `recording:write:admin` and `recording:write` with a `light` rate limit label." }
             ]
         },
         'r1c6': { 
@@ -108,10 +108,10 @@ const ConnectAnything = () => {
             triggersCount: 2,
             category: 'Scheduling & Booking',
             tools: [
-                { name: 'Create event', description: 'Create a new event in Google Calendar' },
-                { name: 'Update event', description: 'Update an existing event in Google Calendar' },
+                { name: 'Create event', description: 'Creates an event on a google calendar, needing rfc3339 utc start/end times (end after start) and write access to the calendar. by default, adds the organizer as an attendee unless exclude organizer is set to true.' },
+                { name: 'Update event', description: 'Updates an existing event by `event id` in a google calendar; this is a full put replacement, so provide all desired fields as unspecified ones may be cleared or reset.' },
                 { name: 'Create calendar', description: 'Create a new calendar in Google Calendar' },
-                { name: 'Delete event', description: 'Delete an existing event in Google Calendar' }
+                { name: 'Delete event', description: "Deletes a specified event by `event id` from a google calendar (`calendar id`); this action is idempotent and raises a 404 error if the event is not found." }
             ]
         },
         'r1c7': { 
@@ -125,7 +125,7 @@ const ConnectAnything = () => {
             tools: [
                 { name: 'Create campaign', description: 'Create a new campaign' },
                 { name: 'Update campaign', description: 'Update an existing campaign' },
-                { name: 'Get campaign', description: 'Retrieve a campaign' },
+                { name: 'Get campaign', description: 'Getcampaignbyname tool will run a sql getcampaignbyname in google ads.' },
                 { name: 'Delete campaign', description: 'Delete an existing campaign' }
             ]
         },
@@ -139,10 +139,10 @@ const ConnectAnything = () => {
             triggersCount: 0,
             category: 'Developer Tools & DevOps',
             tools: [
-                { name: 'Create project api key', description: 'Create a new api key for a supabase project' },
-                { name: 'Delete project api key', description: 'Delete an existing api key from a supabase project' },
-                { name: 'Get third-party integration', description: 'Retrieve the configuration for a specific third-party...' },
-                { name: 'List third-party integrations', description: 'List all configured third-party authentication...f' }
+                { name: 'Create project api key', description: "Creates a 'publishable' or 'secret' api key for an existing supabase project, optionally with a description; 'secret' keys can have customized jwt templates." },
+                { name: 'Delete project api key', description: "Permanently deletes a specific api key (identified by `id`) from a supabase project (identified by `ref`), revoking its access." },
+                { name: 'Get third-party integration', description: "Retrieves the detailed configuration for a specific third-party authentication (tpa) provider, identified by `tpa id`, within an existing supabase project specified by `ref`." },
+                { name: 'List third-party integrations', description: "Lists all configured third-party authentication provider integrations for an existing supabase project (using its `ref`), suitable for read-only auditing or verifying current authentication settings." }
             ]
         },
         'r1c9': { 
@@ -154,10 +154,10 @@ const ConnectAnything = () => {
             triggersCount: 0,
             category: 'Document & File Management',
             tools: [
-                { name: 'Add classification f...', description: 'Add a classification to a file by specifying the label...' },
-                { name: 'Add classification...', description: 'Add a classification to a folder by specifying the label...' },
-                { name: 'Add domain to d...', description: 'Create a new entry in the list...' },
-                { name: 'Add initial classific...', description: 'When an enterprise does not yet have any classific...' }
+                { name: 'Add classification to file', description: "Adds a classification to a file by specifying the label of the classification to add. this api can also be called by including the enterprise id in the url explicitly, for example `/files/:id//enterprise 12345/securityclassification-6vmvochwuwo`." },
+                { name: 'Add classification to folder', description: "Adds a classification to a folder by specifying the label of the classification to add. this api can also be called by including the enterprise id in the url explicitly, for example `/folders/:id/enterprise 12345/securityclassification-6vmvochwuwo`." },
+                { name: 'Add domain to list of allowed collaboration domains', description: "Creates a new entry in the list of allowed domains to allow collaboration for." },
+                { name: 'Add initial classifications', description: "When an enterprise does not yet have any classifications, this api call initializes the classification template with an initial set of classifications. if an enterprise already has a classification, the template will already exist and instead an api call should be made to add additional classifications." }
             ]
         },
         'r2c1': { 
@@ -169,10 +169,10 @@ const ConnectAnything = () => {
             triggersCount: 0,
             category: 'Collaboration & Communication',
             tools: [
-                { name: 'Add recipient to grp...', description: 'Adds a user to a discord group direct message (dm)...' },
-                { name: 'Update guild memb...', description: 'Adds a user (who is not already a member) to a guild...' },
-                { name: 'Assign role to guild...', description: 'Assigns a role to a guild member, provided the bot has...' },
-                { name: 'Add reaction to msg...', description: 'Adds an emoji reaction from the authenticated user/bot...' }
+                { name: 'Add recipient to group channel', description: 'Adds a user to a discord group direct message (dm) channel.' },
+                { name: 'Update guild member information', description: "Adds a user (who is not already a member) to a guild using their `access token` (which must have `guilds.join` scope), optionally setting nickname, roles, mute/deaf status, or flags." },
+                { name: 'Assign role to guild member', description: "Assigns a role to a guild member, provided the bot has 'manage roles' permission in the guild and the role to be assigned is hierarchically lower than the bot's highest role." },
+                { name: 'Add reaction to message', description: 'Adds an emoji reaction from the authenticated user/bot to a specific message in a discord channel; does not return information about existing reactions.' }
             ]
         },
         'r2c3': { 
@@ -185,9 +185,9 @@ const ConnectAnything = () => {
             triggersCount: 0,
             category: 'Mapping & Navigation',
             tools: [
-                { name: 'Get directions', description: 'Get directions to a location' },
+                { name: 'Get directions', description: 'Fetches detailed directions between an origin and a destination, supporting intermediate waypoints and various travel modes.' },
                 { name: 'Get reviews', description: 'Retrieve reviews for a location' },
-                { name: 'Get distance', description: 'Calculate the distance between two locations' },
+                { name: 'Get distance', description: 'Calculates travel distance and time for a matrix of origins and destinations. supports different modes of transportation and options like departure/arrival times. use when needing to determine travel metrics between multiple points.' },
                 { name: 'Get traffic', description: 'Retrieve traffic information for a location' }
             ]
         },
@@ -215,10 +215,10 @@ const ConnectAnything = () => {
             triggersCount: 0,
             category: 'Data & Analytics',
             tools: [
-                { name: 'Add Chart', description: 'Add a new chart to a worksheet' },
-                { name: 'Add Pivot Table', description: 'Add a new pivot table to a worksheet' },
-                { name: 'Add Formula', description: 'Add a new formula to a worksheet' },
-                { name: 'Add Filter', description: 'Add a new filter to a worksheet' }
+                { name: 'Add Chart', description: 'Tool to create a new board. use when you need to set up a board with a specific name, description, and policies. example: "create a new board named project plan".' },
+                { name: 'Delete App Card Item', description: 'Tool to delete an app card item from a board. use when you need to remove an app card item created by your app after it is no longer needed.' },
+                { name: 'Get Boards', description: 'Tool to retrieve accessible boards with optional filters. use when you need to list or search boards by team, project, owner, or keywords.' },
+                { name: 'Get Connectors', description: 'Tool to retrieve a list of connectors on a board. use after confirming the board id and when you need to page through connector items.' }
             ]
         },
         'r2c5': { 
@@ -231,15 +231,15 @@ const ConnectAnything = () => {
             triggersCount: 0,
             category: 'Automation & Integration',
             tools: [
-                { name: 'Create Message', description: 'Create a new message completion. use when...' },
-                { name: 'Get Model', description: 'Retrieve details of a specific model by its id. use...' },
-                { name: 'List models', description: 'Retrieve a list of available models. use when...' },
-                { name: 'Prompt Caching', description: 'Cache and reuse prompt content to reduce costs...' }
+                { name: 'Create Message', description: 'Tool to create a new message completion. use when you need to generate assistant text given a conversation history.' },
+                { name: 'Get Model', description: 'Tool to retrieve details of a specific model by its id. use after confirming the model id is valid.' },
+                { name: 'List models', description: 'Tool to list available models. use when you need to see which models are available before selection.' },
+                { name: 'Prompt Caching', description: 'Tool to cache and reuse prompt content to reduce costs and latency. use after you have static prompt portions you intend to reuse across calls.' }
             ]
         },
         'r2c6': { 
             name: 'Adobe', 
-            info: 'Adobe provides creative software and digital media solutions, including Photoshop and Acrobat, empowering individuals and enterprises to design, edit.',
+            info: 'Adobe provides creative software and digital media solutions, including Photoshop and Acrobat, empowering individuals and enterprises to design, edit, and distribute content across multiple formats',
             hasOAuth: false,
             hasApiKey: true,
             hasBearerToken: false,
@@ -259,10 +259,10 @@ const ConnectAnything = () => {
             triggersCount: 0,
             category: 'Data & Analytics',
             tools: [
-                { name: 'Cancel Statement Execution', description: 'Cancels the execution of a running sql statement...' },
-                { name: 'Execute SQL', description: 'Tool to execute a sql statement and return the resulting...' },
-                { name: 'Fetch Catalog Integration', description: 'Fetches details of a specific catalog integration...' },
-                { name: 'Get Active Scheduled Maintenances', description: 'Retrieves a list of any active scheduled...' }
+                { name: 'Cancel Statement Execution', description: 'Cancels the execution of a running sql statement. use this action to stop a long-running query.' },
+                { name: 'Execute SQL', description: 'Tool to execute a sql statement and return the resulting data. use when you need to query data from snowflake' },
+                { name: 'Fetch Catalog Integration', description: 'Fetches details of a specific catalog integration.' },
+                { name: 'Get Active Scheduled Maintenances', description: 'Retrieves a list of any active scheduled maintenances currently in the in progress or verifying state.' }
             ]
         },
         'r2c8': { 
@@ -274,15 +274,15 @@ const ConnectAnything = () => {
             triggersCount: 0,
             category: 'CRM, Sales & Customer Support, Productivity & Project Management',
             tools: [
-                { name: 'Create Account', description: 'Add a new account' },
-                { name: 'Create Contact', description: 'Creates a new contact entity record' },
-                { name: 'Create Lead', description: 'Creates a new lead entity record' },
-                { name: 'Create Opportunity', description: 'Creates a new opportunity entity record' }
+                { name: 'Create Account', description: 'Creates a new account entity record in dynamics crm using the web api.' },
+                { name: 'Create Contact', description: 'Creates a new contact entity record in dynamics crm using the web api.' },
+                { name: 'Create Lead', description: 'Creates a new lead entity record in dynamics crm using the web api.' },
+                { name: 'Create Opportunity', description: 'Creates a new opportunity entity record in dynamics crm using the web api.' }
             ]
         },
         'r2c9': { 
             name: 'Meta Ads', 
-            info: 'Meta Ads API. It is used to create, update, and manage ads, ad sets, and campaigns.',
+            info: 'Meta Ads API.',
             hasOAuth: true,
             hasBearerToken: false,
             hasApiKey:true,
@@ -290,10 +290,10 @@ const ConnectAnything = () => {
             triggersCount: 0,
             category: 'Social Media',
             tools: [
-                { name: 'Create Ad', description: 'Create a new ad within an ad set using the meta...' },
-                { name: 'Create Ad creative', description: 'Create a new ad creative using the meta...' },
-                { name: 'Create Ad set', description: 'Create a new ad set using the meta...' },
-                { name: 'Create campaign', description: 'Create a new campaign using the meta...' }
+                { name: 'Create Ad', description: 'Create a new ad within an ad set using the meta marketing api. supports various ad formats including image, video, carousel, and collection ads.' },
+                { name: 'Create Ad creative', description: "Create a new ad creative using the meta marketing api. ad creatives are reusable visual and interactive elements that define how your ad looks and behaves: - can be used in multiple ads - support various formats (image, video, carousel) - include text, media, and call-to-action buttons - must follow meta's ad policies" },
+                { name: 'Create Ad set', description: 'Create a new ad set within a campaign using the meta marketing api. supports detailed targeting options, budgets, and optimization goals.' },
+                { name: 'Create campaign', description: 'Create a new campaign using the meta marketing api. campaigns group ad sets and define overall goals, budgets, and targeting.' }
             ]
         },
         'r3c1': { 
@@ -305,10 +305,10 @@ const ConnectAnything = () => {
             triggersCount: 0,
             category: 'Design & Prototyping',
             tools: [
-                { name: 'Add a comment fi...', description: 'Posts a new comment to a figma file or branch...' },
-                { name: 'Add a reaction c...', description: 'Posts a specified emoji reaction to an existing... ' },
-                { name: 'Create a webhook', description: 'Creates a figma webhook for a `team id` to s...`' },
-                { name: 'Create dev resou...', description: 'Creates and attaches multiple uniquely-urled...' }
+                { name: 'Add a comment to a file', description: "Posts a new comment to a figma file or branch, optionally replying to an existing root comment (replies cannot be nested); `region height` and `region width` in `client meta` must be positive if defining a comment region." },
+                { name: 'Add a reaction to a comment', description: 'Posts a specified emoji reaction to an existing comment in a figma file or branch, requiring valid file key and comment id.' },
+                { name: 'Create a webhook', description: "Creates a figma webhook for a `team id` to send post notifications for an `event type` to a publicly accessible https `endpoint`; an initial ping is sent unless `status` is `paused`." },
+                { name: 'Create dev resources', description: 'Creates and attaches multiple uniquely-urled development resources to specified figma nodes, up to 10 per node.' }
             ]
         },
         'r3c2': { 
@@ -320,10 +320,10 @@ const ConnectAnything = () => {
             triggersCount: 0,
             category: 'Communication & Collaboration',
             tools: [
-                { name: 'Add member to team', description: 'Tool to add a user to a microsoft teams team...' },
-                { name: 'Archive Teams team', description: 'Tool to archive a microsoft teams team...' },
-                { name: 'Get all chats', description: 'Retrieves all microsoft teams chats a specif...' },
-                { name: 'Get all chat messages', description: 'Retrieves all messages from a specif...' }
+                { name: 'Add member to team', description: 'Tool to add a user to a microsoft teams team. Use when granting or updating membership for a user' },
+                { name: 'Archive Teams team', description: 'Tool to archive a microsoft teams team. use after confirming the team id; returns 202 if accepted.' },
+                { name: 'Get all chats', description: 'Retrieves all microsoft teams chats a specified user is part of, supporting filtering, property selection, and pagination.' },
+                { name: 'Get all chat messages', description: 'Retrieves all messages from a specified microsoft teams chat using the microsoft graph api, automatically handling pagination; ensure `chat id` is valid and odata expressions in `filter` or `select` are correct.' }
             ]
         },
         'r3c3': { 
@@ -336,10 +336,10 @@ const ConnectAnything = () => {
             triggersCount: 9,
             category: 'Document & File Management, Scheduling & Booking, Collaboration & Communication, Productivity & Project Management, Analytics & Data, Advertising & Marketing',
             tools: [
-                { name: 'Add Enrichment', description: 'Adds an enrichment at a specified position in a defined...' },
-                { name: 'Add file sharing pref...', description: 'Modifies sharing permissions for an existing goo...' },
-                { name: 'Modify email labels', description: 'Adds and/or removes specified gmail labels for a...' },
-                { name: 'Add or remove cust...', description: 'Addorremovetocustomerlist tool will add a...' }
+                { name: 'Add Enrichment', description: 'Adds enrichment at a specified position in a defined album' },
+                { name: 'Add file sharing preference', description: "Modifies sharing permissions for an existing google drive file, granting a specified role to a user, group, domain, or 'anyone'." },
+                { name: 'Modify email labels', description: "Adds and/or removes specified gmail labels for a message; ensure `message id` and all `label ids` are valid (use 'listlabels' for custom label ids)." },
+                { name: 'Add or remove to customer list', description: 'Addorremovetocustomerlist tool will add a contact to a customer list in google ads. note: it takes 6 to 12 hours for changes to be reflected in the customer list.' }
             ]
         },
         'r3c4': { 
@@ -366,25 +366,25 @@ const ConnectAnything = () => {
             triggersCount: 1,
             category: 'Collaboration & Communication',
             tools: [
-                { name: 'Modify email labels', description: 'Adds and/or removes specified gmail labels for...' },
-                { name: 'Create email draft', description: 'Creates a gmail email draft, supporting to/cc/bcc...' },
-                { name: 'Create label', description: 'Creates a new label with a unique name in the specified...' },
-                { name: 'Delete Draft', description: 'Permanently deletes a specific gmail draft using its id...' },
+                { name: 'Modify email labels', description: "Adds and/or removes specified gmail labels for a message; ensure `message id` and all `label ids` are valid (use 'listlabels' for custom label ids)." },
+                { name: 'Create email draft', description: 'Creates a gmail email draft, supporting to/cc/bcc, subject, plain/html body (ensure `is html=true` for html), attachments, and threading.' },
+                { name: 'Create label', description: "Creates a new label with a unique name in the specified user's gmail account." },
+                { name: 'Delete Draft', description: "Creates a new label with a unique name in the specified user's gmail account." },
             ]
         },
         'r3c6': { 
             name: 'Slack', 
-            info: 'Slack is a messaging platform for teams, offering real-time communication, file sharing, and integration with other apps for productivity.',
+            info: 'Slack is a channel-based messaging platform. With Slack, people can work together more effectively, connect all their software tools and services, and find the information they need to do their best work — all within a secure, enterprise-grade environment.',
             hasOAuth: true,
             hasBearerToken: true,
             toolsCount: 133,
             triggersCount: 9,
             category: 'productivity,popular',
             tools: [
-                { name: 'Set snooze duration', description: 'Deprecated: turns on do not disturb mode for the current...' },
-                { name: 'Set do not disturb duration', description: 'turns on do not disturb mode for the current user...' },
-                { name: 'Add an emoji alias', description: 'Adds an alias for an existing custom emoji in a slack ...' },
-                { name: 'Add a remote file', description: 'Adds a reference to an external file (e.g., google drive... ' }
+                { name: 'Set snooze duration', description: 'Deprecated: turns on do not disturb mode for the current user, or changes its duration. use `set dnd duration` instead.' },
+                { name: 'Set do not disturb duration', description: 'turns on do not disturb mode for the current user for a specified duration' },
+                { name: 'Add an emoji alias', description: 'Adds an alias for an existing custom emoji in a slack channel' },
+                { name: 'Add a remote file', description: 'Adds a reference to an external file (e.g., google drive)' }
             ]
         },
         'r3c7': { 
@@ -396,10 +396,10 @@ const ConnectAnything = () => {
             triggersCount: 3,
             category: 'Productivity & Project Management, Document & File Managemen',
             tools: [
-                { name: 'Create document', description: 'Add a new document to Google Docs' },
-                { name: 'Update document', description: 'Modify document details and status' },
-                { name: 'Delete document', description: 'Delete a document' },
-                { name: 'Get document', description: 'Retrieve document details' }
+                { name: 'Create document', description: "Tool to create a copy of an existing google document. use this to duplicate a document, for example, when using an existing document as a template. the copied document will have a default title (e.g., 'copy of [original title]') if no new title is provided, and will be placed in the user's root google drive folder." },
+                { name: 'Update document', description: 'Modify document details and status using the google docs api' },
+                { name: 'Delete document', description: 'Delete a document using the google docs api' },
+                { name: 'Get document', description: 'Retrieves an existing google document by its id; will error if the document is not found.' }
             ]
         },
         'r3c8': { 
@@ -411,15 +411,15 @@ const ConnectAnything = () => {
             triggersCount: 0,
             category: 'Social Media',
             tools: [
-                { name: 'Create a LinkedIn post', description: 'Add a new LinkedIn post' },
-                { name: 'Update a LinkedI...', description: 'Modify item properties and status' },
-                { name: 'Delete LinkedIn Post', description: 'Delete a LinkedIn post' },
-                { name: 'Get company info', description: 'Retrieves organizations where the authenticated...' }
+                { name: 'Create a LinkedIn post', description: 'Creates a new post on linkedin for the authenticated user or an organization they manage; ensure the user has necessary permissions if posting for an organization.' },
+                { name: 'Update a LinkedIn post', description: 'Modify item properties and status using the linkedin api' },
+                { name: 'Delete LinkedIn Post', description: 'Deletes a specific linkedin post (share) by its unique `share id`, which must correspond to an existing share.' },
+                { name: 'Get company info', description: 'Retrieves organizations where the authenticated user has specific roles (acls), to determine their management or content posting capabilities for linkedin company pages.' }
             ]
         },
         'r3c9': { 
             name: 'Stripe', 
-            info: 'Process payments securely with Stripe integration for subscription and billing management.',
+            info: 'Stripe offers online payment infrastructure, fraud prevention, and APIs enabling businesses to accept and manage payments globally',
             hasOAuth: true,
             hasBearerToken: false,
             hasApiKey: true,
@@ -427,10 +427,10 @@ const ConnectAnything = () => {
             triggersCount: 7,
             category: 'Finance & Accounting, E-commerce',
             tools: [
-                { name: 'Cancel subscription', description: 'Cancels a customer\'s active stripe subscription...' },
-                { name: 'Confirm payment int...', description: 'Confirms a stripe paymentintent to finalize a...' },
-                { name: 'Create Customer', description: 'Creates a new customer in stripe, required for creating...' },
-                { name: 'Create an invoice', description: 'Creates a new draft stripe invoice for a customer; use...' }
+                { name: 'Cancel subscription', description: "Cancels a customer's active stripe subscription at the end of the current billing period, with options to invoice immediately for metered usage and prorate charges for unused time." },
+                { name: 'Confirm payment intent', description: "Confirms a stripe paymentintent to finalize a payment; a `return url` is necessary if the payment method requires customer redirection." },
+                { name: 'Create Customer', description: 'Confirms a stripe paymentintent to finalize a payment; a `return url` is necessary if the payment method requires customer redirection.' },
+                { name: 'Create an invoice', description: 'Creates a new draft stripe invoice for a customer; use to revise an existing invoice, bill for a specific subscription (which must belong to the customer), or apply detailed customizations.' }
             ]
         }
         ,
