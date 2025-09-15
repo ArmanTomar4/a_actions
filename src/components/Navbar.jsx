@@ -11,6 +11,7 @@ function Navbar() {
   const [isOverIntelligence, setIsOverIntelligence] = useState(false)
   const [isOverSolutions, setIsOverSolutions] = useState(false)
   const [isOverPipeline, setIsOverPipeline] = useState(false)
+  const [isOverConnectAnything, setIsOverConnectAnything] = useState(false)
   const [activePage, setActivePage] = useState('0')
   const rafRef = useRef(null)
 
@@ -42,8 +43,9 @@ function Navbar() {
         const overPipeline = checkInViewAtY(pipelineSection)
 
         setIsOverOpening(overOpening)
-        // Prefer explicit ConnectAnything styling if present, else fallback to existing sections
-        setIsOverSolutions(overConnectAnything || overSolutions)
+        // Track ConnectAnything separately from Solutions
+        setIsOverConnectAnything(overConnectAnything)
+        setIsOverSolutions(overSolutions)
         setIsOverIntelligence(overIntelligence)
         setIsOverPipeline(overPipeline)
 
@@ -92,7 +94,7 @@ function Navbar() {
   }
 
   return (
-    <nav className={`nav-container ${isOverOpening ? 'nav-over-opening' : ''} ${isOverIntelligence ? 'nav-over-intelligence' : ''} ${isOverSolutions ? 'nav-over-solutions' : ''} ${isOverPipeline ? 'nav-over-pipeline' : ''}`}>
+    <nav className={`nav-container ${isOverOpening ? 'nav-over-opening' : ''} ${isOverIntelligence ? 'nav-over-intelligence' : ''} ${isOverConnectAnything ? 'nav-over-connect-anything' : ''} ${isOverSolutions ? 'nav-over-solutions' : ''} ${isOverPipeline ? 'nav-over-pipeline' : ''}`}>
       <div className="nav-section left">
         <div className="logo" onClick={handleLogoClick} style={{ cursor: 'pointer' }}>a_ACTIONS</div>
       </div>
