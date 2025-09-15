@@ -496,10 +496,6 @@ const Chatbot = () => {
                     transition: transform 0.2s ease, border-color 0.2s ease;
                 }
 
-                /* .chatbot-send-button:hover:not(:disabled) { */
-                  /* border-color: #ffffff; */
-                /*}*/
-
                 /* No visual disabled state; click handler guards empty input */
 
                 .chat-send-icon-wrap {
@@ -525,11 +521,6 @@ const Chatbot = () => {
 
                 .chat-send-icon.active {
                     opacity: 1;
-                }
-
-
-                .chatbot-send-button:hover:not(:disabled) .chat-send-icon {
-                    transform: scale(1.1);
                 }
 
                 .chatbot-send-button:disabled .chat-send-icon {

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './Navbar.css'
 import { smoothScrollTo } from '../utils/smoothScroll.js'
@@ -11,104 +11,58 @@ function Navbar() {
   const [isOverIntelligence, setIsOverIntelligence] = useState(false)
   const [isOverSolutions, setIsOverSolutions] = useState(false)
   const [isOverPipeline, setIsOverPipeline] = useState(false)
-  const [isOverStats, setIsOverStats] = useState(false)
   const [activePage, setActivePage] = useState('0')
+  const rafRef = useRef(null)
 
   useEffect(() => {
-    const handleScroll = () => {
-      const openingSection = document.querySelector('.opening-container')
-      const intelligenceSection = document.querySelector('.intelligence-layer-container')
-      const solutionsSection = document.querySelector('.solutions-container')
-      const pipelineSection = document.querySelector('.pipeline-container')
-      const statsSection = document.querySelector('.stats-page-container')
+    const getEl = (sel) => document.querySelector(sel)
 
-      const scrollPosition = window.scrollY + 100 // navbar height + some buffer
-
-      // Check if over Opening section
-      if (openingSection) {
-        const openingTop = openingSection.offsetTop
-        const openingBottom = openingTop + openingSection.offsetHeight
-
-        if (scrollPosition >= openingTop && scrollPosition < openingBottom) {
-          setIsOverOpening(true)
-          setIsOverIntelligence(false)
-          setIsOverSolutions(false)
-          setIsOverStats(false)
-          setActivePage('features')
-        } else {
-          setIsOverOpening(false)
-        }
-      }
-
-      // Check if over Intelligence Layer section
-      if (intelligenceSection) {
-        const intelligenceTop = intelligenceSection.offsetTop
-        const intelligenceBottom = intelligenceTop + intelligenceSection.offsetHeight
-
-        if (scrollPosition >= intelligenceTop && scrollPosition < intelligenceBottom) {
-          setIsOverIntelligence(true)
-          setIsOverOpening(false)
-          setIsOverSolutions(false)
-          setIsOverStats(false)
-          setActivePage('features')
-        } else {
-          setIsOverIntelligence(false)
-        }
-      }
-
-      // Check if over Solutions section
-      if (solutionsSection) {
-        const solutionsTop = solutionsSection.offsetTop
-        const solutionsBottom = solutionsTop + solutionsSection.offsetHeight
-
-        if (scrollPosition >= solutionsTop && scrollPosition < solutionsBottom) {
-          setIsOverSolutions(true)
-          setIsOverOpening(false)
-          setIsOverIntelligence(false)
-          setIsOverStats(false)
-          setActivePage('applications')
-        } else {
-          setIsOverSolutions(false)
-        }
-      }
-
-      // Check if over Pipeline section
-      if (pipelineSection) {
-        const pipelineTop = pipelineSection.offsetTop
-        const pipelineBottom = pipelineTop + pipelineSection.offsetHeight
-
-        if (scrollPosition >= pipelineTop && scrollPosition < pipelineBottom) {
-          setIsOverPipeline(true)
-          setIsOverSolutions(false)
-          setIsOverOpening(false)
-          setIsOverIntelligence(false)
-          setIsOverStats(false)
-          setActivePage('how-it-works')
-        } else {
-          setIsOverPipeline(false)
-        }
-      }
-
-      // Check if over Stats section
-      if (statsSection) {
-        const statsTop = statsSection.offsetTop
-        const statsBottom = statsTop + statsSection.offsetHeight
-
-        if (scrollPosition >= statsTop && scrollPosition < statsBottom) {
-          setIsOverStats(true)
-          setIsOverOpening(false)
-          setIsOverIntelligence(false)
-          setIsOverSolutions(false)
-          setActivePage('stats')
-        } else {
-          setIsOverStats(false)
-        }
-      }
+    const checkInViewAtY = (el, y = 80) => {
+      if (!el) return false
+      const rect = el.getBoundingClientRect()
+      return rect.top <= y && rect.bottom > y
     }
 
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+    const handleScroll = () => {
+      // Cancel any pending rAF to throttle
+      if (rafRef.current) cancelAnimationFrame(rafRef.current)
+      rafRef.current = requestAnimationFrame(() => {
+        // Selectors updated to match actual sections
+        const openingSection = getEl('.page-openingO')
+        const connectAnythingSection = getEl('#applications-section') || getEl('.connect-anything-container')
+        const intelligenceSection = getEl('.intelligence-layer-container')
+        const solutionsSection = getEl('.solutions-container')
+        const pipelineSection = getEl('.pipeline-container')
+
+        // Use viewport-based checks so GSAP pinning is respected
+        const overOpening = checkInViewAtY(openingSection)
+        const overConnectAnything = checkInViewAtY(connectAnythingSection)
+        const overIntelligence = checkInViewAtY(intelligenceSection)
+        const overSolutions = checkInViewAtY(solutionsSection)
+        const overPipeline = checkInViewAtY(pipelineSection)
+
+        setIsOverOpening(overOpening)
+        // Prefer explicit ConnectAnything styling if present, else fallback to existing sections
+        setIsOverSolutions(overConnectAnything || overSolutions)
+        setIsOverIntelligence(overIntelligence)
+        setIsOverPipeline(overPipeline)
+
+        // Active page update (avoid churn)
+        let nextActive = activePage
+        if (overOpening || overIntelligence) nextActive = 'features'
+        else if (overConnectAnything || overSolutions) nextActive = 'applications'
+        else if (overPipeline) nextActive = 'how-it-works'
+        if (nextActive !== activePage) setActivePage(nextActive)
+      })
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    handleScroll() // run once on mount
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+      if (rafRef.current) cancelAnimationFrame(rafRef.current)
+    }
+  }, [activePage])
 
   const handleNavClick = (page) => {
     setActivePage(page)
@@ -124,9 +78,6 @@ function Navbar() {
       case 'how-it-works':
         document.querySelector('#how-it-works-section')?.scrollIntoView({ behavior: 'smooth' })
         break
-      case 'stats':
-        document.querySelector('.stats-page-container')?.scrollIntoView({ behavior: 'smooth' })
-        break
       default:
         break
     }
@@ -141,7 +92,7 @@ function Navbar() {
   }
 
   return (
-    <nav className={`nav-container ${isOverOpening ? 'nav-over-opening' : ''} ${isOverIntelligence ? 'nav-over-intelligence' : ''} ${isOverSolutions ? 'nav-over-solutions' : ''} ${isOverPipeline ? 'nav-over-pipeline' : ''} ${isOverStats ? 'nav-over-stats' : ''}`}>
+    <nav className={`nav-container ${isOverOpening ? 'nav-over-opening' : ''} ${isOverIntelligence ? 'nav-over-intelligence' : ''} ${isOverSolutions ? 'nav-over-solutions' : ''} ${isOverPipeline ? 'nav-over-pipeline' : ''}`}>
       <div className="nav-section left">
         <div className="logo" onClick={handleLogoClick} style={{ cursor: 'pointer' }}>a_ACTIONS</div>
       </div>
@@ -171,13 +122,6 @@ function Navbar() {
           >
             {activePage === 'how-it-works' && <span className="nav-indicator"></span>}
             How it works
-          </li>
-          <li
-            className={`nav-item ${activePage === 'stats' ? 'active' : ''}`}
-            onClick={() => handleNavClick('stats')}
-          >
-            {activePage === 'stats' && <span className="nav-indicator"></span>}
-            Stats
           </li>
         </ul>
       </div>

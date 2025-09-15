@@ -70,7 +70,7 @@ const ConnectAnything = () => {
         },
         'r1c4': { 
             name: 'Jira', 
-            info: 'A tool for bug tracking, issue tracking, and agile project management.',
+            info: 'A tool for bug tracking, issue tracking, and agile project management.Jira is very useful tool',
             hasOAuth: true,
             hasBearerToken: false,
             hasApiKey: true,
@@ -942,54 +942,6 @@ const ConnectAnything = () => {
             window.removeEventListener('resize', handleResize);
         };
     }, [isInfoOpen, animatingIcon]);
-
-    // Toggle navbar grey theme when this section intersects the viewport
-    useEffect(() => {
-        const nav = document.querySelector('.nav-container');
-        if (!nav || !containerRef.current) return;
-
-        const st = ScrollTrigger.create({
-            trigger: containerRef.current,
-            start: 'top bottom',   // when section just enters viewport
-            end: 'bottom top',     // until it fully exits
-            toggleClass: { targets: nav, className: 'nav-grey' },
-        });
-
-        return () => st && st.kill();
-    }, []);
-
-    useEffect(() => {
-        const container = containerRef.current;
-        if (!container) return;
-
-        // Navbar theme toggle while ConnectAnything (light background) is in view
-        const nav = document.querySelector('.nav-container');
-        if (nav) {
-            const navScrollTrigger = ScrollTrigger.create({
-                trigger: container,
-                start: 'top bottom',  // when section starts entering
-                end: 'bottom top',    // until it fully exits
-                onEnter: () => {
-                    nav.classList.add('nav-over-connect-anything');
-                    nav.classList.remove('nav-grey', 'nav-over-opening', 'nav-over-intelligence', 'nav-over-solutions', 'nav-over-pipeline', 'nav-over-stats');
-                },
-                onLeave: () => {
-                    nav.classList.remove('nav-over-connect-anything');
-                },
-                onEnterBack: () => {
-                    nav.classList.add('nav-over-connect-anything');
-                    nav.classList.remove('nav-grey', 'nav-over-opening', 'nav-over-intelligence', 'nav-over-solutions', 'nav-over-pipeline', 'nav-over-stats');
-                },
-                onLeaveBack: () => {
-                    nav.classList.remove('nav-over-connect-anything');
-                },
-            });
-
-            return () => {
-                navScrollTrigger.kill();
-            };
-        }
-    }, []);
 
     // Focus management: move focus to close button when panel opens
     useEffect(() => {
