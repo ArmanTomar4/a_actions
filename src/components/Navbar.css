@@ -350,9 +350,12 @@
 .button-arrow {
   position: absolute;
   right: 12px;
-  top: 50%;
+  top: 52%;
   transform: translateY(-50%);
   transition: transform 0.3s ease;
+  width: 9.07px;
+  height: 9.07px;
+  margin-top: 1px;
 }
 
 .nav-button:hover {
@@ -569,13 +572,19 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 8px;
   }
   
   .mobile-nav-button .button-arrow {
     width: 18px;
     height: 18px;
-    position: static;
-    margin-left: 8px;
+    flex-shrink: 0;
+    align-self: center;
+    margin-top: 1px;
+    position: static !important;
+    right: auto !important;
+    top: auto !important;
+    transform: none !important;
   }
 }
 
@@ -601,7 +610,13 @@
   .mobile-nav-button .button-arrow {
     width: 16px;
     height: 16px;
-    margin-left: 6px;
+    flex-shrink: 0;
+    align-self: center;
+    margin-top: 1px;
+    position: static !important;
+    right: auto !important;
+    top: auto !important;
+    transform: none !important;
   }
 }
 
@@ -633,6 +648,12 @@
   .mobile-nav-button .button-arrow {
     width: 14px;
     height: 14px;
-    margin-left: 4px;
+    flex-shrink: 0;
+    align-self: center;
+    margin-top: 3px;
+    position: static !important;
+    right: auto !important;
+    top: auto !important;
+    transform: none !important;
   }
 }

@@ -272,8 +272,7 @@
 /* Mobile Portrait: Below 480px */
 @media (max-width: 479px) {
     .connect-anything-container {
-        padding: 30px 20px;
-        flex-direction: column;
+        display: none;
     }
     
     .connect-anything-title {
