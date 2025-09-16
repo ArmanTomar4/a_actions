@@ -166,15 +166,60 @@
 @media (max-width: 640px) {
   .hero-container {
     padding: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .hero-content {
+    width: 100%;
+    justify-content: center;
+    align-items: center;
   }
   .hero-left-section {
     padding-top: 60px;
+    align-items: center !important;
+    text-align: center;
+    justify-content: center;
+    width: 100%;
   }
   .hero-left-section h1 {
     font-size: clamp(1.5rem, 5vw, 1.825rem);
+    text-align: center;
+    width: 100%;
   }
   .hero-left-section button {
     width: 100%;
     max-width: 226px;
+    margin: 20px auto 0 auto;
+  }
+  .bottom-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 24px;
+    position: absolute;
+    bottom: 24px;
+    left: 0;
+    right: 0;
+    width: 100%;
+  }
+  .bottom-section:not(:first-child) {
+    display: none;
+  }
+  .bottom-section:first-child {
+    border-top: none;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+  .info-label {
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
   }
 }

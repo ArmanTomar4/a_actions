@@ -5,6 +5,8 @@ function Cards() {
   const [currentCard, setCurrentCard] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const intervalRef = useRef(null);
+  const [touchStart, setTouchStart] = useState(null);
+  const [touchEnd, setTouchEnd] = useState(null);
 
   const cards = [
     {
@@ -113,6 +115,32 @@ function Cards() {
     }, 5000);
   };
 
+  // Swipe functionality
+  const minSwipeDistance = 50;
+
+  const onTouchStart = (e) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMove = (e) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+
+    if (isLeftSwipe) {
+      handleManualNavigation(nextCard);
+    } else if (isRightSwipe) {
+      handleManualNavigation(prevCard);
+    }
+  };
+
   return (
     <>
       <div id="features-section" className="cards-container">
@@ -128,7 +156,14 @@ function Cards() {
         </div>
         
         {/* Mobile Carousel */}
-        <div className="mobile-carousel" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+        <div 
+          className="mobile-carousel" 
+          onMouseEnter={handleMouseEnter} 
+          onMouseLeave={handleMouseLeave}
+          onTouchStart={onTouchStart}
+          onTouchMove={onTouchMove}
+          onTouchEnd={onTouchEnd}
+        >
           <button className="carousel-btn prev-btn" onClick={() => handleManualNavigation(prevCard)}>
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
               <path d="M15 18L9 12L15 6" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
