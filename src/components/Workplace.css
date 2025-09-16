@@ -102,17 +102,20 @@
     }
     .workplace-header {
         font-size: clamp(0.95rem, 4vw, 1.2rem);
-        margin-top: 2rem;
+        margin-top: 0rem;
         padding: 0 0 15px 0;
         width: 92%;
     }
     .workplace-sub-header {
         width: 92%;
-        display: grid;
+        display: flex;
+        flex-direction: column;
+        align-items: left;
         gap: 1.5rem;
         font-size: clamp(0.5rem, 2.5vw, 0.7rem);
         margin-top: 1.5rem;
     }
+
     .workplace-svg-img {
         align-items: center;
         height: 60%;
@@ -125,9 +128,10 @@
     .workplace-sub-header-p1,
     .workplace-sub-header-p2,
     .workplace-sub-header-p3 {
-        position: absolute;
-        right: 0;
+        position: static;
+        text-align: center;
         width: 100%;
+        margin-top: 4rem;
     }
 }
 
