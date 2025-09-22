@@ -16,8 +16,8 @@ const Chatbot = () => {
         }
     };
 
-    // API configuration
-    const API_BASE_URL = 'http://127.0.0.1:8000';
+    // API configuration - Cloudflare Worker URL
+    const API_BASE_URL = 'https://a-action-chatbot.farziabhi42cy6.workers.dev';
  
     const typewriterEffect = (text, messageId) => {
         let index = 0;
