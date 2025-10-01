@@ -8,15 +8,12 @@ gsap.registerPlugin(ScrollTrigger);
 const ConnectAnything = () => {
     const [selectedIcon, setSelectedIcon] = useState(null);
     const [isInfoOpen, setIsInfoOpen] = useState(false);
-    const [animatingIcon, setAnimatingIcon] = useState(null);
     const [isAnimating, setIsAnimating] = useState(false);
     const innerRef = useRef(null);
     const infoRef = useRef(null);
     const timelineRef = useRef(null);
     const containerRef = useRef(null); 
     const closeBtnRef = useRef(null);
-    const iconTweenRef = useRef(null);
-    const iconAtPanelRef = useRef(false);
 
     // Icon data with unique info for each integration
     const iconData = {
@@ -744,39 +741,10 @@ const ConnectAnything = () => {
         openInfoSection(iconKey);
     };
 
-    const updateIconPosition = (iconKey) => {
-        const clickedIcon = document.querySelector(`[data-position="${iconKey}"] .connect-icon`);
-        const iconPlaceholder = document.querySelector('.info-icon-placeholder');
-
-        if (clickedIcon && iconPlaceholder) {
-            const iconRect = clickedIcon.getBoundingClientRect();
-            const placeholderRect = iconPlaceholder.getBoundingClientRect();
-
-            // Calculate the center of both elements
-            const iconCenterX = iconRect.left + iconRect.width / 2;
-            const iconCenterY = iconRect.top + iconRect.height / 2;
-
-            const placeholderCenterX = placeholderRect.left + placeholderRect.width / 2;
-            const placeholderCenterY = placeholderRect.top + placeholderRect.height / 2;
-
-            // Calculate the translation needed to move icon center to placeholder center
-            const targetX = placeholderCenterX - iconCenterX;
-            const targetY = placeholderCenterY - iconCenterY;
-
-            // Compute dynamic scale so the icon fits into the placeholder
-            const widthScale = placeholderRect.width / iconRect.width;
-            const heightScale = placeholderRect.height / iconRect.height;
-            const targetScale = Math.min(widthScale, heightScale);
-
-            return { targetX, targetY, targetScale };
-        }
-        return { targetX: 0, targetY: 0, targetScale: 1 };
-    };
 
     const openInfoSection = (iconKey) => {
         setIsAnimating(true);
         setSelectedIcon(iconKey);
-        setAnimatingIcon(iconKey);
         setIsInfoOpen(true); // Show info section immediately
 
         if (timelineRef.current) {
@@ -786,8 +754,6 @@ const ConnectAnything = () => {
         // Clear any existing proximity glow
         const allItems = document.querySelectorAll('.connect-grid-item');
         allItems.forEach(item => item.classList.remove('proximity-glow'));
-
-        const clickedIcon = document.querySelector(`[data-position="${iconKey}"] .connect-icon`);
 
         // Stage A: animate containers into place first
         requestAnimationFrame(() => {
@@ -804,31 +770,8 @@ const ConnectAnything = () => {
                 { x: "0%", opacity: 1, duration: 0.6, ease: "power2.inOut" },
                 0
             )
-            // Stage B: after containers settled, measure and move the icon
             .add(() => {
-                if (!clickedIcon) {
-                    setIsAnimating(false);
-                    return;
-                }
-                const { targetX, targetY, targetScale } = updateIconPosition(iconKey);
-                if (iconTweenRef.current) {
-                    try { iconTweenRef.current.kill(); } catch (e) { /* noop */ }
-                }
-                iconTweenRef.current = gsap.to(clickedIcon, {
-                    scale: targetScale,
-                    x: targetX,
-                    y: targetY,
-                    transformOrigin: '50% 50%',
-                    zIndex: 999,
-                    duration: 0.6,
-                    ease: "power2.inOut",
-                    onComplete: () => {
-                        setIsAnimating(false);
-                        // Mark that the icon has arrived at the panel and hide it to prevent re-fly during zoom
-                        iconAtPanelRef.current = true;
-                        gsap.set(clickedIcon, { autoAlpha: 0 });
-                    }
-                });
+                setIsAnimating(false);
             });
         });
     };
@@ -838,20 +781,10 @@ const ConnectAnything = () => {
         if (timelineRef.current) {
             timelineRef.current.kill();
         }
-        // Also kill icon tween if running
-        if (iconTweenRef.current) {
-            try { iconTweenRef.current.kill(); } catch (e) { /* noop */ }
-            iconTweenRef.current = null;
-        }
 
         setIsAnimating(true);
         setIsInfoOpen(false);
-        iconAtPanelRef.current = false;
         
-        // Get the currently selected icon
-        const selectedIconElement = animatingIcon ? 
-            document.querySelector(`[data-position="${animatingIcon}"] .connect-icon`) : null;
-
         // Create GSAP timeline for closing
         const tl = gsap.timeline({
             ease: "power2.inOut",
@@ -877,7 +810,6 @@ const ConnectAnything = () => {
                 });
                 
                 setSelectedIcon(null);
-                setAnimatingIcon(null);
                 setIsAnimating(false);
                 if (callback) callback();
             }
@@ -897,21 +829,6 @@ const ConnectAnything = () => {
             duration: 0.6,
             ease: "power2.inOut"
         }, 0);
-
-        // Animate the icon back if it exists
-        if (selectedIconElement) {
-            tl.set(selectedIconElement, { autoAlpha: 1 }, 0);
-            tl.to(selectedIconElement, {
-                scale: 1,
-                x: 0,
-                y: 0,
-                zIndex: 'auto',
-                opacity: 0.7,
-                filter: "grayscale(1)",
-                duration: 0.6,
-                ease: "power2.inOut"
-            }, 0);
-        }
     };
 
     // Cleanup timeline on unmount
@@ -922,26 +839,6 @@ const ConnectAnything = () => {
             }
         };
     }, []);
-
-    // Handle window resize to keep the icon in place
-    useEffect(() => {
-        const handleResize = () => {
-            // Reposition only while panel is open and the animated icon is hidden at the panel
-            if (isInfoOpen && animatingIcon && iconAtPanelRef.current) {
-                const { targetX, targetY, targetScale } = updateIconPosition(animatingIcon);
-                const clickedIcon = document.querySelector(`[data-position="${animatingIcon}"] .connect-icon`);
-                if (clickedIcon) {
-                    gsap.set(clickedIcon, { x: targetX, y: targetY, scale: targetScale, transformOrigin: '50% 50%' });
-                }
-            }
-        };
-
-        window.addEventListener('resize', handleResize);
-
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        };
-    }, [isInfoOpen, animatingIcon]);
 
     // Focus management: move focus to close button when panel opens
     useEffect(() => {
